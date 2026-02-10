@@ -398,17 +398,107 @@ body {
   color: #1f2937;
 }
 
+/* Double-click persistent highlight */
+.dblclick-highlight {
+  background: rgba(59, 130, 246, 0.15);
+  border-radius: 2px;
+  padding: 1px 0;
+  transition: background 0.2s ease;
+}
+
+.dark .dblclick-highlight {
+  background: rgba(96, 165, 250, 0.2);
+}
+
+/* Wiki-matched words inside highlight — clickable with dashed indicator */
+.dblclick-highlight-word {
+  position: relative;
+  cursor: pointer;
+  color: #2563eb;
+  font-weight: 600;
+  border-bottom: 1px dashed #2563eb;
+  transition: color 0.15s ease;
+}
+
+.dark .dblclick-highlight-word {
+  color: #60a5fa;
+  border-bottom-color: #60a5fa;
+}
+
+.dblclick-highlight-word:hover {
+  color: #1d4ed8;
+  border-bottom-style: solid;
+}
+
+.dark .dblclick-highlight-word:hover {
+  color: #93c5fd;
+  border-bottom-color: #93c5fd;
+}
+
+/* Animated arrow above wiki-matched words */
+.dblclick-highlight-word::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 5px solid #2563eb;
+  animation: dblclick-arrow-bounce 1.5s ease-in-out infinite;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.dark .dblclick-highlight-word::before {
+  border-bottom-color: #60a5fa;
+}
+
+/* Dashed line connecting arrow to word */
+.dblclick-highlight-word::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1px;
+  height: 5px;
+  border-left: 1px dashed #2563eb;
+  animation: dblclick-arrow-bounce 1.5s ease-in-out infinite;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.dark .dblclick-highlight-word::after {
+  border-left-color: #60a5fa;
+}
+
+@keyframes dblclick-arrow-bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(-50%) translateY(-3px);
+    opacity: 1;
+  }
+}
+
 /* Double-click lookup popup */
 .dblclick-popup {
-  width: 340px;
+  width: 380px;
   background: #ffffff;
   border: 1px solid #d1d5db;
   border-radius: 0.75rem;
   box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 8px 10px -6px rgba(0, 0, 0, 0.1);
-  padding: 1rem;
+  padding: 0;
   font-family: inherit;
+  overflow: hidden;
 }
 
 .dark .dblclick-popup {
@@ -422,14 +512,41 @@ body {
 .dblclick-popup-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+  align-items: flex-start;
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.dark .dblclick-popup-header {
+  background: #111827;
+  border-bottom-color: #374151;
+}
+
+.dblclick-popup-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+  flex: 1;
 }
 
 .dblclick-popup-word {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: #1f2937;
+}
+
+.dblclick-popup-breadcrumb {
+  font-size: 0.7rem;
+  color: #9ca3af;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dark .dblclick-popup-breadcrumb {
+  color: #6b7280;
 }
 
 .dark .dblclick-popup-word {
@@ -439,12 +556,13 @@ body {
 .dblclick-popup-close {
   background: none;
   border: none;
-  font-size: 1rem;
+  font-size: 1.25rem;
   cursor: pointer;
-  color: #6b7280;
+  color: #9ca3af;
   padding: 0 0.25rem;
   line-height: 1;
   min-height: auto !important;
+  transition: color 0.15s ease;
 }
 
 .dblclick-popup-close:hover {
@@ -455,42 +573,99 @@ body {
   color: #f9fafb;
 }
 
-.dblclick-popup-info {
-  font-size: 0.8rem;
-  color: #6b7280;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
+.dblclick-popup-section {
+  padding: 0.75rem 1rem;
 }
 
-.dark .dblclick-popup-info {
+.dblclick-popup-section + .dblclick-popup-section {
+  border-top: 1px solid #e5e7eb;
+}
+
+.dark .dblclick-popup-section + .dblclick-popup-section {
+  border-top-color: #374151;
+}
+
+.dblclick-popup-section-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  margin-bottom: 0.5rem;
+}
+
+.dark .dblclick-popup-section-label {
   color: #9ca3af;
 }
 
-.dblclick-popup-prompt {
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
-  padding: 0.5rem;
-  margin-bottom: 0.75rem;
-  max-height: 100px;
-  overflow-y: auto;
-}
-
-.dark .dblclick-popup-prompt {
-  background: #111827;
-  border-color: #374151;
-}
-
-.dblclick-popup-prompt code {
-  font-size: 0.75rem;
+.dblclick-popup-hint {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin-bottom: 0.625rem;
   line-height: 1.4;
-  color: #374151;
-  white-space: pre-wrap;
-  word-break: break-word;
 }
 
-.dark .dblclick-popup-prompt code {
+.dark .dblclick-popup-hint {
+  color: #9ca3af;
+}
+
+.dblclick-popup-style-tabs {
+  display: flex;
+  gap: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.dblclick-popup-style-tab {
+  flex: 1;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  background: #ffffff;
+  color: #374151;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: auto !important;
+}
+
+.dblclick-popup-style-tab:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.dblclick-popup-style-tab.active {
+  background: #eff6ff;
+  border-color: #2563eb;
+  color: #2563eb;
+}
+
+.dark .dblclick-popup-style-tab {
+  background: #1f2937;
+  border-color: #4b5563;
   color: #d1d5db;
+}
+
+.dark .dblclick-popup-style-tab:hover {
+  background: #374151;
+  border-color: #6b7280;
+}
+
+.dark .dblclick-popup-style-tab.active {
+  background: #1e3a5f;
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+.dblclick-popup-style-desc {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-style: italic;
+  margin-bottom: 0.625rem;
+}
+
+.dark .dblclick-popup-style-desc {
+  color: #6b7280;
 }
 
 .dblclick-popup-copy {
@@ -504,17 +679,52 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s ease;
+  min-height: auto !important;
 }
 
 .dblclick-popup-copy:hover {
   background: #1d4ed8;
 }
 
+.dblclick-popup-share {
+  padding: 0.5rem 1rem !important;
+}
+
+.dblclick-popup-share-btn {
+  width: 100%;
+  padding: 0.375rem;
+  background: transparent;
+  color: #6b7280;
+  border: 1px dashed #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: auto !important;
+}
+
+.dblclick-popup-share-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  color: #374151;
+}
+
+.dark .dblclick-popup-share-btn {
+  color: #9ca3af;
+  border-color: #4b5563;
+}
+
+.dark .dblclick-popup-share-btn:hover {
+  background: #374151;
+  border-color: #6b7280;
+  color: #d1d5db;
+}
+
 .dblclick-popup-links {
   display: flex;
   flex-direction: column;
   gap: 0.375rem;
-  margin-top: 0.25rem;
 }
 
 .dblclick-popup-link {
@@ -565,11 +775,24 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: #2563eb;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
 }
 
 .dark .copy-prompt-label {
   color: #60a5fa;
+}
+
+.copy-prompt-label::after {
+  content: ' — Copy the prompt below and paste it into your favourite AI assistant';
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.dark .copy-prompt-label::after {
+  color: #9ca3af;
 }
 
 .copy-prompt-text {
@@ -581,6 +804,8 @@ body {
   padding: 0.75rem;
   border-radius: 0.5rem;
   border: 1px solid #e5e7eb;
+  user-select: text;
+  cursor: text;
 }
 
 .dark .copy-prompt-text {
@@ -593,7 +818,7 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 0.375rem;
-  padding: 0.375rem 0.75rem;
+  padding: 0.5rem 1rem;
   background: #2563eb;
   color: #ffffff;
   border: none;
@@ -602,6 +827,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   transition: background 0.15s ease;
+  margin-top: 0.25rem;
 }
 
 .copy-prompt-btn:hover {
