@@ -55,3 +55,4 @@ public/questions/*/testcases.json
 
 # Playwright and other test output
 /test-results/
+/playwright-report/
