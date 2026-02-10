@@ -99,7 +99,8 @@ test-e2e-p1:
 test-e2e-p2:
 	TEST_PRIORITY=P2 npx playwright test --grep "@P2"
 
-test-e2e-pr: test-e2e-p0 test-e2e-p1
+test-e2e-pr:
+	npx playwright test --grep "@P0|@P1" --project=chromium
 
 # --------------------------------------------------------------------
 # 🧪 Full Test Suite

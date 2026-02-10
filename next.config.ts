@@ -2,6 +2,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   output: 'export',
+  trailingSlash: true,
   distDir: '.next',
   images: {
     unoptimized: true,
@@ -9,7 +10,6 @@ const nextConfig: NextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  /* config options here */
 };
 
 export default nextConfig;
