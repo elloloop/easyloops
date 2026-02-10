@@ -510,6 +510,40 @@ body {
   background: #1d4ed8;
 }
 
+.dblclick-popup-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  margin-top: 0.25rem;
+}
+
+.dblclick-popup-link {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  color: #2563eb;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.dblclick-popup-link:hover {
+  background: #e5e7eb;
+}
+
+.dark .dblclick-popup-link {
+  background: #1f2937;
+  border-color: #374151;
+  color: #60a5fa;
+}
+
+.dark .dblclick-popup-link:hover {
+  background: #374151;
+}
+
 /* Copy-prompt button for wiki pages */
 .copy-prompt-container {
   margin: 1.5rem 0;

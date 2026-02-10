@@ -3,13 +3,98 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { wikiSlugs } from '@/constants/wikiSlugs';
 
+// Maps common single words to their wiki slug(s).
+// This lets users double-click "vectors" and land on "vector-spaces", etc.
+const wordToSlugs: Record<string, string[]> = {
+  set: ['sets-and-notation'],
+  sets: ['sets-and-notation'],
+  notation: ['sets-and-notation'],
+  membership: ['sets-and-notation'],
+  subset: ['sets-and-notation'],
+  subsets: ['sets-and-notation'],
+  cartesian: ['sets-and-notation'],
+  union: ['sets-and-notation'],
+  intersection: ['sets-and-notation'],
+  function: ['functions', 'functions-math'],
+  functions: ['functions', 'functions-math'],
+  codomain: ['functions-math'],
+  domain: ['functions-math'],
+  injective: ['functions-math'],
+  surjective: ['functions-math'],
+  bijective: ['functions-math'],
+  field: ['fields'],
+  fields: ['fields'],
+  axiom: ['fields', 'vector-spaces'],
+  axioms: ['fields', 'vector-spaces'],
+  inverse: ['fields'],
+  inverses: ['fields'],
+  vector: ['vector-spaces'],
+  vectors: ['vector-spaces'],
+  scalar: ['scalars-vs-vectors'],
+  scalars: ['scalars-vs-vectors'],
+  concrete: ['concrete-vector-spaces'],
+  complex: ['concrete-vector-spaces'],
+  operations: ['operations-as-functions'],
+  closure: ['operations-as-functions'],
+  linear: ['linear-maps'],
+  linearity: ['linear-maps'],
+  additivity: ['linear-maps'],
+  homogeneity: ['linear-maps'],
+  transformation: ['linear-maps'],
+  matrix: ['matrices'],
+  matrices: ['matrices'],
+  basis: ['matrices'],
+  bases: ['matrices'],
+  norm: ['inner-products-norms-geometry'],
+  norms: ['inner-products-norms-geometry'],
+  inner: ['inner-products-norms-geometry'],
+  dot: ['inner-products-norms-geometry'],
+  orthogonal: ['inner-products-norms-geometry'],
+  orthogonality: ['inner-products-norms-geometry'],
+  geometry: ['inner-products-norms-geometry'],
+  distance: ['inner-products-norms-geometry'],
+  roadmap: ['ml-math-roadmap'],
+  probability: ['ml-math-roadmap'],
+  gradient: ['ml-math-roadmap'],
+  tensor: ['ml-math-roadmap'],
+  tensors: ['ml-math-roadmap'],
+  attention: ['ml-math-roadmap'],
+  algorithm: ['algorithms'],
+  array: ['arrays'],
+  backtrack: ['backtracking'],
+  recursion: ['recursion'],
+  recursive: ['recursion'],
+  loop: ['loops'],
+  loops: ['loops'],
+  string: ['strings'],
+  strings: ['strings'],
+  sort: ['sorting'],
+  sorting: ['sorting'],
+  tree: ['trees'],
+  trees: ['trees'],
+  graph: ['graphs'],
+  graphs: ['graphs'],
+  inheritance: ['inheritance'],
+  polymorphism: ['polymorphism'],
+  interface: ['interfaces'],
+  interfaces: ['interfaces'],
+  debugging: ['debugging'],
+  threading: ['threading'],
+  optimization: ['optimization'],
+  parsing: ['parsing'],
+};
+
+interface MatchedSlug {
+  slug: string;
+  label: string;
+}
+
 interface PopupState {
   visible: boolean;
   x: number;
   y: number;
   word: string;
-  slug: string;
-  hasWikiPage: boolean;
+  matchedSlugs: MatchedSlug[];
 }
 
 function toSlug(word: string): string {
@@ -17,6 +102,49 @@ function toSlug(word: string): string {
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+function slugToLabel(slug: string): string {
+  return slug
+    .split('-')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+
+function findWikiMatches(word: string): MatchedSlug[] {
+  const slug = toSlug(word);
+  const results: MatchedSlug[] = [];
+  const seen = new Set<string>();
+
+  // 1. Exact slug match
+  if ((wikiSlugs as readonly string[]).includes(slug)) {
+    results.push({ slug, label: slugToLabel(slug) });
+    seen.add(slug);
+  }
+
+  // 2. Check word-to-slug mapping
+  const lowerWord = word.toLowerCase();
+  const mapped = wordToSlugs[lowerWord];
+  if (mapped) {
+    for (const s of mapped) {
+      if (!seen.has(s) && (wikiSlugs as readonly string[]).includes(s)) {
+        results.push({ slug: s, label: slugToLabel(s) });
+        seen.add(s);
+      }
+    }
+  }
+
+  // 3. Partial match: slug contains the word
+  if (slug.length >= 3) {
+    for (const ws of wikiSlugs) {
+      if (!seen.has(ws) && ws.includes(slug)) {
+        results.push({ slug: ws, label: slugToLabel(ws) });
+        seen.add(ws);
+      }
+    }
+  }
+
+  return results;
 }
 
 function generateAIPrompt(word: string): string {
@@ -33,8 +161,7 @@ const DoubleClickLookup: React.FC = () => {
     x: 0,
     y: 0,
     word: '',
-    slug: '',
-    hasWikiPage: false,
+    matchedSlugs: [],
   });
   const [copied, setCopied] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -55,25 +182,22 @@ const DoubleClickLookup: React.FC = () => {
       return;
     }
 
-    const slug = toSlug(word);
-    if (!slug) return;
+    const matches = findWikiMatches(word);
 
-    const hasWikiPage = (wikiSlugs as readonly string[]).includes(slug);
-
-    if (hasWikiPage) {
-      window.open(`/wiki/${slug}`, '_blank');
+    // Single exact match: open directly
+    if (matches.length === 1) {
+      window.open(`/wiki/${matches[0].slug}`, '_blank');
       selection?.removeAllRanges();
       return;
     }
 
-    // Show popup with AI prompt
+    // Multiple matches or no matches: show popup
     setPopup({
       visible: true,
       x: e.clientX,
       y: e.clientY,
       word,
-      slug,
-      hasWikiPage: false,
+      matchedSlugs: matches,
     });
     setCopied(false);
   }, []);
@@ -147,6 +271,8 @@ const DoubleClickLookup: React.FC = () => {
   if (left < 8) left = 8;
   if (top < 8) top = 8;
 
+  const hasMatches = popup.matchedSlugs.length > 0;
+
   return (
     <div
       ref={popupRef}
@@ -168,16 +294,40 @@ const DoubleClickLookup: React.FC = () => {
           x
         </button>
       </div>
-      <p className="dblclick-popup-info">
-        No wiki page found for &quot;{popup.word}&quot;. Copy this prompt to
-        learn from an AI assistant:
-      </p>
-      <div className="dblclick-popup-prompt">
-        <code>{generateAIPrompt(popup.word)}</code>
-      </div>
-      <button className="dblclick-popup-copy" onClick={copyPrompt}>
-        {copied ? 'Copied!' : 'Copy Prompt'}
-      </button>
+
+      {hasMatches ? (
+        <>
+          <p className="dblclick-popup-info">
+            Multiple wiki pages match &quot;{popup.word}&quot;:
+          </p>
+          <div className="dblclick-popup-links">
+            {popup.matchedSlugs.map((m) => (
+              <a
+                key={m.slug}
+                href={`/wiki/${m.slug}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dblclick-popup-link"
+              >
+                {m.label}
+              </a>
+            ))}
+          </div>
+        </>
+      ) : (
+        <>
+          <p className="dblclick-popup-info">
+            No wiki page found for &quot;{popup.word}&quot;. Copy this prompt to
+            learn from an AI assistant:
+          </p>
+          <div className="dblclick-popup-prompt">
+            <code>{generateAIPrompt(popup.word)}</code>
+          </div>
+          <button className="dblclick-popup-copy" onClick={copyPrompt}>
+            {copied ? 'Copied!' : 'Copy Prompt'}
+          </button>
+        </>
+      )}
     </div>
   );
 };
