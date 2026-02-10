@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono, Comfortaa } from 'next/font/google';
 import './globals.css';
 import ThemeProvider from '@/shared/components/ThemeProvider';
+import DoubleClickLookup from '@/shared/components/DoubleClickLookup';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,7 +35,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${comfortaa.variable} antialiased`}
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          {children}
+          <DoubleClickLookup />
+        </ThemeProvider>
       </body>
     </html>
   );
