@@ -75,10 +75,10 @@ const WikiPageClient: React.FC<WikiPageClientProps> = ({
         onLanguageChange={handleLanguageChange}
         showLanguageSelector={true}
       />
-      <div className="container mx-auto px-4 py-8 max-w-4xl">
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 transition-colors duration-300 border border-gray-200 dark:border-gray-700">
-          <div className="mb-6">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+      <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-4xl">
+        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 sm:p-6 md:p-8 transition-colors duration-300 border border-gray-200 dark:border-gray-700">
+          <div className="mb-4 sm:mb-6">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               {slug
                 .split('-')
                 .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -89,7 +89,7 @@ const WikiPageClient: React.FC<WikiPageClientProps> = ({
 
           <div
             ref={contentRef}
-            className="prose prose-lg max-w-none text-gray-900 dark:text-gray-100"
+            className="prose prose-sm sm:prose-base md:prose-lg max-w-none text-gray-900 dark:text-gray-100"
           >
             <MarkdownRenderer content={currentContent} />
           </div>
