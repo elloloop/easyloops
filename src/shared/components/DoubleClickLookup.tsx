@@ -500,12 +500,17 @@ const DoubleClickLookup: React.FC = () => {
   const dblclickFiredRef = useRef(false);
   // Track mousedown to detect drag selections
   const mouseDownTargetRef = useRef<HTMLElement | null>(null);
+  // Debounce timer for selectionchange (mobile)
+  const selectionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Track the last text we showed popup for, to avoid re-triggering
+  const lastPopupTextRef = useRef<string>('');
 
   const dismissPopup = useCallback(() => {
     if (cleanupHighlightRef.current) {
       cleanupHighlightRef.current();
       cleanupHighlightRef.current = null;
     }
+    lastPopupTextRef.current = '';
     setPopup((prev) => ({ ...prev, visible: false }));
   }, []);
 
@@ -545,6 +550,8 @@ const DoubleClickLookup: React.FC = () => {
 
       const cleanup = applyHighlight(selection);
       cleanupHighlightRef.current = cleanup;
+
+      lastPopupTextRef.current = text;
 
       setPopup({
         visible: true,
@@ -594,10 +601,15 @@ const DoubleClickLookup: React.FC = () => {
     [isExcludedTarget, showPopupForSelection]
   );
 
-  // Track mousedown to know where drag started
-  const handleMouseDown = useCallback(
-    (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
+  // Handle click-outside dismissal (mouse + touch)
+  const handlePointerDown = useCallback(
+    (e: MouseEvent | TouchEvent) => {
+      const target = (
+        'touches' in e ? e.touches[0]?.target : e.target
+      ) as HTMLElement | null;
+      if (!target) return;
+
+      // Track mousedown target for drag selection heading hierarchy
       mouseDownTargetRef.current = target;
 
       // Handle click-outside dismissal
@@ -614,7 +626,7 @@ const DoubleClickLookup: React.FC = () => {
     [popup.visible, dismissPopup]
   );
 
-  // Mouse up after drag: detect multi-word selections
+  // Mouse up after drag: detect multi-word selections (desktop)
   const handleMouseUp = useCallback(
     (e: MouseEvent) => {
       // Skip if a dblclick just fired (it already handled it)
@@ -636,6 +648,44 @@ const DoubleClickLookup: React.FC = () => {
     [isExcludedTarget, showPopupForSelection]
   );
 
+  // selectionchange: fires on mobile after long-press select + handle adjust.
+  // Debounced to wait until the user stops adjusting handles.
+  const handleSelectionChange = useCallback(() => {
+    // Only use selectionchange on touch devices; desktop uses dblclick/mouseup
+    if (!('ontouchstart' in window)) return;
+
+    if (selectionTimerRef.current) {
+      clearTimeout(selectionTimerRef.current);
+    }
+
+    selectionTimerRef.current = setTimeout(() => {
+      const selection = window.getSelection();
+      const text = selection?.toString().trim();
+
+      if (!text || text.length < 2) return;
+
+      // Don't re-trigger for the same text
+      if (text === lastPopupTextRef.current) return;
+
+      // Get the anchor node to find a target element
+      const anchorNode = selection?.anchorNode;
+      const target = (
+        anchorNode instanceof HTMLElement
+          ? anchorNode
+          : anchorNode?.parentElement
+      ) as HTMLElement | null;
+      if (!target || isExcludedTarget(target)) return;
+
+      // Get position from the selection range
+      const range = selection?.getRangeAt(0);
+      const rect = range?.getBoundingClientRect();
+      const clientX = rect ? rect.left + rect.width / 2 : window.innerWidth / 2;
+      const clientY = rect ? rect.bottom : window.innerHeight / 2;
+
+      showPopupForSelection(text, target, clientX, clientY);
+    }, 400); // 400ms debounce — enough for handle adjustment
+  }, [isExcludedTarget, showPopupForSelection]);
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape' && popup.visible) {
@@ -647,16 +697,31 @@ const DoubleClickLookup: React.FC = () => {
 
   useEffect(() => {
     document.addEventListener('dblclick', handleDoubleClick);
-    document.addEventListener('mousedown', handleMouseDown);
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('touchstart', handlePointerDown, {
+      passive: true,
+    });
     document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('selectionchange', handleSelectionChange);
     document.addEventListener('keydown', handleKeyDown);
     return () => {
       document.removeEventListener('dblclick', handleDoubleClick);
-      document.removeEventListener('mousedown', handleMouseDown);
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('touchstart', handlePointerDown);
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('selectionchange', handleSelectionChange);
       document.removeEventListener('keydown', handleKeyDown);
+      if (selectionTimerRef.current) {
+        clearTimeout(selectionTimerRef.current);
+      }
     };
-  }, [handleDoubleClick, handleMouseDown, handleMouseUp, handleKeyDown]);
+  }, [
+    handleDoubleClick,
+    handlePointerDown,
+    handleMouseUp,
+    handleSelectionChange,
+    handleKeyDown,
+  ]);
 
   // Cleanup highlight on unmount
   useEffect(() => {
@@ -707,19 +772,40 @@ const DoubleClickLookup: React.FC = () => {
 
   if (!popup.visible) return null;
 
-  const popupWidth = 380;
-  const popupHeight = 320;
-  let left = popup.x;
-  let top = popup.y + 10;
+  const isMobile = window.innerWidth < 640;
 
-  if (left + popupWidth > window.innerWidth) {
-    left = window.innerWidth - popupWidth - 16;
+  // On mobile: bottom sheet. On desktop: positioned near cursor.
+  let positionStyle: React.CSSProperties;
+  if (isMobile) {
+    positionStyle = {
+      position: 'fixed',
+      left: 0,
+      right: 0,
+      bottom: 0,
+      zIndex: 9999,
+    };
+  } else {
+    const popupWidth = 380;
+    const popupHeight = 320;
+    let left = popup.x;
+    let top = popup.y + 10;
+
+    if (left + popupWidth > window.innerWidth) {
+      left = window.innerWidth - popupWidth - 16;
+    }
+    if (top + popupHeight > window.innerHeight) {
+      top = popup.y - popupHeight - 10;
+    }
+    if (left < 8) left = 8;
+    if (top < 8) top = 8;
+
+    positionStyle = {
+      position: 'fixed',
+      left: `${left}px`,
+      top: `${top}px`,
+      zIndex: 9999,
+    };
   }
-  if (top + popupHeight > window.innerHeight) {
-    top = popup.y - popupHeight - 10;
-  }
-  if (left < 8) left = 8;
-  if (top < 8) top = 8;
 
   const hasMatches = popup.matchedSlugs.length > 0;
   const displayText =
@@ -728,97 +814,106 @@ const DoubleClickLookup: React.FC = () => {
       : popup.selectedText;
 
   return (
-    <div
-      ref={popupRef}
-      className="dblclick-popup"
-      style={{
-        position: 'fixed',
-        left: `${left}px`,
-        top: `${top}px`,
-        zIndex: 9999,
-      }}
-    >
-      <div className="dblclick-popup-header">
-        <div className="dblclick-popup-header-left">
-          <span className="dblclick-popup-word">
-            &ldquo;{displayText}&rdquo;
-          </span>
-          {popup.headingPath.length > 0 && (
-            <span className="dblclick-popup-breadcrumb">
-              {popup.headingPath.join(' > ')}
-            </span>
-          )}
-        </div>
-        <button
-          className="dblclick-popup-close"
+    <>
+      {isMobile && (
+        <div
+          className="dblclick-popup-overlay"
           onClick={dismissPopup}
-          aria-label="Close"
-        >
-          &times;
-        </button>
-      </div>
+          style={{
+            position: 'fixed',
+            inset: 0,
+            background: 'rgba(0,0,0,0.3)',
+            zIndex: 9998,
+          }}
+        />
+      )}
+      <div
+        ref={popupRef}
+        className={`dblclick-popup ${isMobile ? 'dblclick-popup-mobile' : ''}`}
+        style={positionStyle}
+      >
+        <div className="dblclick-popup-header">
+          <div className="dblclick-popup-header-left">
+            <span className="dblclick-popup-word">
+              &ldquo;{displayText}&rdquo;
+            </span>
+            {popup.headingPath.length > 0 && (
+              <span className="dblclick-popup-breadcrumb">
+                {popup.headingPath.join(' > ')}
+              </span>
+            )}
+          </div>
+          <button
+            className="dblclick-popup-close"
+            onClick={dismissPopup}
+            aria-label="Close"
+          >
+            &times;
+          </button>
+        </div>
 
-      {hasMatches && (
+        {hasMatches && (
+          <div className="dblclick-popup-section">
+            <p className="dblclick-popup-section-label">Wiki Pages</p>
+            <p className="dblclick-popup-hint">
+              Click a link below, or click annotated words in the highlighted
+              text.
+            </p>
+            <div className="dblclick-popup-links">
+              {popup.matchedSlugs.map((m) => (
+                <a
+                  key={m.slug}
+                  href={`/wiki/${m.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="dblclick-popup-link"
+                >
+                  {m.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div className="dblclick-popup-section">
-          <p className="dblclick-popup-section-label">Wiki Pages</p>
+          <p className="dblclick-popup-section-label">Learn with AI</p>
           <p className="dblclick-popup-hint">
-            Click a link below, or click annotated words in the highlighted
-            text.
+            Copy the prompt below and paste it into your favourite AI assistant
+            to learn about this topic.
           </p>
-          <div className="dblclick-popup-links">
-            {popup.matchedSlugs.map((m) => (
-              <a
-                key={m.slug}
-                href={`/wiki/${m.slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="dblclick-popup-link"
+
+          <div className="dblclick-popup-style-tabs">
+            {(Object.keys(STYLE_LABELS) as PromptStyle[]).map((style) => (
+              <button
+                key={style}
+                className={`dblclick-popup-style-tab ${promptStyle === style ? 'active' : ''}`}
+                onClick={() => handleStyleChange(style)}
+                title={STYLE_LABELS[style].description}
               >
-                {m.label}
-              </a>
+                {STYLE_LABELS[style].name}
+              </button>
             ))}
           </div>
-        </div>
-      )}
 
-      <div className="dblclick-popup-section">
-        <p className="dblclick-popup-section-label">Learn with AI</p>
-        <p className="dblclick-popup-hint">
-          Copy the prompt below and paste it into your favourite AI assistant to
-          learn about this topic.
-        </p>
+          <p className="dblclick-popup-style-desc">
+            {STYLE_LABELS[promptStyle].description}
+          </p>
 
-        <div className="dblclick-popup-style-tabs">
-          {(Object.keys(STYLE_LABELS) as PromptStyle[]).map((style) => (
-            <button
-              key={style}
-              className={`dblclick-popup-style-tab ${promptStyle === style ? 'active' : ''}`}
-              onClick={() => handleStyleChange(style)}
-              title={STYLE_LABELS[style].description}
-            >
-              {STYLE_LABELS[style].name}
-            </button>
-          ))}
+          <button className="dblclick-popup-copy" onClick={copyPrompt}>
+            {copied ? 'Copied!' : 'Copy Prompt'}
+          </button>
         </div>
 
-        <p className="dblclick-popup-style-desc">
-          {STYLE_LABELS[promptStyle].description}
-        </p>
-
-        <button className="dblclick-popup-copy" onClick={copyPrompt}>
-          {copied ? 'Copied!' : 'Copy Prompt'}
-        </button>
+        <div className="dblclick-popup-section dblclick-popup-share">
+          <button
+            className="dblclick-popup-share-btn"
+            onClick={copyHighlightLink}
+          >
+            {linkCopied ? 'Link Copied!' : 'Copy Highlight Link'}
+          </button>
+        </div>
       </div>
-
-      <div className="dblclick-popup-section dblclick-popup-share">
-        <button
-          className="dblclick-popup-share-btn"
-          onClick={copyHighlightLink}
-        >
-          {linkCopied ? 'Link Copied!' : 'Copy Highlight Link'}
-        </button>
-      </div>
-    </div>
+    </>
   );
 };
 

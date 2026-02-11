@@ -501,6 +501,29 @@ body {
   overflow: hidden;
 }
 
+/* Mobile bottom sheet */
+.dblclick-popup.dblclick-popup-mobile {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 1rem 1rem 0 0;
+  border-bottom: none;
+  max-height: 70vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  animation: dblclick-slide-up 0.25s ease-out;
+}
+
+@keyframes dblclick-slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0.8;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
 .dark .dblclick-popup {
   background: #1f2937;
   border-color: #4b5563;
