@@ -26,7 +26,7 @@ const MobileNavigation: React.FC<MobileNavigationProps> = ({
     if (href === '/') {
       return pathname === '/';
     }
-    return pathname.startsWith(href);
+    return pathname?.startsWith(href);
   };
 
   const toggleMenu = () => {
