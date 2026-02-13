@@ -23,7 +23,8 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
     if (href === '/') {
       return pathname === '/';
     }
-    return pathname.startsWith(href);
+    // `usePathname()` can return null during static rendering; guard accordingly
+    return (pathname ?? '').startsWith(href);
   };
 
   const handleNavigation = (href: string, label: string) => {

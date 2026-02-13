@@ -17,7 +17,8 @@ export const useAppState = () => {
   const searchParams = useSearchParams();
 
   // Get the initial question ID from URL or use default
-  const initialQuestionId = searchParams.get('q') || DEFAULT_QUESTION_ID;
+  // `useSearchParams` may return null in some Next.js contexts, guard accordingly
+  const initialQuestionId = searchParams?.get('q') ?? DEFAULT_QUESTION_ID;
 
   const [appState, setAppState] = useState<AppState>({
     pythonCode: '',
@@ -34,7 +35,7 @@ export const useAppState = () => {
 
   // Update selected question when URL changes
   useEffect(() => {
-    const questionFromUrl = searchParams.get('q');
+    const questionFromUrl = searchParams?.get('q');
     if (questionFromUrl && questionFromUrl !== appState.selectedQuestionId) {
       setAppState((prev) => ({
         ...prev,

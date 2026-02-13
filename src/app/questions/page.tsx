@@ -6,12 +6,23 @@ import { getAvailableQuestions } from '@/shared/lib';
 import { formatQuestionName } from '@/shared/lib/formatters';
 import { SimpleHeader } from '@/shared/components';
 
+// Fallback for getQuestionDetails (replace with actual import if available)
+const getQuestionDetails = async (questionId: string) => {
+  // Placeholder: Replace with your actual API call
+  const response = await fetch(`/api/questions/${questionId}`, {
+    cache: 'force-cache', // Cache to speed up subsequent loads
+  });
+  return response.json();
+};
+
 export default function QuestionsPage() {
   const [questions, setQuestions] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [navigating, setNavigating] = useState<string | null>(null);
 
   useEffect(() => {
+    setLoading(true);
     getAvailableQuestions()
       .then((questionList) => {
         console.log('Loaded questions:', questionList);
@@ -24,6 +35,20 @@ export default function QuestionsPage() {
         setLoading(false);
       });
   }, []);
+
+  // Preload question details on hover
+  const preloadQuestion = async (questionId: string) => {
+    try {
+      await getQuestionDetails(questionId);
+    } catch (err) {
+      console.error(`Failed to preload ${questionId}:`, err);
+    }
+  };
+
+  // Handle click to show navigation loading state
+  const handleQuestionClick = (questionId: string) => {
+    setNavigating(questionId); // Show spinner for this question
+  };
 
   if (loading) {
     return (
@@ -124,7 +149,14 @@ export default function QuestionsPage() {
             <Link
               key={questionId}
               href={`/questions/${questionId}`}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-200 hover:border-blue-300 dark:hover:border-blue-500"
+              prefetch={true} // Enable Next.js prefetching
+              onMouseEnter={() => preloadQuestion(questionId)} // Preload on hover
+              onClick={() => handleQuestionClick(questionId)} // Show navigation loading
+              className={`bg-white dark:bg-gray-800 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 p-6 hover:shadow-md transition-shadow duration-200 hover:border-blue-300 dark:hover:border-blue-500 relative ${
+                navigating === questionId
+                  ? 'opacity-50 pointer-events-none'
+                  : ''
+              }`}
             >
               <div className="flex items-start justify-between mb-3">
                 <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
@@ -154,6 +186,12 @@ export default function QuestionsPage() {
                   />
                 </svg>
               </div>
+              {/* Subtle loading indicator during navigation */}
+              {navigating === questionId && (
+                <div className="absolute inset-0 flex items-center justify-center bg-white dark:bg-gray-800 bg-opacity-75">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                </div>
+              )}
             </Link>
           ))}
         </div>
