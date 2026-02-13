@@ -4,6 +4,7 @@ import { QuestionSelector } from '@/features/question';
 import { LanguageSelector, AuthButton } from '@/features/auth';
 import ThemeToggle from '@/shared/components/ThemeToggle';
 import { Logo } from '@/shared/components';
+import Link from 'next/link';
 
 interface HeaderProps extends QuestionSelectorProps {
   selectedLanguage: string;
@@ -20,7 +21,14 @@ const Header: React.FC<HeaderProps> = ({
       <div className="flex flex-col space-y-3 md:space-y-0 md:flex-row md:items-center md:justify-between">
         <div className="flex items-center justify-between md:justify-start md:space-x-4">
           <div className="flex items-center space-x-2 md:space-x-4">
-            <Logo size="md" />
+            <Link
+              href="/"
+              className="hover:opacity-80 transition-opacity cursor-pointer flex items-center"
+              onClick={() => console.log('🏠 Logo clicked, navigating to home')}
+            >
+              <Logo size="md" />
+            </Link>
+
             <span className="hidden sm:inline text-sm text-gray-500 dark:text-gray-400">
               Practice Problems
             </span>
