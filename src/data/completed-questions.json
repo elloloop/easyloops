@@ -1,0 +1,31 @@
+{
+  "completedQuestions": [
+    {
+      "id": "01-variable-declaration",
+      "title": "Variables and Data Types",
+      "description": "Learn about Python variables and data types",
+      "completedAt": "2025-09-16T10:30:00Z",
+      "difficulty": "Easy",
+      "category": "Python Basics",
+      "score": 100
+    },
+    {
+      "id": "02-data-types",
+      "title": "Control Flow",
+      "description": "Master Python control flow statements",
+      "completedAt": "2025-09-16T11:45:00Z",
+      "difficulty": "Medium",
+      "category": "Python Basics",
+      "score": 95
+    },
+    {
+      "id": "03-basic-input-output",
+      "title": "Input/Output Operations",
+      "description": "Understanding Python I/O operations",
+      "completedAt": "2025-09-16T14:20:00Z",
+      "difficulty": "Medium",
+      "category": "Python Basics",
+      "score": 90
+    }
+  ]
+}

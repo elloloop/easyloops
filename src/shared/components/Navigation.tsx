@@ -13,6 +13,7 @@ const Navigation: React.FC<NavigationProps> = ({ className = '' }) => {
 
   const navItems = [
     { href: '/questions', label: 'Problems' },
+    { href: '/dashboard', label: 'Dashboard' },
     { href: '/about', label: 'About' },
     { href: '/vision', label: 'Vision' },
     { href: '/mission', label: 'Mission' },
