@@ -166,4 +166,4 @@ Understanding that geometry is optional helps you understand **why** different M
 
 ---
 
-**Previous:** [[wiki:matrices]] | **Next:** [[wiki:ml-math-roadmap]]
+**Previous:** [[wiki:matrices]] | **Next:** [[wiki:probability-theory]]

@@ -9,7 +9,7 @@ This page summarizes the correct order for learning the mathematics behind machi
 ## The Roadmap
 
 ```
-Sets → Functions → Fields → Vector Spaces → Linear Maps → Matrices → ML
+Sets → Functions → Fields → Vector Spaces → Linear Maps → Matrices → Geometry → Probability → ML
 ```
 
 ---
@@ -123,17 +123,26 @@ Sets → Functions → Fields → Vector Spaces → Linear Maps → Matrices →
 
 ---
 
-## What Comes Next: ML-Specific Math
+## 11. Probability Theory
+
+**What you learned:** Sample spaces are sets. Events are subsets. Probability measures are functions satisfying three axioms. Random variables are functions from S to ℝ. Distributions, expected value, variance, conditional probability, Bayes' theorem.
+
+**Why it matters:** ML is fundamentally about uncertainty. Classification, regression, generative models — all built on probability.
+
+**Go to:** [[wiki:probability-theory]]
+
+---
+
+<div class="copy-prompt-container">
+<div class="copy-prompt-label">Checkpoint Quiz: Probability</div>
+<div class="copy-prompt-text">Prompt: "I've completed the probability theory section of the ML math roadmap. Quiz me with 10 questions: (1) define a sample space for an experiment, (2) express events using set operations, (3) state the three probability axioms, (4) derive the complement rule from the axioms, (5) define a random variable as a function, (6) compute expected value for a discrete distribution, (7) compute variance, (8) apply Bayes' theorem to a real problem, (9) explain why mutually exclusive ≠ independent, (10) connect probability concepts back to sets and functions. Grade me strictly."</div>
+</div>
+
+---
+
+## What Comes Next: More ML-Specific Math
 
 Once you have the foundation above, you're ready for:
-
-### Probability Theory
-
-- Sample spaces (sets!)
-- Events (subsets!)
-- Probability measures (functions!)
-- Random variables (functions from sample space to ℝ)
-- Distributions, expectations, variance
 
 ### Optimization
 
@@ -158,7 +167,7 @@ Once you have the foundation above, you're ready for:
 
 <div class="copy-prompt-container">
 <div class="copy-prompt-label">Final Comprehensive Review</div>
-<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → scalars vs vectors → concrete vector spaces → operations as functions → linear maps → matrices → inner products/norms/geometry. Give me a 20-question comprehensive final exam that tests the entire chain. Include connections between topics (e.g., how functions relate to linear maps, how fields relate to scalar multiplication). Grade me rigorously and identify any remaining gaps. This is my final assessment before moving to probability theory and optimization."</div>
+<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → scalars vs vectors → concrete vector spaces → operations as functions → linear maps → matrices → inner products/norms/geometry → probability theory. Give me a 20-question comprehensive final exam that tests the entire chain including probability. Include connections between topics (e.g., how sets underlie sample spaces, how functions define random variables, how fields relate to scalar multiplication). Grade me rigorously and identify any remaining gaps. This is my final assessment before moving to optimization and tensors."</div>
 </div>
 
 ---

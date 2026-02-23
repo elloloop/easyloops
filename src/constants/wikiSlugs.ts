@@ -40,6 +40,7 @@ export const wikiSlugs = [
   'optimization',
   'parsing',
   'polymorphism',
+  'probability-theory',
   'programming-concepts',
   'reassignment',
   'recursion',
