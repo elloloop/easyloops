@@ -11,7 +11,7 @@ export default function HelpPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 transition-colors">
       <SimpleHeader />
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-16">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             How You Can{' '}
@@ -25,7 +25,7 @@ export default function HelpPage() {
         </div>
 
         {/* Why Help Section */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-12">
+        <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
             Why Your Help Matters
           </h2>
@@ -72,9 +72,9 @@ export default function HelpPage() {
         </div>
 
         {/* Ways to Help */}
-        <div className="grid md:grid-cols-2 gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-8 mb-12">
           {/* Development */}
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <div className="text-3xl mb-4">💻</div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Contribute Code
@@ -120,7 +120,7 @@ export default function HelpPage() {
           </div>
 
           {/* Content Creation */}
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <div className="text-3xl mb-4">📚</div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Create Content
@@ -170,7 +170,7 @@ export default function HelpPage() {
           </div>
 
           {/* Community Support */}
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <div className="text-3xl mb-4">🤝</div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Support the Community
@@ -220,7 +220,7 @@ export default function HelpPage() {
           </div>
 
           {/* Spread the Word */}
-          <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700">
             <div className="text-3xl mb-4">📢</div>
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
               Spread the Word
@@ -283,7 +283,7 @@ export default function HelpPage() {
         </div>
 
         {/* Getting Started */}
-        <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-12">
+        <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 md:p-8 rounded-lg shadow-sm border border-gray-200 dark:border-gray-700 mb-12">
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
             Getting Started
           </h2>
@@ -335,13 +335,13 @@ export default function HelpPage() {
               href="https://github.com/iarunsaragadam/easyloops"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg text-lg transition-colors duration-200"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 sm:px-8 rounded-lg text-lg transition-colors duration-200"
             >
               Start Contributing
             </Link>
             <Link
               href="/questions"
-              className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-blue-600 dark:text-blue-400 font-semibold py-3 px-8 rounded-lg text-lg border-2 border-blue-600 dark:border-blue-400 transition-colors duration-200"
+              className="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 text-blue-600 dark:text-blue-400 font-semibold py-3 px-6 sm:px-8 rounded-lg text-lg border-2 border-blue-600 dark:border-blue-400 transition-colors duration-200"
             >
               Explore Problems
             </Link>

@@ -28,9 +28,9 @@ export default async function WikiPage({ params }: WikiPageProps) {
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
         <ClientHeader showLanguageSelector={true} />
-        <div className="container mx-auto px-4 py-8 max-w-4xl">
-          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-8 transition-colors duration-300 border border-gray-200 dark:border-gray-700">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-4xl">
+          <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 sm:p-6 md:p-8 transition-colors duration-300 border border-gray-200 dark:border-gray-700">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Error Loading Wiki Page
             </h1>
             <p className="text-red-600 dark:text-red-400">
