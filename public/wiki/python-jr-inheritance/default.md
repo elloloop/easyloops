@@ -172,7 +172,7 @@ print(c.describe())  # This shape has an area of 78.54
 print(s.describe())  # This shape has an area of 16.00
 ```
 
-Notice something cool: `describe()` is defined in `Shape`, and it calls `self.area()`. When a `Circle` calls `describe()`, `self.area()` runs the **Circle's** version. When a `Square` calls it, `self.area()` runs the **Square's** version. The parent method automatically uses the child's override!
+Notice: `describe()` is defined in `Shape` and calls `self.area()`. When a `Circle` calls `describe()`, `self.area()` runs the Circle's version. When a `Square` calls it, the Square's version runs. The parent method automatically uses the child's override.
 
 ---
 
@@ -246,9 +246,7 @@ make_all_speak(pets)
 # Buddy: Woof!
 ```
 
-The `make_all_speak` function does not know or care what specific type of animal each object is. It just calls `.speak()`, and each animal responds in its own way. That is polymorphism -- same interface, different behavior.
-
-The best part: you can add a new animal type later (like `Snake`) without changing `make_all_speak` at all. The function keeps working because all animals share the same `speak()` method.
+`make_all_speak` does not know or care what type of animal each object is. It just calls `.speak()`, and each animal responds in its own way. That is polymorphism -- same interface, different behavior. You can add new animal types later without changing `make_all_speak` at all.
 
 ---
 
