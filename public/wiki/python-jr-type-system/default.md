@@ -426,9 +426,6 @@ Open your editor. Type this. Run it.
 
 ```python
 from dataclasses import dataclass
-from typing import Callable, TypeVar
-
-T = TypeVar("T")
 
 
 @dataclass
@@ -455,24 +452,6 @@ def find_student(students: StudentList, name: str) -> Student | None:
     return None
 
 
-def apply_to_all(items: list[T], func: Callable[[T], T]) -> list[T]:
-    """Apply a function to every item in a list."""
-    return [func(item) for item in items]
-
-
-def best_student(students: StudentList) -> Student | None:
-    """Find the student with the highest average."""
-    if len(students) == 0:
-        return None
-
-    best: Student = students[0]
-    student: Student
-    for student in students:
-        if student.average > best.average:
-            best = student
-    return best
-
-
 # Create some students
 roster: StudentList = [
     Student(name="Alice", grades=[90, 85, 92]),
@@ -485,16 +464,12 @@ student: Student
 for student in roster:
     print(f"{student.name}: average = {student.average:.1f}")
 
-top: Student | None = best_student(roster)
-if top is not None:
-    print(f"Best student: {top.name} with {top.average:.1f}")
-
 found: Student | None = find_student(roster, "Bob")
 if found is not None:
     print(f"Found {found.name} with grades {found.grades}")
 ```
 
-Every function has typed parameters and a typed return value. Every variable is labeled. Every collection says what it contains. The type alias `StudentList` keeps things readable. And `Student | None` makes it clear when a value might not exist.
+Every function has typed parameters and a typed return value. Every variable is labeled. The type alias `StudentList` keeps things readable. And `Student | None` makes it clear when a value might not exist.
 
 ---
 

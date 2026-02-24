@@ -124,21 +124,6 @@ Sometimes the child class wants to do **everything the parent does, PLUS somethi
 
 Think of it like this: "I will do what my parent does, PLUS this extra thing on top."
 
-```python
-class Animal:
-    def __init__(self, name: str, species: str) -> None:
-        self.name: str = name
-        self.species: str = species
-
-class Dog(Animal):
-    def __init__(self, name: str, breed: str) -> None:
-        super().__init__(name, "Dog")  # Call Animal's __init__
-        self.breed: str = breed        # Add something extra
-
-    def describe(self) -> str:
-        return f"{self.name} is a {self.breed} ({self.species})"
-```
-
 Open your editor. Type this. Run it.
 
 ```python
@@ -152,12 +137,11 @@ class Animal:
 
 class Dog(Animal):
     def __init__(self, name: str, breed: str) -> None:
-        super().__init__(name, "Dog")
-        self.breed: str = breed
+        super().__init__(name, "Dog")  # Call Animal's __init__
+        self.breed: str = breed        # Add something extra
 
     def describe(self) -> str:
-        parent_description: str = super().describe()
-        return f"{parent_description} (Breed: {self.breed})"
+        return f"{super().describe()} (Breed: {self.breed})"
 
 class Cat(Animal):
     def __init__(self, name: str, indoor: bool) -> None:
@@ -165,9 +149,8 @@ class Cat(Animal):
         self.indoor: bool = indoor
 
     def describe(self) -> str:
-        parent_description: str = super().describe()
         location: str = "indoor" if self.indoor else "outdoor"
-        return f"{parent_description} ({location})"
+        return f"{super().describe()} ({location})"
 
 rex: Dog = Dog("Rex", "Labrador")
 mittens: Cat = Cat("Mittens", True)
@@ -190,29 +173,6 @@ When a child class creates a method with the **same name** as the parent's metho
 
 You already saw this with `speak()` above. The parent `Animal` has `speak()` that returns `"..."`. The child `Dog` overrides it to return `"Woof!"`.
 
-```python
-class Shape:
-    def area(self) -> float:
-        return 0.0
-
-    def describe(self) -> str:
-        return f"This shape has an area of {self.area():.2f}"
-
-class Circle(Shape):
-    def __init__(self, radius: float) -> None:
-        self.radius: float = radius
-
-    def area(self) -> float:      # Overrides Shape's area
-        return 3.14159 * self.radius ** 2
-
-class Square(Shape):
-    def __init__(self, side: float) -> None:
-        self.side: float = side
-
-    def area(self) -> float:      # Overrides Shape's area
-        return self.side ** 2
-```
-
 Open your editor. Type this. Run it.
 
 ```python
@@ -227,14 +187,14 @@ class Circle(Shape):
     def __init__(self, radius: float) -> None:
         self.radius: float = radius
 
-    def area(self) -> float:
+    def area(self) -> float:      # Overrides Shape's area
         return 3.14159 * self.radius ** 2
 
 class Square(Shape):
     def __init__(self, side: float) -> None:
         self.side: float = side
 
-    def area(self) -> float:
+    def area(self) -> float:      # Overrides Shape's area
         return self.side ** 2
 
 c: Circle = Circle(5.0)
@@ -292,32 +252,7 @@ Polymorphism is a big word, but the idea is simple: **different types that can b
 
 Think of a TV remote. It works the same way whether your TV is a Samsung or an LG. You press the power button and the TV turns on. The button is the same for you, but internally each TV brand does things differently.
 
-In code, polymorphism means you can write a function that works with a parent type, and it automatically works with ALL child types:
-
-```python
-class Animal:
-    def __init__(self, name: str) -> None:
-        self.name: str = name
-
-    def speak(self) -> str:
-        return "..."
-
-class Dog(Animal):
-    def speak(self) -> str:
-        return f"{self.name}: Woof!"
-
-class Cat(Animal):
-    def speak(self) -> str:
-        return f"{self.name}: Meow!"
-
-class Parrot(Animal):
-    def speak(self) -> str:
-        return f"{self.name}: Squawk!"
-
-def make_all_speak(animals: list[Animal]) -> None:
-    for animal in animals:
-        print(animal.speak())
-```
+In code, polymorphism means you can write a function that works with a parent type, and it automatically works with ALL child types.
 
 Open your editor. Type this. Run it.
 
@@ -373,6 +308,8 @@ There are two ways to build classes from other classes. Knowing when to use whic
 
 **Composition** (HAS-A): "A car HAS A engine." Use composition when one thing contains or uses another thing.
 
+Open your editor. Type this. Run it.
+
 ```python
 # Inheritance -- IS-A
 class Animal:
@@ -394,25 +331,6 @@ class Car:
     def __init__(self, make: str, engine: Engine) -> None:
         self.make: str = make
         self.engine: Engine = engine  # A Car HAS AN Engine
-
-    def start(self) -> str:
-        return f"{self.make}: {self.engine.start()}"
-```
-
-Open your editor. Type this. Run it.
-
-```python
-class Engine:
-    def __init__(self, horsepower: int) -> None:
-        self.horsepower: int = horsepower
-
-    def start(self) -> str:
-        return f"Engine ({self.horsepower}hp) started!"
-
-class Car:
-    def __init__(self, make: str, engine: Engine) -> None:
-        self.make: str = make
-        self.engine: Engine = engine
 
     def start(self) -> str:
         return f"{self.make}: {self.engine.start()}"
@@ -498,7 +416,7 @@ Two important things:
 
 ## Practical Example: Animal Hierarchy with `speak()`
 
-Let us put everything together and build something complete.
+Let us put everything together. This example uses inheritance, `super()`, method overriding, polymorphism, abstract classes, and encapsulation all at once.
 
 Open your editor. Type this. Run it.
 
@@ -545,9 +463,7 @@ class Dog(Animal):
         return f"{self.name} learned {trick}!"
 
     def describe(self) -> str:
-        base: str = super().describe()
-        trick_count: int = len(self.tricks)
-        return f"{base} - {self.breed}, {trick_count} tricks"
+        return f"{super().describe()} - {self.breed}, {len(self.tricks)} tricks"
 
 
 class Cat(Animal):
@@ -558,13 +474,9 @@ class Cat(Animal):
     def speak(self) -> str:
         return f"{self.name} says: Meow!"
 
-    def purr(self) -> str:
-        return f"{self.name} purrs softly..."
-
     def describe(self) -> str:
-        base: str = super().describe()
         location: str = "indoor" if self.indoor else "outdoor"
-        return f"{base} - {location} cat"
+        return f"{super().describe()} - {location} cat"
 
 
 class Parrot(Animal):
@@ -583,60 +495,44 @@ class Parrot(Animal):
         return f"{self.name} learned to say '{word}'!"
 
     def describe(self) -> str:
-        base: str = super().describe()
-        return f"{base} - {self.color}, knows {len(self._words)} words"
+        return f"{super().describe()} - {self.color}, knows {len(self._words)} words"
 
 
-# Create our animals
+# Create animals and teach them things
 rex: Dog = Dog("Rex", "Golden Retriever")
 mittens: Cat = Cat("Mittens", True)
 polly: Parrot = Parrot("Polly", "green")
 
-# Teach them things
-print(rex.learn_trick("sit"))           # Rex learned sit!
-print(rex.learn_trick("shake"))         # Rex learned shake!
-print(polly.teach_word("hello"))        # Polly learned to say 'hello'!
-print(polly.teach_word("good morning")) # Polly learned to say 'good morning'!
+rex.learn_trick("sit")
+rex.learn_trick("shake")
+polly.teach_word("hello")
 
-# Everyone speaks
+# Polymorphism -- same loop, different behaviors
 pets: list[Animal] = [rex, mittens, polly]
-print()
 for pet in pets:
     print(pet.speak())
 # Rex says: Woof! Woof!
 # Mittens says: Meow!
-# Polly says: good morning!
+# Polly says: hello!
 
 # Play and eat
-print()
-print(rex.play())               # Rex plays! Energy: 70
-print(rex.play())               # Rex plays! Energy: 40
-print(rex.eat("dog biscuit"))   # Rex eats dog biscuit. Energy: 60
+print(rex.play())              # Rex plays! Energy: 70
+print(rex.eat("dog biscuit"))  # Rex eats dog biscuit. Energy: 90
 
 # Describe everyone
-print()
 for pet in pets:
     print(pet.describe())
-# Rex the Dog (Energy: 60) - Golden Retriever, 2 tricks
+# Rex the Dog (Energy: 90) - Golden Retriever, 2 tricks
 # Mittens the Cat (Energy: 100) - indoor cat
-# Polly the Parrot (Energy: 100) - green, knows 2 words
+# Polly the Parrot (Energy: 100) - green, knows 1 words
 
 # isinstance checks
-print()
 print(isinstance(rex, Dog))     # True
 print(isinstance(rex, Animal))  # True -- a Dog IS an Animal
 print(isinstance(mittens, Dog)) # False -- a Cat is NOT a Dog
 ```
 
-This example shows everything working together:
-
-- **Inheritance:** `Dog`, `Cat`, and `Parrot` all inherit from `Animal`.
-- **`super()`:** Each child calls `super().__init__()` to set up the shared data.
-- **Method overriding:** Each child has its own version of `speak()` and `describe()`.
-- **Polymorphism:** The loop `for pet in pets` works with all animal types using the same interface.
-- **Abstract class:** `Animal` is abstract, so you cannot create a plain `Animal()`.
-- **Encapsulation:** Energy is protected with `_energy` and exposed as a read-only property.
-- **Composition ideas:** Dogs have a tricks list, parrots have a words list -- these are "has-a" relationships within the inheritance structure.
+This example ties together every concept from this lesson: inheritance, `super()`, method overriding, polymorphism, abstract classes, and encapsulation.
 
 ---
 
@@ -841,14 +737,9 @@ class GameCharacter:
     def is_alive(self) -> bool:
         return self._hp > 0
 
-    @property
-    def hp(self) -> int:
-        return self._hp
-
     def describe(self) -> str:
         status: str = "alive" if self.is_alive else "defeated"
         return f"{self.name} - HP: {self._hp}, ATK: {self._attack_power} ({status})"
-
 
 class Warrior(GameCharacter):
     def __init__(self, name: str, hp: int, attack_power: int, armor: int) -> None:
@@ -857,14 +748,10 @@ class Warrior(GameCharacter):
 
     def take_damage(self, amount: int) -> str:
         reduced: int = max(0, amount - self._armor)
-        blocked: int = amount - reduced
-        result: str = super().take_damage(reduced)
-        return f"{result} (Armor blocked {blocked})"
+        return super().take_damage(reduced) + f" (Armor blocked {amount - reduced})"
 
     def describe(self) -> str:
-        base: str = super().describe()
-        return f"{base} [Warrior, Armor: {self._armor}]"
-
+        return f"{super().describe()} [Warrior, Armor: {self._armor}]"
 
 class Wizard(GameCharacter):
     def __init__(self, name: str, hp: int, attack_power: int, mana: int) -> None:
@@ -873,43 +760,20 @@ class Wizard(GameCharacter):
 
     def cast_spell(self) -> str:
         if self._mana < 20:
-            return f"{self.name} does not have enough mana to cast a spell!"
+            return f"{self.name} does not have enough mana!"
         self._mana -= 20
-        damage: int = self._attack_power * 2
-        return f"{self.name} casts a spell for {damage} damage! Mana: {self._mana}"
-
-    @property
-    def mana(self) -> int:
-        return self._mana
+        return f"{self.name} casts a spell for {self._attack_power * 2} damage! Mana: {self._mana}"
 
     def describe(self) -> str:
-        base: str = super().describe()
-        return f"{base} [Wizard, Mana: {self._mana}]"
+        return f"{super().describe()} [Wizard, Mana: {self._mana}]"
 
-
-# Create characters
 knight: Warrior = Warrior("Sir Steel", 120, 15, 8)
 mage: Wizard = Wizard("Mystara", 80, 25, 60)
 
-print(knight.describe())
-# Sir Steel - HP: 120, ATK: 15 (alive) [Warrior, Armor: 8]
-print(mage.describe())
-# Mystara - HP: 80, ATK: 25 (alive) [Wizard, Mana: 60]
-
-# Wizard casts spells
-print(mage.cast_spell())  # Mystara casts a spell for 50 damage! Mana: 40
-
-# Warrior takes damage (armor helps)
-print(knight.take_damage(20))
-# Sir Steel takes 12 damage! HP: 108 (Armor blocked 8)
-
-# Wizard takes damage (no armor)
-print(mage.take_damage(20))
-# Mystara takes 20 damage! HP: 60
-
-print()
-print(knight.describe())
-print(mage.describe())
+print(knight.describe())   # Sir Steel - HP: 120, ATK: 15 (alive) [Warrior, Armor: 8]
+print(mage.cast_spell())   # Mystara casts a spell for 50 damage! Mana: 40
+print(knight.take_damage(20))  # Sir Steel takes 12 damage! HP: 108 (Armor blocked 8)
+print(mage.take_damage(20))   # Mystara takes 20 damage! HP: 60
 ```
 
 ---

@@ -421,32 +421,7 @@ This triple nesting is the trickiest part of decorators. Do not worry if it take
 
 1. **Forgetting `@functools.wraps`.** Without it, the wrapped function loses its name and description. Always include it on your wrapper function.
 
-2. **Confusing decoration time vs call time.** The decorator runs **once** when the function is defined. The wrapper runs **every time** the function is called.
-
-```python
-import functools
-from typing import Any, Callable
-
-
-def my_decorator(func: Callable) -> Callable:
-    print("Decorating!")  # Runs ONCE when the function is defined
-
-    @functools.wraps(func)
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
-        print("Calling!")  # Runs EVERY time the function is called
-        return func(*args, **kwargs)
-
-    return wrapper
-
-
-@my_decorator  # "Decorating!" prints right here
-def say_hi() -> None:
-    print("Hi!")
-
-
-say_hi()  # "Calling!" then "Hi!"
-say_hi()  # "Calling!" then "Hi!" again
-```
+2. **Confusing decoration time vs call time.** The decorator runs **once** when the function is defined. The wrapper runs **every time** the function is called. If you put a `print` in the decorator body (outside the wrapper), it prints once at definition time. If you put it inside the wrapper, it prints every time the function is called.
 
 3. **Closures that all share the same variable.** This is a classic trap:
 
