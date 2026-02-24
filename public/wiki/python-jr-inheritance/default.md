@@ -387,10 +387,6 @@ class Animal(ABC):
         self._energy = max(0, self._energy - 30)
         return f"{self.name} plays! Energy: {self._energy}"
 
-    @property
-    def energy(self) -> int:
-        return self._energy
-
     def describe(self) -> str:
         return f"{self.name} the {self.species} (Energy: {self._energy})"
 
@@ -450,7 +446,7 @@ for pet in pets:
 # Mittens the Cat (Energy: 100) - indoor cat
 ```
 
-This example ties together every concept from this lesson: inheritance, `super()`, method overriding, polymorphism, abstract classes, and encapsulation.
+This example uses inheritance, `super()`, method overriding, polymorphism, and abstract classes all together.
 
 ---
 
@@ -472,14 +468,13 @@ Five or six levels of inheritance gets confusing fast. Keep it simple -- one or 
 
 ## Summary
 
-- **Inheritance** lets a child class reuse code from a parent class. Write shared code once, use it many times.
-- **Syntax:** `class Dog(Animal):` means Dog inherits from Animal.
-- **`super()`** calls the parent's version of a method. Use it in `__init__` to make sure the parent sets up its data.
-- **Method overriding** lets a child replace the parent's behavior with its own version.
+- **Inheritance** lets a child class reuse code from a parent class. Syntax: `class Dog(Animal):`.
+- **`super()`** calls the parent's version of a method. Always use it in `__init__` to set up inherited data.
+- **Method overriding** lets a child replace the parent's behavior with its own.
 - **`isinstance()`** checks if an object is a particular type (including parent types).
-- **Polymorphism** means different types that can be used the same way. Same method call, different behavior.
-- **Inheritance vs composition:** Use "IS-A" (inheritance) when a child truly is a type of parent. Use "HAS-A" (composition) when one thing contains another. When in doubt, prefer composition.
-- **Abstract base classes** force child classes to fill in required methods. Use `ABC` and `@abstractmethod`.
+- **Polymorphism** means different types used the same way -- same method call, different behavior.
+- **IS-A vs HAS-A:** Use inheritance when the child IS a type of parent. Use composition when one thing HAS another. When in doubt, prefer composition.
+- **Abstract base classes** (`ABC` + `@abstractmethod`) force child classes to implement required methods.
 
 ![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing next to a family of toy animals -- a parent animal figure at the top with arrows pointing down to a dog, a cat, and a parrot, each with unique accessories. Features a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
 
