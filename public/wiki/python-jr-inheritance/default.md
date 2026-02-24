@@ -326,10 +326,7 @@ print(r.describe())  # Area: 24.00, Perimeter: 20.00
 
 The `@abstractmethod` decorator marks a method as "you MUST write your own version." The `ABC` in `Shape(ABC)` tells Python this is an abstract class.
 
-Two important things:
-
-1. You **cannot** create a `Shape()` directly. It is abstract -- only meant to be inherited from.
-2. If a child class **forgets** to define `area()` or `perimeter()`, Python gives a `TypeError`. It is like a checklist that makes sure every child fills in all required pieces.
+You **cannot** create a `Shape()` directly -- it is abstract. And if a child class **forgets** to define `area()` or `perimeter()`, Python gives a `TypeError`. It is like a checklist that makes sure every child fills in all required pieces.
 
 ---
 
@@ -492,13 +489,7 @@ for thing in things:
 
 **Question 6:** What is polymorphism? Explain using the TV remote analogy, and then show how the code in Question 5 demonstrates polymorphism.
 
-**Question 7:** Build a complete mini-system:
-- A parent class `GameCharacter` with `name` (str), `_hp` (int), and `_attack_power` (int). Add methods `take_damage(amount: int)`, a `@property` for `is_alive`, and `describe()`.
-- A child class `Warrior` that adds `_armor` (int). When a warrior takes damage, the armor reduces it (damage - armor, minimum 0).
-- A child class `Wizard` that adds `_mana` (int) and a method `cast_spell()` that costs 20 mana and does double attack power damage.
-- Use `super()`, method overriding, type hints, and encapsulation.
-
-Create a warrior and a wizard and have them interact.
+**Question 7:** Build a parent class `GameCharacter` with `name`, `_hp`, `_attack_power`, a `take_damage(amount: int)` method, an `is_alive` property, and `describe()`. Then create a child `Warrior` (adds `_armor` that reduces damage) and a child `Wizard` (adds `_mana` and a `cast_spell()` method costing 20 mana). Use `super()`, method overriding, type hints, and encapsulation.
 
 ---
 
@@ -508,15 +499,7 @@ Create a warrior and a wizard and have them interact.
 
 **Answer 2:** `super()` calls the parent's version of a method. It is most commonly used in `__init__` to run the parent's setup before adding the child's own data. If you forget, the parent's variables (like `self.name`) will not exist, causing an `AttributeError`.
 
-**Answer 3:** It prints:
-
-```
-Bike is moving.
-Titanic is sailing on the water.
-Boeing is flying through the sky.
-```
-
-`Vehicle` uses the default `move()`. `Boat` overrides `move()` to say "sailing on the water." `Airplane` overrides `move()` to say "flying through the sky." This is polymorphism -- the same `thing.move()` call produces different results depending on the type.
+**Answer 3:** It prints `Bike is moving.` then `Titanic is sailing on the water.` then `Boeing is flying through the sky.` Vehicle uses the default `move()`. Boat and Airplane each override it with their own version. This is polymorphism -- same `thing.move()` call, different results.
 
 **Answer 4:**
 - `Bicycle` and `Motorcycle` -- **Inheritance (IS-A).** Both are types of vehicles. They share a lot of code.
