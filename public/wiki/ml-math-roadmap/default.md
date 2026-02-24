@@ -135,6 +135,17 @@ Once you have the foundation above, you're ready for:
 - Random variables (functions from sample space to ℝ)
 - Distributions, expectations, variance
 
+Start the probability track here: [[wiki:probability-foundations]]
+
+Recommended order:
+
+1. [[wiki:probability-foundations]]
+2. [[wiki:random-variables]]
+3. [[wiki:expectation]]
+4. [[wiki:variance]]
+5. [[wiki:covariance-and-independence]]
+6. [[wiki:basic-distributions]]
+
 ### Optimization
 
 - Gradients (linear maps from parameter space to ℝ!)
@@ -158,7 +169,7 @@ Once you have the foundation above, you're ready for:
 
 <div class="copy-prompt-container">
 <div class="copy-prompt-label">Final Comprehensive Review</div>
-<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → scalars vs vectors → concrete vector spaces → operations as functions → linear maps → matrices → inner products/norms/geometry. Give me a 20-question comprehensive final exam that tests the entire chain. Include connections between topics (e.g., how functions relate to linear maps, how fields relate to scalar multiplication). Grade me rigorously and identify any remaining gaps. This is my final assessment before moving to probability theory and optimization."</div>
+<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → scalars vs vectors → concrete vector spaces → operations as functions → linear maps → matrices → inner products/norms/geometry. Give me a 20-question comprehensive final exam that tests the entire chain. Include connections between topics (e.g., how functions relate to linear maps, how fields relate to scalar multiplication). Grade me rigorously and identify any remaining gaps. This is my final assessment before starting the probability track and then optimization."</div>
 </div>
 
 ---
