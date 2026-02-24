@@ -8,7 +8,7 @@ But think about what is actually happening inside the TV. There are circuit boar
 
 That is **abstraction**. Abstraction means **hiding the complicated parts and showing only the simple stuff that matters**.
 
-![A flat vector illustration in a children's educational book style showing a small friendly blue robot named Byte pressing a big red button on a TV remote while a TV screen lights up in the background. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a small friendly blue robot named Byte pressing a big red button on a TV remote while a TV screen lights up in the background. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 Here is another example. Think about a vending machine. You walk up to it, put in some money, press a button, and out comes a snack. You do not need to know about the gears, motors, and conveyor belts inside. The vending machine **abstracts** all that away and gives you a simple way to interact with it: money in, button press, snack out.
 
@@ -72,7 +72,7 @@ Imagine you are designing vehicles. You know that every vehicle in the world mus
 
 An **Abstract Base Class** (ABC for short) is like a template that says: "Every version of this thing MUST have these abilities." It does not say HOW to do them -- it just says you MUST have them.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot looking at a big blueprint pinned to a wall, with outlines of a car, bicycle, and boat on it, each with a checkmark next to the words start and stop. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot looking at a big blueprint pinned to a wall, with outlines of a car, bicycle, and boat on it, each with a checkmark next to the words start and stop. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 In Python, you make an Abstract Base Class by importing from the `abc` module:
 
@@ -321,7 +321,7 @@ Think of it like this. Imagine you are looking for a duck. Instead of checking i
 
 This idea is called **duck typing**: if it walks like a duck and quacks like a duck, it is a duck.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot with a clipboard, looking at a line of animals -- a real duck, a toy duck, and a robot duck -- all quacking with speech bubbles. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot with a clipboard, looking at a line of animals -- a real duck, a toy duck, and a robot duck -- all quacking with speech bubbles. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ```python
 from typing import Protocol
@@ -450,7 +450,7 @@ Each player works completely differently inside, but they all share the same `pl
 
 ---
 
-![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a desk with three music players in front of him -- a CD player, a laptop for streaming, and a vinyl record player -- all connected by a single set of headphones. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a desk with three music players in front of him -- a CD player, a laptop for streaming, and a vinyl record player -- all connected by a single set of headphones. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-04.png)
 
 ## Summary
 

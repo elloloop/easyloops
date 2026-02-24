@@ -2,7 +2,7 @@
 
 Welcome to your very first programming lesson! By the end of this page, you will have told a computer what to do, and watched it do it. Let's go!
 
-![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a desk with a computer screen that displays the words Hello World in a speech bubble, with confetti and stars around the screen to celebrate. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a desk with a computer screen that displays the words Hello World in a speech bubble, with confetti and stars around the screen to celebrate. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -116,7 +116,7 @@ Hello, world!
 
 You just wrote and ran your first program! The computer read your instruction and did exactly what you asked -- it showed "Hello, world!" on the screen.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot jumping with excitement next to a large screen displaying Hello World, with colorful sparkles and a big checkmark. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot jumping with excitement next to a large screen displaying Hello World, with colorful sparkles and a big checkmark. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ### What Just Happened? Let's Break It Down
 
@@ -156,6 +156,7 @@ print(Hello, world!)
 ```
 
 **What Python says:**
+
 ```
 SyntaxError: invalid syntax
 ```
@@ -171,6 +172,7 @@ Print("Hello, world!")
 ```
 
 **What Python says:**
+
 ```
 NameError: name 'Print' is not defined
 ```
@@ -186,6 +188,7 @@ print("Hello, world!')
 ```
 
 **What Python says:**
+
 ```
 SyntaxError: EOL while scanning string literal
 ```
@@ -201,6 +204,7 @@ print "Hello, world!"
 ```
 
 **What Python says:**
+
 ```
 SyntaxError: Missing parentheses in call to 'print'
 ```
@@ -483,6 +487,7 @@ print("hello')
 ```
 
 For each one:
+
 - What did the error message say?
 - Can you figure out what Python is complaining about?
 - How would you fix it?
@@ -512,7 +517,7 @@ print("This will also show up")
 
 Run it. Now remove the `#` from the second line and run it again. See the difference? The `#` turned that line into a comment, so Python skipped it.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot looking at a list of completed exercises with checkmarks, giving a thumbs up with one hand while the other holds a small flag. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot looking at a list of completed exercises with checkmarks, giving a thumbs up with one hand while the other holds a small flag. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -556,17 +561,20 @@ Try to answer these questions before looking at the answers at the bottom of the
 **1.** What is a program? Explain it in your own words using the recipe example.
 
 **2.** What will this code show on the screen?
+
 ```python
 print("I love pizza")
 print("I love tacos")
 ```
 
 **3.** What is wrong with this code, and what will Python say?
+
 ```python
 print(Hello there)
 ```
 
 **4.** What will this code show on the screen?
+
 ```python
 print(10 + 5)
 print("10 + 5")
@@ -575,6 +583,7 @@ print("10 + 5")
 **5.** What does the REPL stand for, and when would you use it instead of a file?
 
 **6.** What will this code show on the screen?
+
 ```python
 print("First")
 # print("Second")
@@ -592,10 +601,12 @@ print("Third")
 **1.** A program is a set of instructions that tells a computer what to do, step by step. It is like a recipe: the recipe tells a cook what to do (crack eggs, mix flour, bake), and the cook follows each step. A program tells the computer what to do (show text, add numbers, make decisions), and the computer follows each step from top to bottom.
 
 **2.** It shows two lines:
+
 ```
 I love pizza
 I love tacos
 ```
+
 Each `print()` puts its text on a new line, and Python runs them from top to bottom.
 
 **3.** Python will give a `SyntaxError` because `Hello there` does not have quotes around it. Without quotes, Python thinks `Hello` and `there` are commands or names, not text. The fix is: `print("Hello there")`
@@ -605,10 +616,12 @@ Each `print()` puts its text on a new line, and Python runs them from top to bot
 **5.** REPL stands for Read, Evaluate, Print, Loop. You would use it for quick experiments, like testing one line of code, checking how something works, or using Python as a calculator. You would use a file for real programs with many lines that you want to save and run again.
 
 **6.** It shows:
+
 ```
 First
 Third
 ```
+
 The second line is a comment (it starts with `#`), so Python skips it completely. Only "First" and "Third" are displayed.
 
 **7.** The computer runs the old, saved version of your program, not the new version with your changes. You will see the old output. Always save (Ctrl+S) before running!

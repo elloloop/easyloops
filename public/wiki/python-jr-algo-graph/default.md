@@ -1,10 +1,10 @@
 # Graph Algorithms -- Finding Paths, Sorting Tasks, and Connecting Networks
 
-You already know how to represent graphs (nodes and edges) and how to explore them with BFS and DFS. Now it is time to learn the powerful algorithms that *build on* those traversals. These algorithms solve real problems: finding the fastest route between two cities, figuring out what order to do tasks that depend on each other, and connecting a network using the least amount of cable.
+You already know how to represent graphs (nodes and edges) and how to explore them with BFS and DFS. Now it is time to learn the powerful algorithms that _build on_ those traversals. These algorithms solve real problems: finding the fastest route between two cities, figuring out what order to do tasks that depend on each other, and connecting a network using the least amount of cable.
 
 Every algorithm on this page uses ideas you have already learned -- queues, heaps, sorting, and graph traversal. You are ready for this!
 
-![A flat vector illustration in a children's educational book style showing a colorful map with five small towns connected by roads of different lengths, with numbers on each road. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing at one town and looking at the map while holding a magnifying glass. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a colorful map with five small towns connected by roads of different lengths, with numbers on each road. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing at one town and looking at the map while holding a magnifying glass. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -12,7 +12,7 @@ Every algorithm on this page uses ideas you have already learned -- queues, heap
 
 Before we dive in, here is a quick reminder of the two traversals everything else is built on.
 
-**BFS (Breadth-First Search)** explores level by level using a **queue**. It finds the shortest path in *unweighted* graphs because it visits nodes in order of distance from the start.
+**BFS (Breadth-First Search)** explores level by level using a **queue**. It finds the shortest path in _unweighted_ graphs because it visits nodes in order of distance from the start.
 
 **DFS (Depth-First Search)** explores as deep as possible before backtracking using a **stack** (or recursion). It is great for exploring all paths and detecting cycles.
 
@@ -26,11 +26,11 @@ If any of this feels fuzzy, revisit [[wiki:python-jr-algo-searching]] before con
 
 ### The Problem
 
-BFS finds shortest paths when every road has the same length. But what if roads have *different lengths*? Imagine a map where some roads are highways (fast) and some are dirt paths (slow). You want the *fastest* route, not just the one with the fewest roads.
+BFS finds shortest paths when every road has the same length. But what if roads have _different lengths_? Imagine a map where some roads are highways (fast) and some are dirt paths (slow). You want the _fastest_ route, not just the one with the fewest roads.
 
 ### The Analogy: GPS Navigation
 
-Think about how a GPS finds the fastest route. It does not just count the number of roads -- it looks at how long each road takes. It always explores the *closest* place it has not visited yet, then checks if it can find shorter routes through that place.
+Think about how a GPS finds the fastest route. It does not just count the number of roads -- it looks at how long each road takes. It always explores the _closest_ place it has not visited yet, then checks if it can find shorter routes through that place.
 
 That is exactly what Dijkstra's algorithm does!
 
@@ -142,11 +142,11 @@ Pop (6, D). D already visited. Skip!
 Final distances: {A: 0, C: 1, B: 3, D: 4}
 ```
 
-Notice how B's distance changed from 4 to 3 when we found a *shorter* path through C. That is relaxation in action!
+Notice how B's distance changed from 4 to 3 when we found a _shorter_ path through C. That is relaxation in action!
 
 ### Dijkstra with Path Reconstruction
 
-Sometimes you want to know not just the distance, but the *actual path*.
+Sometimes you want to know not just the distance, but the _actual path_.
 
 ```python
 import heapq
@@ -201,7 +201,7 @@ def dijkstra_with_path(graph: dict[str, list[tuple[str, int]]],
 
 **Space complexity:** O(V).
 
-![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing at a crossroads with three colorful paths leading to different destinations. Each path has a sign showing a number (the distance). Byte is choosing the shortest path. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing at a crossroads with three colorful paths leading to different destinations. Each path has a sign showing a number (the distance). Byte is choosing the shortest path. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -209,19 +209,19 @@ def dijkstra_with_path(graph: dict[str, list[tuple[str, int]]],
 
 ### Why Do We Need This?
 
-Dijkstra works great, but it has one limitation: **all weights must be non-negative**. What if some edges have negative weights? This might sound strange, but it comes up -- for example, imagine a reward system where some paths *give you* points instead of costing them.
+Dijkstra works great, but it has one limitation: **all weights must be non-negative**. What if some edges have negative weights? This might sound strange, but it comes up -- for example, imagine a reward system where some paths _give you_ points instead of costing them.
 
 Bellman-Ford handles negative weights. It is slower than Dijkstra but more flexible.
 
 ### The Key Idea
 
-Repeat this simple step **V - 1 times** (where V is the number of vertices): go through *every* edge and try to relax it (check if you found a shorter path). After V - 1 rounds, you are guaranteed to have found the shortest path to every node.
+Repeat this simple step **V - 1 times** (where V is the number of vertices): go through _every_ edge and try to relax it (check if you found a shorter path). After V - 1 rounds, you are guaranteed to have found the shortest path to every node.
 
 Why V - 1? Because the longest possible shortest path passes through at most V - 1 edges.
 
 ### Bonus: Detecting Negative Cycles
 
-After V - 1 rounds, do one more round. If you can *still* relax an edge, it means there is a **negative cycle** -- a loop where going around reduces the total distance forever. In that case, there is no meaningful "shortest path."
+After V - 1 rounds, do one more round. If you can _still_ relax an edge, it means there is a **negative cycle** -- a loop where going around reduces the total distance forever. In that case, there is no meaningful "shortest path."
 
 ```python
 def bellman_ford(vertices: list[str], edges: list[tuple[str, str, int]],
@@ -263,7 +263,7 @@ def bellman_ford(vertices: list[str], edges: list[tuple[str, str, int]],
     return distances
 ```
 
-**Time complexity:** O(V * E) -- slower than Dijkstra.
+**Time complexity:** O(V \* E) -- slower than Dijkstra.
 
 **When to use it:** When your graph might have negative edge weights, or when you need to detect negative cycles.
 
@@ -275,7 +275,7 @@ def bellman_ford(vertices: list[str], edges: list[tuple[str, str, int]],
 
 Imagine you are getting dressed in the morning. You cannot put on shoes before socks. You cannot put on a jacket before a shirt. Some things must happen in a specific order. But you have freedom for other things -- you could put on your hat at any point!
 
-**Topological sort** takes a bunch of tasks with dependencies and finds an order where every task comes *after* the things it depends on.
+**Topological sort** takes a bunch of tasks with dependencies and finds an order where every task comes _after_ the things it depends on.
 
 ### Important Rule
 
@@ -388,11 +388,11 @@ Pop "shoes" -> result: [underwear, socks, shirt, pants, jacket, shoes]
 Valid order! Every item comes after its dependencies.
 ```
 
-There can be *multiple* valid topological orderings. For example, "shirt, socks, underwear, pants, jacket, shoes" would also work.
+There can be _multiple_ valid topological orderings. For example, "shirt, socks, underwear, pants, jacket, shoes" would also work.
 
 **Time complexity:** O(V + E).
 
-![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, looking at a checklist of getting-dressed steps connected by arrows showing which must come first. Items include colorful socks, shoes, shirt, and jacket arranged in dependency order. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, looking at a checklist of getting-dressed steps connected by arrows showing which must come first. Items include colorful socks, shoes, shirt, and jacket arranged in dependency order. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -400,7 +400,7 @@ There can be *multiple* valid topological orderings. For example, "shirt, socks,
 
 ### The Problem
 
-Imagine you need to connect five houses to the internet using cables. You know the cost of running a cable between every pair of houses. You want to connect *all* houses while spending the *least total money* on cable.
+Imagine you need to connect five houses to the internet using cables. You know the cost of running a cable between every pair of houses. You want to connect _all_ houses while spending the _least total money_ on cable.
 
 A **minimum spanning tree (MST)** connects all nodes in a graph using the minimum total edge weight, using exactly V - 1 edges (where V is the number of nodes). No cycles!
 
@@ -578,15 +578,15 @@ def has_cycle_directed(graph: dict[int, list[int]], num_nodes: int) -> bool:
 
 Here is a handy guide for picking the right tool:
 
-| I need to... | Use this |
-|---|---|
-| Find shortest path, all edges same weight | **BFS** |
-| Find shortest path, different positive weights | **Dijkstra** |
-| Find shortest path, some negative weights | **Bellman-Ford** |
-| Order tasks with dependencies | **Topological Sort** |
-| Connect all nodes with minimum total cost | **MST (Kruskal's)** |
-| Check if a graph has loops | **Cycle Detection (DFS)** |
-| Check if two nodes are in the same group | **Union-Find** |
+| I need to...                                   | Use this                  |
+| ---------------------------------------------- | ------------------------- |
+| Find shortest path, all edges same weight      | **BFS**                   |
+| Find shortest path, different positive weights | **Dijkstra**              |
+| Find shortest path, some negative weights      | **Bellman-Ford**          |
+| Order tasks with dependencies                  | **Topological Sort**      |
+| Connect all nodes with minimum total cost      | **MST (Kruskal's)**       |
+| Check if a graph has loops                     | **Cycle Detection (DFS)** |
+| Check if two nodes are in the same group       | **Union-Find**            |
 
 ### Quick Tips
 
@@ -595,7 +595,7 @@ Here is a handy guide for picking the right tool:
 - If the problem says "connect all" with "minimum total," think **MST**.
 - If the problem says "detect cycle" or "is it a DAG," think **Cycle Detection**.
 
-![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing in front of a colorful decision tree flowchart with friendly icons for each algorithm (a compass for Dijkstra, a checklist for topological sort, a network for MST). Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing in front of a colorful decision tree flowchart with friendly icons for each algorithm (a compass for Dijkstra, a checklist for topological sort, a network for MST). Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-04.png)
 
 ---
 
@@ -677,7 +677,7 @@ Step 7: Visit D (distance 11).
 Final distances: {S: 0, A: 3, B: 5, C: 6, D: 11}
 ```
 
-**Answer 2:** Weight 0 is perfectly fine -- Dijkstra requires *non-negative* weights, and 0 is non-negative. Weight -1 would break Dijkstra. Here is why: Dijkstra assumes that once it visits a node, it has found the shortest path to that node. But a negative edge could create a shorter path that goes through an already-visited node. Dijkstra would miss this shorter path and give the wrong answer.
+**Answer 2:** Weight 0 is perfectly fine -- Dijkstra requires _non-negative_ weights, and 0 is non-negative. Weight -1 would break Dijkstra. Here is why: Dijkstra assumes that once it visits a node, it has found the shortest path to that node. But a negative edge could create a shorter path that goes through an already-visited node. Dijkstra would miss this shorter path and give the wrong answer.
 
 **Answer 3:**
 
@@ -738,9 +738,9 @@ MST total weight: 10
 1. **Topological sort (Kahn's algorithm):** Run Kahn's algorithm. If the result contains fewer nodes than the total number of nodes, there is a cycle, so it is NOT a DAG.
 2. **Three-color DFS:** Run DFS with the WHITE/GRAY/BLACK coloring. If you ever visit a GRAY node during exploration, you have found a cycle, so it is NOT a DAG.
 
-**Answer 6:** Use **Bellman-Ford** for graphs with negative edge weights. If you accidentally use Dijkstra, it might give *wrong answers*. Dijkstra assumes that once it visits a node with the smallest distance, that distance is final. But a negative edge could make a shorter path through an already-visited node. Dijkstra would never go back and fix it.
+**Answer 6:** Use **Bellman-Ford** for graphs with negative edge weights. If you accidentally use Dijkstra, it might give _wrong answers_. Dijkstra assumes that once it visits a node with the smallest distance, that distance is final. But a negative edge could make a shorter path through an already-visited node. Dijkstra would never go back and fix it.
 
-**Answer 7:** BFS finds shortest paths when every edge has the same weight (or weight 1). It works by counting *hops* (number of edges). If edges have *different* weights, BFS would give the wrong answer because a path with fewer edges might have a larger total weight than a path with more edges. For example: A--(10)-->B vs A--(1)-->C--(1)-->B. BFS would say A->B is shortest (1 hop) but the actual shortest distance is A->C->B (cost 2 vs cost 10).
+**Answer 7:** BFS finds shortest paths when every edge has the same weight (or weight 1). It works by counting _hops_ (number of edges). If edges have _different_ weights, BFS would give the wrong answer because a path with fewer edges might have a larger total weight than a path with more edges. For example: A--(10)-->B vs A--(1)-->C--(1)-->B. BFS would say A->B is shortest (1 hop) but the actual shortest distance is A->C->B (cost 2 vs cost 10).
 
 **Answer 8:** Union-Find solves the "would adding this edge create a cycle?" problem efficiently. When we consider adding an edge (u, v), we check if u and v are already in the same connected group. If they are, adding this edge would create a cycle, so we skip it. Without this check, we could accidentally create loops, and the result would not be a tree (it would have cycles and might not connect everything properly). Union-Find does this check in nearly O(1) time thanks to path compression and union by rank.
 

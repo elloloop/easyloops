@@ -8,7 +8,7 @@ Understanding values and types is one of the most important things in all of pro
 
 Let's break that down.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot sorting colorful blocks into labeled bins -- one bin labeled with numbers, one with letters, one with a checkmark and X, while holding up a block and examining it with a magnifying glass. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot sorting colorful blocks into labeled bins -- one bin labeled with numbers, one with letters, one with a checkmark and X, while holding up a block and examining it with a magnifying glass. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -180,7 +180,7 @@ The quotes change everything. Anything inside quotes is text (a string), no matt
 
 Remember the apples analogy: `42` is having 42 apples. `"42"` is having a piece of paper with "42" written on it. Very different things!
 
-![A flat vector illustration in a children's educational book style showing Byte the robot holding up two cards -- one showing the number 5 with real apples behind it, and the other showing quotation marks around the word five on a sticky note, with a question mark between them. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot holding up two cards -- one showing the number 5 with real apples behind it, and the other showing quotation marks around the word five on a sticky note, with a question mark between them. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -219,6 +219,7 @@ print("I am " + 25 + " years old")
 ```
 
 **What Python says:**
+
 ```
 TypeError: can only concatenate str (not "int") to str
 ```
@@ -238,6 +239,7 @@ print("I am " + str(25) + " years old")
 ```
 
 Output:
+
 ```
 I am 25 years old
 ```
@@ -251,6 +253,7 @@ print("I am", 25, "years old")
 ```
 
 Output:
+
 ```
 I am 25 years old
 ```
@@ -332,6 +335,7 @@ print(int("hello"))
 ```
 
 **What Python says:**
+
 ```
 ValueError: invalid literal for int() with base 10: 'hello'
 ```
@@ -345,6 +349,7 @@ print(int("3.5"))
 ```
 
 **What Python says:**
+
 ```
 ValueError: invalid literal for int() with base 10: '3.5'
 ```
@@ -378,6 +383,7 @@ print(bool(None))     # False -- nothing at all (we will explain None below)
 The pattern is easy to remember: **zero, empty, and nothing count as "no."**
 
 Think of it like this:
+
 - Zero means "none" -- you have zero of something, so it is like having nothing. That is a "no."
 - An empty string `""` is like a blank page with nothing written on it. Nothing there. "No."
 - `None` literally means "nothing." Definitely a "no."
@@ -422,6 +428,7 @@ print(type(None))    # <class 'NoneType'>
 ```
 
 Think of the difference like this:
+
 - **Zero (`0`)** is like having an empty jar. The jar exists, and you know it has zero items in it.
 - **An empty string (`""`)** is like having a blank piece of paper. The paper exists, but nothing is written on it.
 - **`None`** is like having no jar at all. There is nothing. Not even a container.
@@ -442,12 +449,12 @@ print(None == None)    # True -- None only equals itself
 
 Here is a quick reference card for the four basic types:
 
-| Type | What It Is | Examples | How to Spot It |
-|------|-----------|----------|---------------|
-| `int` | Whole numbers | `5`, `100`, `-3`, `0` | No decimal point, no quotes |
-| `float` | Decimal numbers | `3.14`, `0.5`, `100.0` | Has a decimal point, no quotes |
-| `str` | Text | `"hello"`, `"42"`, `""` | Has quotes around it |
-| `bool` | Yes or No | `True`, `False` | Capital T or F, no quotes |
+| Type    | What It Is      | Examples                | How to Spot It                 |
+| ------- | --------------- | ----------------------- | ------------------------------ |
+| `int`   | Whole numbers   | `5`, `100`, `-3`, `0`   | No decimal point, no quotes    |
+| `float` | Decimal numbers | `3.14`, `0.5`, `100.0`  | Has a decimal point, no quotes |
+| `str`   | Text            | `"hello"`, `"42"`, `""` | Has quotes around it           |
+| `bool`  | Yes or No       | `True`, `False`         | Capital T or F, no quotes      |
 
 Remember: if it has quotes, it is a string. Always.
 
@@ -570,7 +577,7 @@ print("Doubled:", doubled)
 
 Run it first as-is. Then remove the `#` from the last two lines and run it again. What does `"100" * 2` actually do? (Hint: it does not give you 200!)
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a large chart with four colorful columns labeled int float str and bool, with example values in each column and arrows showing conversion between them. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a large chart with four colorful columns labeled int float str and bool, with example values in each column and arrows showing conversion between them. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -616,15 +623,18 @@ Try to answer these questions before looking at the answers at the bottom of the
 **1.** What type is each of these values? `99`, `"hello"`, `3.0`, `False`, `"3.0"`, `0`, `""`, `True`
 
 **2.** What will this code show on the screen?
+
 ```python
 print(10 + 5)
 print("10" + "5")
 ```
 
 **3.** Why does this code cause an error?
+
 ```python
 print("My age is " + 25)
 ```
+
 How would you fix it? (Give two different ways.)
 
 **4.** What does `int(7.8)` give you -- 7 or 8? Why?
@@ -634,6 +644,7 @@ How would you fix it? (Give two different ways.)
 **6.** What does `type("42")` tell you? Why is `"42"` not a number?
 
 **7.** What will this code show on the screen?
+
 ```python
 print(bool(""))
 print(bool(" "))
@@ -647,6 +658,7 @@ print(bool("False"))
 ## Answers to Practice Questions
 
 **1.**
+
 - `99` is `int` (whole number, no quotes, no decimal point)
 - `"hello"` is `str` (text in quotes)
 - `3.0` is `float` (has a decimal point)
@@ -671,15 +683,18 @@ Fix 2: Use commas: `print("My age is", 25)`
 **6.** `type("42")` tells you `<class 'str'>`. It is a string (text), not a number, because it has quotes around it. The quotes tell Python "treat this as text." It is like writing the number 42 on a piece of paper -- the paper is not a number, it is a piece of paper with a number written on it. You cannot do math with a piece of paper.
 
 **7.**
+
 - `bool("")` shows `False` -- an empty string has nothing in it, so it is falsy
 - `bool(" ")` shows `True` -- a space is still a character! The string is not empty.
 - `bool("False")` shows `True` -- this is the text "False" (five characters: F-a-l-s-e), not the boolean `False`. Since the string is not empty, it is truthy. Python does not read the words inside the quotes.
 
 **8.** `int("3.5")` fails because Python will not do two conversions at once. The text `"3.5"` looks like a decimal number, not a whole number. Python does not want to guess whether you want rounding or chopping. Instead, do it in two steps:
+
 ```python
 result = int(float("3.5"))   # Step 1: "3.5" becomes 3.5   Step 2: 3.5 becomes 3
 print(result)                 # 3
 ```
+
 First, `float("3.5")` turns the text into the decimal number `3.5`. Then `int(3.5)` chops off the decimal to give you `3`.
 
 ---
