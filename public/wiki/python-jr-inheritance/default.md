@@ -27,7 +27,7 @@ A child gets **everything** the parent has -- all its methods and variables. The
 
 ## Basic Syntax
 
-Here is how you write it. The child class puts the parent class name in parentheses:
+The child class puts the parent class name in parentheses. Open your editor. Type this. Run it.
 
 ```python
 class Animal:
@@ -47,42 +47,17 @@ class Dog(Animal):       # Dog inherits from Animal
 class Cat(Animal):       # Cat inherits from Animal
     def speak(self) -> str:
         return f"{self.name} says Meow!"
-```
-
-Open your editor. Type this. Run it.
-
-```python
-class Animal:
-    def __init__(self, name: str) -> None:
-        self.name: str = name
-
-    def eat(self) -> str:
-        return f"{self.name} is eating."
-
-    def speak(self) -> str:
-        return "..."
-
-class Dog(Animal):
-    def speak(self) -> str:
-        return f"{self.name} says Woof!"
-
-class Cat(Animal):
-    def speak(self) -> str:
-        return f"{self.name} says Meow!"
 
 rex: Dog = Dog("Rex")
 whiskers: Cat = Cat("Whiskers")
 
-print(rex.speak())      # Rex says Woof!
+print(rex.speak())       # Rex says Woof!
 print(whiskers.speak())  # Whiskers says Meow!
-print(rex.eat())         # Rex is eating.
-print(whiskers.eat())    # Whiskers is eating.
-print(rex.name)          # Rex
+print(rex.eat())          # Rex is eating.
+print(rex.name)           # Rex
 ```
 
-Notice something important: `Dog` and `Cat` never define `__init__` or `eat`. They get those from `Animal` automatically. That is inheritance -- the child gets everything the parent has, for free.
-
-The only thing they changed was `speak`. Each animal has its own version.
+Notice: `Dog` and `Cat` never define `__init__` or `eat`. They get those from `Animal` automatically. That is inheritance -- the child gets everything the parent has, for free. The only thing they changed was `speak`.
 
 ---
 
@@ -531,7 +506,7 @@ Create a warrior and a wizard and have them interact.
 
 **Answer 1:** Inheritance lets a child class get all the code from a parent class for free, then add or change things. It solves the problem of writing the same code over and over. Dogs and cats are both pets -- without inheritance, you write the same `name`, `eat()`, and `describe()` code in both classes. With inheritance, you write the shared "pet stuff" once in a Pet class, and let Dog and Cat inherit it. Each one only adds its unique things.
 
-**Answer 2:** `super()` calls the parent's version of a method. It is most commonly used in `__init__` to run the parent's setup code before adding the child's own data. If you forget to call `super().__init__()`, the parent's setup never runs. That means any variables the parent creates (like `self.name`) will not exist, and you will get an `AttributeError` when you try to use them.
+**Answer 2:** `super()` calls the parent's version of a method. It is most commonly used in `__init__` to run the parent's setup before adding the child's own data. If you forget, the parent's variables (like `self.name`) will not exist, causing an `AttributeError`.
 
 **Answer 3:** It prints:
 
