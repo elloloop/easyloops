@@ -603,4 +603,4 @@ Always call `super().__init__()` if the parent has an `__init__` you need.
 
 ---
 
-**Previous:** [[wiki:python-classes]] | **Next:** [[wiki:python-special-methods]]
+**Previous:** [[wiki:python-encapsulation]] | **Next:** [[wiki:python-abstraction]]

@@ -14,7 +14,7 @@ This roadmap is for people who struggle with academic patterns. No abstract theo
 Hello World → Values → Variables → Operators → Conditions → Loops
 → Lists → Dicts → Strings → Tuples
 → Functions → Error Handling → File I/O → Modules
-→ Classes → Inheritance → Special Methods
+→ Classes → Encapsulation → Inheritance → Abstraction → Special Methods
 → Iterators → Comprehensions → Decorators → Type System
 → Data Structures → Algorithms → Problem Solving
 → Backend Systems
@@ -231,9 +231,19 @@ You've been using types someone else created — `int`, `str`, `list`, `dict`. N
 
 ---
 
-### 16. Inheritance and Polymorphism — Reusing and Extending Types
+### 16. Encapsulation and Access Modifiers — Controlling Access to Data
 
-**What you learn:** Base classes and derived classes. Method overriding. `super()`. When to use inheritance vs composition. Abstract base classes. Polymorphism — treating different types uniformly through a shared interface.
+**What you learn:** What encapsulation means — bundling data with methods and controlling who can access what. The three P's: public (no prefix), protected (single underscore `_`), and private (double underscore `__` with name mangling). Python's "we're all consenting adults" philosophy. Using `@property` for controlled attribute access — getters, setters, read-only and computed properties. When to encapsulate and when to keep it simple.
+
+**Why it matters:** Once you can create classes, the next question is: how do you prevent outside code from breaking your objects? Encapsulation is the answer. It is one of the four pillars of OOP and the key to writing classes that are safe to use in large codebases. Understanding Python's convention-based approach (vs Java's keyword-based approach) is essential for writing idiomatic Python.
+
+**Go to:** [[wiki:python-encapsulation]]
+
+---
+
+### 17. Inheritance and Polymorphism — Reusing and Extending Types
+
+**What you learn:** Base classes and derived classes. Method overriding. `super()`. When to use inheritance vs composition. Polymorphism — treating different types uniformly through a shared interface. Multiple inheritance and the Method Resolution Order.
 
 **Why it matters:** Inheritance lets you avoid duplicating code across similar types. Polymorphism lets you write code that works with any type that follows a contract, without knowing the specific type in advance. This is how large systems stay flexible.
 
@@ -241,9 +251,19 @@ You've been using types someone else created — `int`, `str`, `list`, `dict`. N
 
 ---
 
-### 17. Special Methods — Making Your Types Behave Like Built-Ins
+### 18. Abstraction — Hiding Complexity, Showing What Matters
 
-**What you learn:** `__repr__`, `__str__`, `__eq__`, `__lt__`, `__len__`, `__getitem__`, `__iter__`, `__add__`. The protocol system. How Python operators are actually method calls. Making your types work with `print()`, `len()`, `sorted()`, `in`, and `for`.
+**What you learn:** What abstraction means — exposing only essential features while hiding implementation details. The difference between abstraction and encapsulation. Abstract Base Classes (ABCs) with the `abc` module. Abstract methods and abstract properties. The `Protocol` class for structural subtyping (duck typing made explicit). Levels of abstraction in code design. When to use ABCs vs Protocols.
+
+**Why it matters:** Abstraction is the second major OOP pillar you need after encapsulation. It lets you define *what* something does without specifying *how* — so you can swap implementations without changing the code that uses them. This is how real systems handle payment processors, notification services, data storage backends, and anything else with multiple possible implementations.
+
+**Go to:** [[wiki:python-abstraction]]
+
+---
+
+### 19. Special Methods — Making Your Types Behave Like Built-Ins
+
+**What you learn:** `__new__` and how objects are actually created. `__repr__`, `__str__`, `__eq__`, `__lt__`, `__len__`, `__getitem__`, `__iter__`, `__add__`. The protocol system. How Python operators are actually method calls. Making your types work with `print()`, `len()`, `sorted()`, `in`, and `for`.
 
 **Why it matters:** Special methods are what make Python feel consistent. When you implement them, your custom types integrate seamlessly with the language. Understanding them also deepens your understanding of how all built-in types work.
 
@@ -253,7 +273,7 @@ You've been using types someone else created — `int`, `str`, `list`, `dict`. N
 
 <div class="copy-prompt-container">
 <div class="copy-prompt-label">Checkpoint Quiz: Phase 4 — Object-Oriented Programming</div>
-<div class="copy-prompt-text">Prompt: "I've studied classes, inheritance, polymorphism, and special methods in Python. Give me a 12-question quiz covering: (1) writing a class with __init__, type hints, and methods, (2) the difference between instance and class attributes, (3) when to use inheritance vs composition, (4) method resolution order with super(), (5) implementing __repr__ and __eq__ for a custom class, (6) making a class iterable with __iter__ and __next__, (7) operator overloading with special methods, (8) designing a small class hierarchy for a given scenario. At least 4 questions should require writing complete class definitions. Grade me rigorously."</div>
+<div class="copy-prompt-text">Prompt: "I've studied classes, encapsulation, access modifiers, inheritance, polymorphism, abstraction, and special methods in Python. Give me a 15-question quiz covering: (1) writing a class with __init__, type hints, and methods, (2) the difference between instance and class attributes, (3) the three P's — public, protected (_), and private (__) — and when to use each, (4) using @property for validation and read-only attributes, (5) when to use inheritance vs composition, (6) method resolution order with super(), (7) the difference between abstraction and encapsulation, (8) creating and using Abstract Base Classes, (9) implementing __repr__ and __eq__ for a custom class, (10) __new__ vs __init__ — when you need __new__, (11) making a class iterable with __iter__ and __next__, (12) operator overloading with special methods, (13) designing a small class hierarchy for a given scenario. At least 5 questions should require writing complete class definitions. Grade me rigorously."</div>
 </div>
 
 ---
@@ -264,7 +284,7 @@ You know how to program. Now you learn the tools that make Python code concise, 
 
 ---
 
-### 18. Iterators and Generators — Lazy Evaluation
+### 20. Iterators and Generators — Lazy Evaluation
 
 **What you learn:** The iterator protocol (`__iter__`, `__next__`). How `for` loops actually work under the hood. Generator functions with `yield`. Generator expressions. Why lazy evaluation matters for large datasets. `itertools` basics.
 
@@ -274,7 +294,7 @@ You know how to program. Now you learn the tools that make Python code concise, 
 
 ---
 
-### 19. Comprehensions — Concise Collection Building
+### 21. Comprehensions — Concise Collection Building
 
 **What you learn:** List comprehensions, dict comprehensions, set comprehensions. Conditional comprehensions. Nested comprehensions. When comprehensions help readability and when they hurt it.
 
@@ -284,7 +304,7 @@ You know how to program. Now you learn the tools that make Python code concise, 
 
 ---
 
-### 20. Decorators and Closures — Functions That Modify Functions
+### 22. Decorators and Closures — Functions That Modify Functions
 
 **What you learn:** First-class functions. Functions as arguments. Closures — functions that remember their enclosing scope. Decorators — the `@` syntax. Writing your own decorators. Common decorators (`@property`, `@staticmethod`, `@classmethod`).
 
@@ -294,7 +314,7 @@ You know how to program. Now you learn the tools that make Python code concise, 
 
 ---
 
-### 21. The Type System — Type Hints and Static Analysis
+### 23. The Type System — Type Hints and Static Analysis
 
 **What you learn:** Type annotations in depth. `Optional`, `Union`, `List[int]`, `Dict[str, int]`, `Tuple`, `Callable`. Generics. `TypeVar`. Running `mypy` for static analysis. Type hints as documentation. `dataclasses`.
 
@@ -319,7 +339,7 @@ Open your editor. Every data structure in this phase requires writing code.
 
 ---
 
-### 22. Arrays and Dynamic Arrays
+### 24. Arrays and Dynamic Arrays
 
 **What you learn:** What an array is at the memory level. Fixed-size arrays. How Python's `list` is actually a dynamic array. Implementing a dynamic array that resizes. Amortized O(1) append. The cost of inserting at the front vs the back.
 
@@ -329,7 +349,7 @@ Open your editor. Every data structure in this phase requires writing code.
 
 ---
 
-### 23. Linked Lists
+### 25. Linked Lists
 
 **What you learn:** Nodes and pointers. Singly linked lists. Doubly linked lists. Insertion and deletion at any position. Traversal. Comparing linked lists to arrays — when each one wins.
 
@@ -339,7 +359,7 @@ Open your editor. Every data structure in this phase requires writing code.
 
 ---
 
-### 24. Stacks and Queues
+### 26. Stacks and Queues
 
 **What you learn:** Stack: last-in-first-out (LIFO). Queue: first-in-first-out (FIFO). Implementing both from scratch using arrays and linked lists. Use cases: function call stacks, BFS queues, undo systems, parsing.
 
@@ -349,7 +369,7 @@ Open your editor. Every data structure in this phase requires writing code.
 
 ---
 
-### 25. Trees and Binary Search Trees
+### 27. Trees and Binary Search Trees
 
 **What you learn:** Tree terminology (root, leaf, depth, height). Binary trees. Binary search trees (BSTs). Insertion, search, deletion. Tree traversals: inorder, preorder, postorder, level-order. Balanced vs unbalanced trees.
 
@@ -359,7 +379,7 @@ Open your editor. Every data structure in this phase requires writing code.
 
 ---
 
-### 26. Heaps and Priority Queues
+### 28. Heaps and Priority Queues
 
 **What you learn:** Binary heaps (min-heap and max-heap). The heap property. Implementing a heap with an array. Heapify, insert, extract-min/max. Priority queues. Python's `heapq` module.
 
@@ -369,7 +389,7 @@ Open your editor. Every data structure in this phase requires writing code.
 
 ---
 
-### 27. Hash Tables
+### 29. Hash Tables
 
 **What you learn:** Hash functions. Collision resolution (chaining and open addressing). Load factors and resizing. Implementing a hash table from scratch. How Python's `dict` and `set` work internally. Why dictionary lookup is O(1).
 
@@ -379,7 +399,7 @@ Open your editor. Every data structure in this phase requires writing code.
 
 ---
 
-### 28. Graphs
+### 30. Graphs
 
 **What you learn:** Vertices and edges. Directed vs undirected. Weighted vs unweighted. Adjacency list vs adjacency matrix representations. Building a graph class. When graphs appear in real problems.
 
@@ -402,7 +422,7 @@ You have the data structures. Now you learn the classic algorithms that operate 
 
 ---
 
-### 29. Sorting Algorithms
+### 31. Sorting Algorithms
 
 **What you learn:** Bubble sort, selection sort, insertion sort (the simple ones). Merge sort, quicksort (the fast ones). Time complexity analysis. Space complexity. Stability. When to use Python's built-in `sorted()` vs implementing your own.
 
@@ -412,7 +432,7 @@ You have the data structures. Now you learn the classic algorithms that operate 
 
 ---
 
-### 30. Searching Algorithms
+### 32. Searching Algorithms
 
 **What you learn:** Linear search. Binary search on sorted arrays. Binary search variations (first occurrence, last occurrence, insertion point). Searching in trees. When O(n) is acceptable and when O(log n) is necessary.
 
@@ -422,7 +442,7 @@ You have the data structures. Now you learn the classic algorithms that operate 
 
 ---
 
-### 31. Recursion and Backtracking
+### 33. Recursion and Backtracking
 
 **What you learn:** Recursive functions. Base cases and recursive cases. The call stack. Stack overflow. Memoization. Backtracking: systematically exploring possibilities and abandoning dead ends. Classic problems: N-queens, permutations, subsets.
 
@@ -432,7 +452,7 @@ You have the data structures. Now you learn the classic algorithms that operate 
 
 ---
 
-### 32. Dynamic Programming
+### 34. Dynamic Programming
 
 **What you learn:** Overlapping subproblems. Optimal substructure. Top-down (memoization) vs bottom-up (tabulation). Classic problems: Fibonacci, longest common subsequence, knapsack, coin change. How to identify DP problems.
 
@@ -442,7 +462,7 @@ You have the data structures. Now you learn the classic algorithms that operate 
 
 ---
 
-### 33. Greedy Algorithms
+### 35. Greedy Algorithms
 
 **What you learn:** The greedy strategy: make the locally optimal choice at each step. When greedy works and when it doesn't. Proving correctness. Classic problems: activity selection, Huffman coding, fractional knapsack. Greedy vs dynamic programming.
 
@@ -452,7 +472,7 @@ You have the data structures. Now you learn the classic algorithms that operate 
 
 ---
 
-### 34. Graph Algorithms
+### 36. Graph Algorithms
 
 **What you learn:** BFS and DFS (traversal). Shortest path: Dijkstra's algorithm, Bellman-Ford. Minimum spanning trees: Prim's, Kruskal's. Topological sort. Connected components. Cycle detection.
 
@@ -462,7 +482,7 @@ You have the data structures. Now you learn the classic algorithms that operate 
 
 ---
 
-### 35. Common Algorithmic Patterns
+### 37. Common Algorithmic Patterns
 
 **What you learn:** Two pointers. Sliding window. Fast and slow pointers. Merge intervals. Prefix sums. Monotonic stacks. Binary search on the answer. How to recognize which pattern applies to a problem.
 
@@ -485,7 +505,7 @@ You know the data structures. You know the algorithms. Now you put it all togeth
 
 ---
 
-### 36. LeetCode Problem Patterns
+### 38. LeetCode Problem Patterns
 
 **What you learn:** How to approach algorithmic problems systematically. Pattern recognition across hundreds of problems. Time management. Reading problem constraints to determine the expected approach. Building a problem-solving framework: understand, plan, implement, test.
 
@@ -508,7 +528,7 @@ You can write algorithms and data structures. Now you build things that run on t
 
 ---
 
-### 37. HTTP and the Web
+### 39. HTTP and the Web
 
 **What you learn:** How the internet works: HTTP requests and responses, status codes, headers, methods (GET, POST, PUT, DELETE). URLs and routing. JSON as a data format. Making HTTP requests with Python.
 
@@ -518,7 +538,7 @@ You can write algorithms and data structures. Now you build things that run on t
 
 ---
 
-### 38. Building APIs
+### 40. Building APIs
 
 **What you learn:** REST API design. Setting up a web framework (FastAPI or Flask). Defining routes. Request parsing and response formatting. Path parameters, query parameters, request bodies. Type validation with Pydantic. API documentation.
 
@@ -528,7 +548,7 @@ You can write algorithms and data structures. Now you build things that run on t
 
 ---
 
-### 39. Databases
+### 41. Databases
 
 **What you learn:** Relational databases and SQL basics (CREATE, INSERT, SELECT, UPDATE, DELETE, JOIN). Connecting Python to a database. ORMs. Database design and normalization. Migrations. NoSQL overview.
 
@@ -538,7 +558,7 @@ You can write algorithms and data structures. Now you build things that run on t
 
 ---
 
-### 40. Authentication and Security
+### 42. Authentication and Security
 
 **What you learn:** Password hashing (never store plaintext). Sessions and tokens. JWT. OAuth basics. HTTPS. Input validation and sanitization. Common vulnerabilities (SQL injection, XSS). Security as a mindset, not a feature.
 
@@ -548,7 +568,7 @@ You can write algorithms and data structures. Now you build things that run on t
 
 ---
 
-### 41. Testing
+### 43. Testing
 
 **What you learn:** Unit tests with `pytest`. Test structure: arrange, act, assert. Mocking external dependencies. Integration tests. Test coverage. Test-driven development (TDD). Writing testable code.
 
@@ -558,7 +578,7 @@ You can write algorithms and data structures. Now you build things that run on t
 
 ---
 
-### 42. Deployment
+### 44. Deployment
 
 **What you learn:** Environment variables and configuration. Docker basics. CI/CD pipelines. Deploying to a cloud platform. Logging and monitoring. What happens after your code is "done."
 

@@ -600,4 +600,4 @@ If you find yourself writing a class with no `__init__` and only static methods,
 
 ---
 
-**Previous:** [[wiki:python-modules]] | **Next:** [[wiki:python-inheritance]]
+**Previous:** [[wiki:python-modules]] | **Next:** [[wiki:python-encapsulation]]

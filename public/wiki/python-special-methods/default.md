@@ -18,6 +18,99 @@ Here are the most useful ones, grouped by what they do.
 
 ---
 
+## Object Creation: `__new__` -- Before `__init__` Runs
+
+You already know `__init__` -- it sets up a new object with its starting data. But there is a method that runs *before* `__init__`: `__new__`.
+
+`__new__` actually **creates** the object. `__init__` then **initializes** it. In most code you never touch `__new__`, but understanding it completes your picture of how objects come to life.
+
+```python
+class Dog:
+    def __new__(cls, name: str, age: int) -> "Dog":
+        print(f"__new__: Creating a new Dog object")
+        instance: Dog = super().__new__(cls)
+        return instance
+
+    def __init__(self, name: str, age: int) -> None:
+        print(f"__init__: Setting up {name}")
+        self.name: str = name
+        self.age: int = age
+
+rex: Dog = Dog("Rex", 5)
+# __new__: Creating a new Dog object
+# __init__: Setting up Rex
+print(rex.name)  # Rex
+```
+
+The difference:
+- `__new__` takes the **class** (`cls`) as its first argument and returns a new instance.
+- `__init__` takes the **instance** (`self`) and sets up its data. It returns `None`.
+
+`__new__` runs first, creates the blank object, then Python passes that object to `__init__`.
+
+### When Do You Actually Need `__new__`?
+
+Almost never. But there are three real use cases.
+
+**1. Subclassing immutable types.** You cannot modify an `int` or `str` in `__init__` because they are already set by the time `__init__` runs. You must use `__new__`.
+
+Open your editor. Type this. Run it.
+
+```python
+class PositiveInt(int):
+    def __new__(cls, value: int) -> "PositiveInt":
+        if value < 0:
+            raise ValueError(f"PositiveInt requires non-negative value, got {value}")
+        return super().__new__(cls, value)
+
+n: PositiveInt = PositiveInt(42)
+print(n)          # 42
+print(n + 8)      # 50
+print(type(n))    # <class '__main__.PositiveInt'>
+
+# PositiveInt(-5)  # ValueError: PositiveInt requires non-negative value, got -5
+```
+
+You cannot do this with `__init__` because by the time `__init__` runs, the `int` value is already locked in.
+
+**2. The Singleton pattern.** Ensuring only one instance of a class ever exists.
+
+```python
+class Singleton:
+    _instance: "Singleton | None" = None
+
+    def __new__(cls) -> "Singleton":
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+a: Singleton = Singleton()
+b: Singleton = Singleton()
+print(a is b)  # True -- same object
+```
+
+**3. Custom metaclass behavior.** This is advanced and you will rarely need it.
+
+### `__new__` vs `__init__` Summary
+
+| | `__new__` | `__init__` |
+|---|---|---|
+| First argument | `cls` (the class) | `self` (the instance) |
+| Purpose | Create the object | Set up the object |
+| Returns | The new instance | `None` |
+| When to use | Subclassing immutables, singletons | Almost always |
+
+**Rule of thumb:** Use `__init__` for everything. Reach for `__new__` only when `__init__` cannot do the job -- specifically when you need to control the creation of the object itself.
+
+---
+
+<div class="copy-prompt-container">
+<div class="copy-prompt-label">Test Your Knowledge</div>
+<div class="copy-prompt-text">Prompt: "Explain the difference between __new__ and __init__. When does Python call each one? Create a class called UpperStr that subclasses str and ensures the value is always uppercase, no matter what the user passes in. You must use __new__ for this. Then show why __init__ would not work."</div>
+</div>
+
+---
+
 ## String Representation: `__str__` and `__repr__`
 
 When you `print()` an object, Python calls `__str__`. When you inspect an object in the REPL (or use `repr()`), Python calls `__repr__`.
@@ -827,4 +920,4 @@ If someone reading your code has to guess what `user1 + user2` means, do not def
 
 ---
 
-**Previous:** [[wiki:python-inheritance]] | **Next:** [[wiki:python-iterators-generators]]
+**Previous:** [[wiki:python-abstraction]] | **Next:** [[wiki:python-iterators-generators]]
