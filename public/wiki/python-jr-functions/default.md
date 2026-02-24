@@ -140,17 +140,7 @@ def is_even(n: int) -> bool:
     return n % 2 == 0
 ```
 
-**Important:** Type hints are like labels on a recipe — they tell people what to expect, but Python won't stop you if you pass in the wrong type. They're for **humans reading the code** (and for tools that check code), not enforced rules.
-
-```python
-def add(a: int, b: int) -> int:
-    return a + b
-
-# Python won't stop this, even though the hint says int:
-print(add("hello", " world"))   # hello world
-```
-
-Still, type hints are very helpful for understanding what a function does at a glance.
+**Important:** Type hints are labels — they tell people what to expect, but Python won't stop you if you pass in the wrong type. They're for **humans reading the code** (and code-checking tools), not enforced rules. Still, they're very helpful for understanding what a function does at a glance.
 
 ![A flat vector illustration in a children's educational book style showing Byte the robot reading labels on colorful jars of ingredients, each labeled with a type like int, str, and bool, representing type hints. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
 
@@ -246,7 +236,6 @@ The variable `secret` was born inside the function and dies when the function en
 A function **can read** global variables, but trying to **change** them causes confusion. The best practice is to avoid changing global variables. Instead, use parameters and return values:
 
 ```python
-# Instead of modifying a global, pass it in and return the new value
 def increment(count: int) -> int:
     return count + 1
 
@@ -416,7 +405,7 @@ print(add_item("milk"))      # ['milk']
 print(add_item("bread"))     # ['bread']  (fresh list, as expected)
 ```
 
-**Rule to remember:** Never use a mutable value (like a list or a dictionary) as a default parameter. Use `None` instead and create the mutable value inside the function.
+**Rule:** Never use a mutable value (like a list or dictionary) as a default parameter. Use `None` instead.
 
 ---
 
