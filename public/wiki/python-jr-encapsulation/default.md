@@ -70,34 +70,13 @@ Most of your variables and methods will be public. That is normal.
 
 A single underscore at the start is like a polite sign on a door that says **"Staff Only."** You *can* still open the door -- Python will not stop you -- but the sign tells you that you probably should not.
 
-```python
-class BankAccount:
-    def __init__(self, owner: str, balance: float) -> None:
-        self.owner: str = owner          # Public -- anyone can see the owner
-        self._balance: float = balance   # Protected -- please use methods instead
-
-    def deposit(self, amount: float) -> None:
-        if amount <= 0:
-            raise ValueError("You must deposit a positive amount!")
-        self._balance += amount
-
-    def withdraw(self, amount: float) -> bool:
-        if amount > self._balance:
-            return False
-        self._balance -= amount
-        return True
-
-    def get_balance(self) -> float:
-        return self._balance
-```
-
 Open your editor. Type this. Run it.
 
 ```python
 class BankAccount:
     def __init__(self, owner: str, balance: float) -> None:
-        self.owner: str = owner
-        self._balance: float = balance
+        self.owner: str = owner          # Public
+        self._balance: float = balance   # Protected -- please use methods instead
 
     def deposit(self, amount: float) -> None:
         if amount <= 0:

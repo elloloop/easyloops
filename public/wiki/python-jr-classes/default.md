@@ -478,7 +478,7 @@ Create two treasure chests, add items to both, remove one item, and print descri
 
 **Answer 1:** A class is a blueprint -- like a cookie cutter. An object is a real thing made from it -- like a cookie. The cookie cutter describes the shape but is not a cookie itself. You stamp out many cookies (objects) from one cutter (class). Each cookie has the same shape but can have different decorations (different data).
 
-**Answer 2:** `__init__` is the setup method. It runs **automatically** every time you create a new object. You never call it yourself -- Python calls it for you. When you write `Dog("Buddy", 4)`, Python creates a new empty Dog and then calls `__init__` on it, passing in `"Buddy"` and `4`. Its job is to set up the starting data for the new object.
+**Answer 2:** `__init__` is the setup method that runs **automatically** every time you create a new object. You never call it yourself. When you write `Dog("Buddy", 4)`, Python creates a new empty Dog and calls `__init__` on it, passing in `"Buddy"` and `4`. It sets up the starting data.
 
 **Answer 3:** It prints:
 
