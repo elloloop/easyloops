@@ -243,33 +243,10 @@ print(secret)      # ERROR! 'secret' doesn't exist out here
 
 The variable `secret` was born inside the function and dies when the function ends.
 
-### Functions Can See Global Variables (But Shouldn't Change Them)
+A function **can read** global variables, but trying to **change** them causes confusion. The best practice is to avoid changing global variables. Instead, use parameters and return values:
 
 ```python
-name = "Byte"   # global variable
-
-def greet():
-    print(f"Hello, {name}")   # Can read the global variable
-
-greet()   # Hello, Byte
-```
-
-But be careful:
-
-```python
-count = 0   # global
-
-def increment():
-    count = count + 1   # ERROR! Python gets confused
-
-increment()
-```
-
-Python sees `count` on the left side of `=` inside the function and thinks you're trying to create a **local** variable called `count`. But then you try to use `count + 1` before it's been created locally. This leads to an error.
-
-The best practice is to **avoid changing global variables inside functions**. Instead, use parameters and return values:
-
-```python
+# Instead of modifying a global, pass it in and return the new value
 def increment(count: int) -> int:
     return count + 1
 
@@ -319,9 +296,7 @@ print(add_to_total(5))   # 5
 print(add_to_total(5))   # 10  (same input, different output!)
 ```
 
-This function is harder to reason about because calling it with the same argument gives different results depending on when you call it.
-
-**Tip:** Try to write pure functions whenever possible. They make your code much easier to work with.
+Same input, different output — that's unpredictable. Try to write pure functions whenever possible.
 
 ---
 
@@ -335,14 +310,11 @@ def area_of_circle(radius: float) -> float:
     return 3.14159 * radius ** 2
 ```
 
-For more detailed functions, you can write a longer docstring:
+For more detailed functions, you can describe parameters and return values:
 
 ```python
 def find_longest_word(sentence: str) -> str:
     """Find and return the longest word in a sentence.
-
-    If there are multiple words with the same length,
-    returns the first one found.
 
     Parameters:
         sentence: A string containing words separated by spaces.
@@ -358,13 +330,7 @@ def find_longest_word(sentence: str) -> str:
     return longest
 ```
 
-Docstrings are helpful because:
-- Anyone reading your code can quickly understand what a function does.
-- The built-in `help()` function can display them:
-
-```python
-help(find_longest_word)
-```
+Docstrings are helpful because anyone reading your code can quickly understand what a function does, and the built-in `help()` function can display them.
 
 ![A flat vector illustration in a children's educational book style showing Byte the robot writing a helpful note and attaching it to the top of a recipe card, representing how docstrings document functions. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
 
@@ -432,11 +398,10 @@ You might think each call starts with a fresh empty list. But it doesn't!
 
 ```python
 print(add_item("milk"))      # ['milk']
-print(add_item("bread"))     # ['milk', 'bread']  Wait, where did milk come from?!
-print(add_item("eggs"))      # ['milk', 'bread', 'eggs']  It keeps growing!
+print(add_item("bread"))     # ['milk', 'bread']  Wait, milk is still here?!
 ```
 
-The problem: Python creates the default list **once** when the function is defined, and then **reuses the same list** every time the function is called without providing a list.
+The problem: Python creates the default list **once** when the function is defined, then **reuses it** every time.
 
 **The fix:** Use `None` as the default and create a new list inside the function.
 
@@ -457,15 +422,9 @@ print(add_item("bread"))     # ['bread']  (fresh list, as expected)
 
 ## Putting It All Together
 
-Here's a complete program that uses many function concepts:
+Here's a program that uses many function concepts together:
 
 ```python
-def is_valid_name(name: str) -> bool:
-    """Check that a name is not empty and contains only letters and spaces."""
-    if len(name.strip()) == 0:
-        return False
-    return all(char.isalpha() or char == " " for char in name)
-
 def calculate_grade(score: int) -> str:
     """Convert a numeric score to a letter grade."""
     if score >= 90:
@@ -479,48 +438,20 @@ def calculate_grade(score: int) -> str:
     else:
         return "F"
 
-def format_report(name: str, scores: list) -> str:
-    """Create a formatted report for a student.
-
-    Parameters:
-        name: The student's name.
-        scores: A list of numeric scores.
-
-    Returns:
-        A formatted string with the student's report.
-    """
+def summarize_scores(name: str, scores: list) -> str:
+    """Create a summary string for a student's scores."""
     avg = sum(scores) / len(scores)
     grade = calculate_grade(int(avg))
-    highest = max(scores)
-    lowest = min(scores)
-
-    report = f"Student: {name}\n"
-    report += f"Scores: {scores}\n"
-    report += f"Average: {avg:.1f}\n"
-    report += f"Grade: {grade}\n"
-    report += f"Highest: {highest}, Lowest: {lowest}"
-    return report
+    return f"{name}: avg {avg:.1f} ({grade}), best {max(scores)}, worst {min(scores)}"
 
 # --- Main program ---
 name = "Byte"
 scores = [88, 92, 75, 95, 81]
-
-if is_valid_name(name):
-    print(format_report(name, scores))
-else:
-    print("Invalid name!")
+print(summarize_scores(name, scores))
+# Byte: avg 86.2 (B), best 95, worst 75
 ```
 
-Output:
-```
-Student: Byte
-Scores: [88, 92, 75, 95, 81]
-Average: 86.2
-Grade: B
-Highest: 95, Lowest: 75
-```
-
-Notice how each function does **one thing** clearly, and they work together to build the final result.
+Notice how `summarize_scores` uses `calculate_grade` as a helper. Each function does **one thing** clearly, and they work together to build the final result.
 
 ---
 
