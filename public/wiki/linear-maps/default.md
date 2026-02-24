@@ -93,6 +93,35 @@ T(c₁v₁ + c₂v₂ + ... + cₙvₙ) = c₁T(v₁) + c₂T(v₂) + ... + cₙ
 
 This is the fundamental property. A linear map is completely determined by what it does to a basis.
 
+## Why Basis Values Determine Everything
+
+Quick check:
+
+If a function `T` satisfies additivity and homogeneity, is it determined entirely by what it does to a basis?
+
+**Yes.**
+
+Now make it precise in `V = ℝⁿ` with the standard basis `e₁, ..., eₙ`.
+
+Every vector `x ∈ ℝⁿ` can be written as:
+
+```
+x = x₁e₁ + x₂e₂ + ... + xₙeₙ
+```
+
+If `T` is linear, then:
+
+```
+T(x)
+= T(x₁e₁ + ... + xₙeₙ)
+= T(x₁e₁) + ... + T(xₙeₙ)          (additivity)
+= x₁T(e₁) + ... + xₙT(eₙ)          (homogeneity)
+```
+
+So once you know `T(e₁), ..., T(eₙ)`, you know `T(x)` for every `x`.
+
+This is the exact bridge to matrices: the columns of the matrix are those basis outputs.
+
 ---
 
 <div class="copy-prompt-container">

@@ -30,6 +30,32 @@ Where each `aᵢⱼ ∈ F` (the field).
 
 ---
 
+## Deep Bridge: Why Basis Outputs Are Enough
+
+Quick check:
+
+If `T` satisfies additivity and homogeneity, is it automatically determined entirely by what it does to a basis?
+
+**Yes.**
+
+For `V = ℝⁿ` with basis `e₁, ..., eₙ`, every `x` has the form:
+
+```
+x = x₁e₁ + ... + xₙeₙ
+```
+
+Then linearity gives:
+
+```
+T(x)
+= T(x₁e₁ + ... + xₙeₙ)
+= x₁T(e₁) + ... + xₙT(eₙ)
+```
+
+So `T(e₁), ..., T(eₙ)` determine `T` on all vectors. This is exactly why matrix columns are basis outputs.
+
+---
+
 ## From Linear Map to Matrix
 
 Given a linear map `T: V → W` with:
