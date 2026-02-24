@@ -112,28 +112,13 @@ Python does **not** block you from using `_balance`. The underscore is a signal,
 
 A double underscore at the start does something special. Python actually **renames** the variable behind the scenes to make it harder (but not impossible) to reach from outside the class. This is called **name mangling**.
 
-```python
-class SecretDiary:
-    def __init__(self, owner: str) -> None:
-        self.owner: str = owner
-        self.__entries: list[str] = []  # Private -- name mangled!
-
-    def write(self, entry: str) -> None:
-        self.__entries.append(entry)
-
-    def read_latest(self) -> str:
-        if not self.__entries:
-            return "The diary is empty."
-        return self.__entries[-1]
-```
-
 Open your editor. Type this. Run it.
 
 ```python
 class SecretDiary:
     def __init__(self, owner: str) -> None:
         self.owner: str = owner
-        self.__entries: list[str] = []
+        self.__entries: list[str] = []  # Private -- name mangled!
 
     def write(self, entry: str) -> None:
         self.__entries.append(entry)
@@ -163,17 +148,9 @@ Python renamed `__entries` to `_SecretDiary__entries`. This makes it unlikely th
 
 ## Python's Way: "We Trust Each Other"
 
-Here is something important about Python. Many other programming languages have strict locks on data -- they truly prevent other code from touching it. Python is different.
+Many programming languages have strict locks on data. Python is different. Python's approach is based on **conventions** (agreements), not locks. The community saying is: **"We are all responsible programmers here."**
 
-Python's approach is based on **conventions** (agreements), not locks. The Python community has a saying: **"We are all responsible programmers here."**
-
-This means:
-
-- If you see `_balance`, you know not to touch it directly.
-- If you ignore the underscore and things break, that is on you.
-- The underscore is not a wall -- it is a "please keep out" sign.
-
-This actually works really well! All the biggest Python projects in the world use this system, and it works because programmers respect the conventions.
+If you see `_balance`, you know not to touch it directly. If you ignore the underscore and things break, that is on you. The underscore is not a wall -- it is a "please keep out" sign. This works really well in practice because programmers respect the conventions.
 
 ---
 
@@ -196,31 +173,7 @@ You learned about `@property` in the classes lesson. Now you will see why it is 
 
 ### Getter and Setter Together
 
-```python
-class Backpack:
-    def __init__(self, max_weight: float) -> None:
-        self._items: list[str] = []
-        self._max_weight: float = max_weight
-        self._current_weight: float = 0.0
-
-    @property
-    def current_weight(self) -> float:
-        """Getter -- the window to see the weight."""
-        return self._current_weight
-
-    @property
-    def max_weight(self) -> float:
-        return self._max_weight
-
-    @max_weight.setter
-    def max_weight(self, value: float) -> None:
-        """Setter -- the door with a guard."""
-        if value <= 0:
-            raise ValueError("Max weight must be positive!")
-        self._max_weight = value
-```
-
-The **getter** (`@property`) lets you look at the data. The **setter** (`@max_weight.setter`) lets you change the data -- but only if it passes the guard's check.
+The **getter** (`@property`) lets you look at the data. The **setter** (`@name.setter`) lets you change it -- but only if it passes the guard's check.
 
 Open your editor. Type this. Run it.
 
