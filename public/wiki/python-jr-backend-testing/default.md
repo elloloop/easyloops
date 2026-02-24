@@ -354,16 +354,9 @@ def test_weather_report() -> None:
 
 In this test, `get_weather` is replaced by a fake version that always returns "72F". The test runs instantly, works without the internet, and always gives the same result.
 
-### When to Mock
+**When to mock:** External websites and APIs, databases (in unit tests), and things that are slow (sending emails, uploading files).
 
-- External websites and APIs (weather, email, payment)
-- Databases (in unit tests -- integration tests should use a real test database)
-- Things that are slow (sending emails, uploading files)
-
-### When NOT to Mock
-
-- The actual function you are testing. If you mock the thing you are testing, you are testing the mock, not your code!
-- Simple math or string operations. Just use the real thing.
+**When NOT to mock:** The actual function you are testing (if you mock it, you are testing the mock, not your code!) and simple math or string operations.
 
 Too much mocking makes tests useless. If you mock everything, your tests only prove that your fakes are set up correctly -- not that your real code works.
 

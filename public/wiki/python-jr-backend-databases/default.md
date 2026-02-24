@@ -117,24 +117,18 @@ This returns only the name and age of each pet, not the other columns.
 **Filter with WHERE:**
 ```sql
 SELECT * FROM pets WHERE animal = 'dog';
-```
-
-This returns only the dogs. `WHERE` is like a filter -- it says "only give me rows where this condition is true."
-
-**More WHERE examples:**
-```sql
 SELECT * FROM pets WHERE age > 3;
 SELECT * FROM pets WHERE animal = 'cat' AND age < 10;
-SELECT * FROM pets WHERE name = 'Buddy' OR name = 'Rex';
 ```
+
+`WHERE` is like a filter -- it says "only give me rows where this condition is true." You can combine conditions with `AND` and `OR`.
 
 **Sort results with ORDER BY:**
 ```sql
 SELECT * FROM pets ORDER BY age;
-SELECT * FROM pets ORDER BY name DESC;
 ```
 
-`ORDER BY age` sorts from youngest to oldest. Adding `DESC` sorts in reverse (descending) order.
+`ORDER BY age` sorts from youngest to oldest. Adding `DESC` after the column name sorts in reverse.
 
 ### UPDATE -- Change Data
 
@@ -199,15 +193,9 @@ pets table:
 
 The `owner_id` column in the `pets` table is a **foreign key**. It points to the `id` column in the `owners` table. Buddy's `owner_id` is 1, which means Buddy belongs to Alice (owner number 1).
 
-Here is how you create these tables:
+Here is how you create the pets table with a foreign key:
 
 ```sql
-CREATE TABLE owners (
-    id INTEGER PRIMARY KEY,
-    name TEXT NOT NULL,
-    phone TEXT NOT NULL
-);
-
 CREATE TABLE pets (
     id INTEGER PRIMARY KEY,
     name TEXT NOT NULL,
@@ -218,7 +206,7 @@ CREATE TABLE pets (
 );
 ```
 
-The `FOREIGN KEY` line tells the database: "The `owner_id` column must always contain a valid `id` from the `owners` table." If you try to add a pet with `owner_id = 99` and there is no owner with `id = 99`, the database will refuse.
+The `FOREIGN KEY` line tells the database: "The `owner_id` column must always contain a valid `id` from the `owners` table." If you try to add a pet with `owner_id = 99` and there is no owner 99, the database will refuse.
 
 ---
 
@@ -238,7 +226,7 @@ FROM pets
 JOIN owners ON pets.owner_id = owners.id;
 ```
 
-This returns:
+Result:
 
 ```
 | name     | animal | owner_name |
@@ -248,29 +236,7 @@ This returns:
 | Goldie   | fish   | Bob        |
 ```
 
-The `JOIN` connects the two tables using the relationship: `pets.owner_id = owners.id`. Now you can see each pet alongside its owner's name, even though that information lives in two separate tables.
-
-The `AS owner_name` part gives the column a clear name in the results, so you do not end up with two columns both called `name`.
-
-### Filtering JOINed Results
-
-You can still use `WHERE` with a `JOIN`:
-
-```sql
-SELECT pets.name, owners.name AS owner_name
-FROM pets
-JOIN owners ON pets.owner_id = owners.id
-WHERE owners.name = 'Alice';
-```
-
-This returns only Alice's pets:
-
-```
-| name     | owner_name |
-|----------|------------|
-| Buddy    | Alice      |
-| Whiskers | Alice      |
-```
+The `JOIN` connects the two tables using `pets.owner_id = owners.id`. The `AS owner_name` gives the column a clear name so you do not end up with two columns both called `name`. You can add `WHERE` to filter the joined results, just like with a regular query.
 
 ---
 
@@ -285,11 +251,9 @@ SQLite is perfect for learning and for small projects. Bigger projects might use
 ```python
 import sqlite3
 
-# Connect to a database file (creates it if it does not exist)
-connection = sqlite3.connect("petstore.db")
-cursor = connection.cursor()
+connection = sqlite3.connect("petstore.db")   # Opens or creates the file
+cursor = connection.cursor()                    # Tool for sending SQL commands
 
-# Create the pets table
 cursor.execute("""
     CREATE TABLE IF NOT EXISTS pets (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -299,18 +263,14 @@ cursor.execute("""
     )
 """)
 
-connection.commit()
+connection.commit()   # Save changes to disk
 print("Table created!")
 ```
 
-Let's break this down:
-
-- `sqlite3.connect("petstore.db")` opens (or creates) a database file called `petstore.db`
-- `connection.cursor()` gives you a cursor, which is the tool you use to send SQL commands
-- `cursor.execute(...)` runs a SQL command
+- `sqlite3.connect("petstore.db")` opens (or creates) the database file
 - `AUTOINCREMENT` means the `id` fills in automatically (1, 2, 3, ...)
-- `IF NOT EXISTS` means "only create this table if it does not already exist" (so you can run the code multiple times without errors)
-- `connection.commit()` saves the changes to disk
+- `IF NOT EXISTS` prevents errors if you run the code multiple times
+- `connection.commit()` writes the changes to disk so they are saved
 
 ### Adding Data
 
@@ -369,25 +329,15 @@ import sqlite3
 connection = sqlite3.connect("petstore.db")
 cursor = connection.cursor()
 
-# Update Buddy's age
-cursor.execute(
-    "UPDATE pets SET age = ? WHERE id = ?",
-    (4, 1)
-)
-
-# Delete Goldie
-cursor.execute(
-    "DELETE FROM pets WHERE id = ?",
-    (3,)
-)
+cursor.execute("UPDATE pets SET age = ? WHERE id = ?", (4, 1))    # Update Buddy's age
+cursor.execute("DELETE FROM pets WHERE id = ?", (3,))              # Delete Goldie
 
 connection.commit()
-print("Changes saved!")
 ```
 
 ### Always Close the Connection
 
-When you are done with the database, close the connection. The best way to do this is with a `with` statement, which closes it automatically:
+The best way to handle the connection is with a `with` statement, which closes it automatically -- just like the `with open(...)` pattern from [[wiki:python-jr-file-io]]:
 
 ```python
 import sqlite3
@@ -395,13 +345,10 @@ import sqlite3
 with sqlite3.connect("petstore.db") as connection:
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM pets")
-    pets = cursor.fetchall()
-    for pet in pets:
+    for pet in cursor.fetchall():
         print(pet)
 # Connection is automatically closed here
 ```
-
-This is like the `with open(...)` pattern you learned for files in [[wiki:python-jr-file-io]]. The `with` block makes sure the connection is always closed, even if an error happens.
 
 ![A flat vector illustration in a children's educational book style showing Byte the robot happily connecting a colorful cord between a laptop and a small glowing file icon labeled as a database, with data flowing through the cord. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
 
@@ -409,9 +356,9 @@ This is like the `with open(...)` pattern you learned for files in [[wiki:python
 
 ## ORMs -- Using Python Classes Instead of SQL
 
-Writing SQL by hand works perfectly fine, but as your project grows, it can get repetitive. An **ORM** (Object-Relational Mapper) is a tool that lets you use Python classes and objects instead of writing raw SQL.
+As your project grows, writing SQL by hand can get repetitive. An **ORM** (Object-Relational Mapper) lets you use Python classes and objects instead. Each table becomes a class, each row becomes an object.
 
-With an ORM, each table becomes a Python class, and each row becomes an object. Instead of writing `INSERT INTO pets (name, animal, age) VALUES ('Buddy', 'dog', 3)`, you write:
+Instead of `INSERT INTO pets (name, animal, age) VALUES ('Buddy', 'dog', 3)`, you write:
 
 ```python
 new_pet = Pet(name="Buddy", animal="dog", age=3)
@@ -419,15 +366,10 @@ session.add(new_pet)
 session.commit()
 ```
 
-The ORM translates your Python code into SQL behind the scenes. You are still using a database -- you are just talking to it in Python instead of SQL.
-
-Popular Python ORMs include **SQLAlchemy** and **SQLModel** (which is built on SQLAlchemy and works great with FastAPI).
-
-Here is a simple example with SQLModel:
+The ORM translates your Python into SQL behind the scenes. Popular Python ORMs include **SQLAlchemy** and **SQLModel** (which works great with FastAPI). Here is a quick example with SQLModel:
 
 ```python
 from sqlmodel import SQLModel, Field, create_engine, Session, select
-
 
 class Pet(SQLModel, table=True):
     id: int | None = Field(default=None, primary_key=True)
@@ -435,27 +377,14 @@ class Pet(SQLModel, table=True):
     animal: str
     age: int
 
-
-# Create the database and table
 engine = create_engine("sqlite:///petstore.db")
 SQLModel.metadata.create_all(engine)
 
-# Add a pet
 with Session(engine) as session:
     buddy = Pet(name="Buddy", animal="dog", age=3)
     session.add(buddy)
     session.commit()
-    print("Added: " + buddy.name)
-
-# Read all pets
-with Session(engine) as session:
-    statement = select(Pet)
-    pets = session.exec(statement).all()
-    for pet in pets:
-        print(pet.name + " the " + pet.animal)
 ```
-
-The `Pet` class looks a lot like a Pydantic model from the last lesson. That is on purpose -- SQLModel combines Pydantic and SQLAlchemy, so your data models work for both your API and your database.
 
 You do not need to use an ORM right away. Writing raw SQL teaches you how databases really work, and that knowledge is valuable even when you switch to an ORM later. Think of it like learning to do math by hand before using a calculator.
 

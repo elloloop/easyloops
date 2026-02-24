@@ -4,37 +4,7 @@
 
 Imagine you are building a program with different kinds of animals -- dogs, cats, and parrots. They all have a name. They all have a method called `describe()`. They all can `eat()`. But each one makes a different sound.
 
-You could write three completely separate classes:
-
-```python
-class Dog:
-    def __init__(self, name: str) -> None:
-        self.name: str = name
-
-    def describe(self) -> str:
-        return f"{self.name} the Dog"
-
-    def eat(self) -> str:
-        return f"{self.name} is eating."
-
-    def speak(self) -> str:
-        return f"{self.name} says Woof!"
-
-class Cat:
-    def __init__(self, name: str) -> None:
-        self.name: str = name
-
-    def describe(self) -> str:
-        return f"{self.name} the Cat"
-
-    def eat(self) -> str:
-        return f"{self.name} is eating."
-
-    def speak(self) -> str:
-        return f"{self.name} says Meow!"
-```
-
-See the problem? The `__init__` is the same. The `eat` method is the same. You copied and pasted most of the code. Now if you find a bug in `eat`, you have to fix it in every single class. What if you have ten animal types? Twenty?
+You could write completely separate classes for each one. But then `__init__` would be the same in Dog and Cat. The `eat` method would be the same too. You would copy and paste most of the code. Now if you find a bug in `eat`, you have to fix it in every single class. What if you have ten animal types? Twenty?
 
 There has to be a better way. And there is -- it is called **inheritance**.
 
@@ -46,14 +16,12 @@ There has to be a better way. And there is -- it is called **inheritance**.
 
 Inheritance means a **child class gets everything from a parent class**, plus can add its own stuff.
 
-Think of it like a family recipe book. Your family has a basic cookie recipe that everyone uses (the parent). But you add chocolate chips to yours, your sibling adds sprinkles to theirs. You both *inherited* the base recipe, but each of you added your own twist.
-
-Or think about it this way: dogs and cats are different, but they are both pets. Instead of writing all the "pet stuff" twice, you write it once in a `Pet` class, and let `Dog` and `Cat` inherit it.
+Dogs and cats are different, but they are both pets. Instead of writing all the "pet stuff" twice, you write it once in a `Pet` class, and let `Dog` and `Cat` inherit it. Think of it like a family recipe book: your family has a base cookie recipe that everyone uses (the parent), but you add chocolate chips and your sibling adds sprinkles. You both *inherited* the base recipe, then added your own twist.
 
 - The class that shares its code is called the **parent class** (also called the base class).
 - The class that receives the code is called the **child class** (also called the subclass).
 
-A child class gets **everything** the parent has -- all its methods and all its variables. Then the child can add new things or change things it inherited.
+A child gets **everything** the parent has -- all its methods and variables. Then the child can add new things or change things it inherited.
 
 ---
 
@@ -210,7 +178,7 @@ Notice something cool: `describe()` is defined in `Shape`, and it calls `self.ar
 
 ## `isinstance()` -- Checking What Type Something Is
 
-`isinstance()` lets you check whether an object was made from a particular class. It also checks parent classes!
+`isinstance()` lets you check whether an object was made from a particular class. It also checks parent classes.
 
 ```python
 class Animal:
@@ -227,22 +195,6 @@ print(isinstance(rex, str))     # False -- rex is NOT a string
 ```
 
 Why does `isinstance(rex, Animal)` return `True`? Because `Dog` inherits from `Animal`. A dog IS an animal. So any Dog object is also an Animal object.
-
-This is useful when you have a mix of different types and need to check which one you are dealing with:
-
-```python
-class Cat(Animal):
-    pass
-
-pets: list[Animal] = [Dog(), Cat(), Dog(), Cat()]
-
-dog_count: int = 0
-for pet in pets:
-    if isinstance(pet, Dog):
-        dog_count += 1
-
-print(f"There are {dog_count} dogs.")  # There are 2 dogs.
-```
 
 ---
 
@@ -574,23 +526,7 @@ Ask yourself: "Is a [child] really a type of [parent]?" If not, use composition.
 
 ### Making the Inheritance Chain Too Deep
 
-```python
-# TOO DEEP -- this gets confusing fast
-class LivingThing:
-    pass
-class Animal(LivingThing):
-    pass
-class Mammal(Animal):
-    pass
-class DomesticMammal(Mammal):
-    pass
-class Pet(DomesticMammal):
-    pass
-class Dog(Pet):
-    pass
-```
-
-Keep it simple. One or two levels of inheritance is usually plenty.
+Five or six levels of inheritance gets confusing fast. Keep it simple -- one or two levels is usually plenty.
 
 ---
 
@@ -660,7 +596,7 @@ Create a warrior and a wizard and have them interact.
 
 ## Answers to Practice Questions
 
-**Answer 1:** Inheritance lets a child class get all the code from a parent class for free, then add or change things. It solves the problem of writing the same code over and over. For example, dogs and cats are different, but they are both pets. Without inheritance, you would write the same `name`, `eat()`, and `describe()` code in both the Dog class and the Cat class. With inheritance, you write the shared "pet stuff" once in a Pet class, and let Dog and Cat inherit it. Then each one only needs to add its own unique things (like `bark()` for Dog or `purr()` for Cat).
+**Answer 1:** Inheritance lets a child class get all the code from a parent class for free, then add or change things. It solves the problem of writing the same code over and over. Dogs and cats are both pets -- without inheritance, you write the same `name`, `eat()`, and `describe()` code in both classes. With inheritance, you write the shared "pet stuff" once in a Pet class, and let Dog and Cat inherit it. Each one only adds its unique things.
 
 **Answer 2:** `super()` calls the parent's version of a method. It is most commonly used in `__init__` to run the parent's setup code before adding the child's own data. If you forget to call `super().__init__()`, the parent's setup never runs. That means any variables the parent creates (like `self.name`) will not exist, and you will get an `AttributeError` when you try to use them.
 
@@ -716,7 +652,7 @@ concert(band)
 # Electric Guitar: *strumming*
 ```
 
-**Answer 6:** Polymorphism means "different types that can be used the same way." The TV remote analogy: a TV remote works the same way no matter what brand your TV is. You press the power button, and the TV turns on. The button is the same, but internally Samsung and LG handle it differently. In the code from Question 5, the `concert()` function is like the remote. It just calls `play()` on each instrument. It does not care whether the instrument is a Guitar or a Drum. Each instrument responds in its own way -- guitars strum and drums bang. Same method call, different behavior. That is polymorphism.
+**Answer 6:** Polymorphism means "different types that can be used the same way." Like a TV remote -- you press the power button and it works whether your TV is a Samsung or LG. The button is the same, but internally they work differently. In Question 5, `concert()` is the remote. It calls `play()` on each instrument without caring whether it is a Guitar or Drum. Each responds in its own way. Same method call, different behavior.
 
 **Answer 7:**
 
