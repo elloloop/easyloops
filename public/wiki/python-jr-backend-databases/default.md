@@ -75,14 +75,7 @@ CREATE TABLE pets (
 );
 ```
 
-This creates a `pets` table with four columns:
-
-- `id` -- a whole number that is the primary key (unique for each row)
-- `name` -- text (cannot be empty because of `NOT NULL`)
-- `animal` -- text (cannot be empty)
-- `age` -- a whole number (cannot be empty)
-
-`NOT NULL` means "this field is required." You cannot add a pet without a name, animal, or age.
+This creates a `pets` table with four columns. `NOT NULL` means "this field is required" -- you cannot add a pet without giving it a name, animal type, and age.
 
 ### INSERT INTO -- Add a Row
 
@@ -140,14 +133,7 @@ UPDATE pets SET age = 4 WHERE id = 1;
 
 This changes Buddy's age to 4. The `WHERE id = 1` part makes sure you only change Buddy and not every pet in the table.
 
-**Warning:** If you forget the `WHERE`, you will update EVERY row!
-
-```sql
--- This changes EVERY pet's age to 4! Be careful!
-UPDATE pets SET age = 4;
-```
-
-Always include a `WHERE` clause when you use `UPDATE`.
+**Warning:** If you forget the `WHERE`, you will update EVERY row. Always include a `WHERE` clause when you use `UPDATE`.
 
 ### DELETE -- Remove Data
 
@@ -157,14 +143,7 @@ DELETE FROM pets WHERE id = 3;
 
 This removes Goldie (pet number 3) from the table.
 
-**Warning:** Just like `UPDATE`, if you forget the `WHERE`, you delete EVERYTHING!
-
-```sql
--- This deletes ALL pets! Very dangerous!
-DELETE FROM pets;
-```
-
-Always include a `WHERE` clause when you use `DELETE`.
+**Warning:** Just like `UPDATE`, if you forget the `WHERE`, you delete EVERYTHING. Always include a `WHERE` clause when you use `DELETE`.
 
 ![A flat vector illustration in a children's educational book style showing Byte the robot at a colorful desk with a large open book showing SQL commands on one page and a table of data on the other page, with arrows connecting the commands to the table. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
 
@@ -191,9 +170,7 @@ pets table:
 | 3  | Goldie   | fish   | 1   | 2        |
 ```
 
-The `owner_id` column in the `pets` table is a **foreign key**. It points to the `id` column in the `owners` table. Buddy's `owner_id` is 1, which means Buddy belongs to Alice (owner number 1).
-
-Here is how you create the pets table with a foreign key:
+The `owner_id` column in the `pets` table is a **foreign key**. It points to the `id` in the `owners` table. Buddy's `owner_id` is 1, meaning Buddy belongs to Alice. Here is how you create a table with a foreign key:
 
 ```sql
 CREATE TABLE pets (
@@ -280,21 +257,11 @@ import sqlite3
 connection = sqlite3.connect("petstore.db")
 cursor = connection.cursor()
 
-cursor.execute(
-    "INSERT INTO pets (name, animal, age) VALUES (?, ?, ?)",
-    ("Buddy", "dog", 3)
-)
-cursor.execute(
-    "INSERT INTO pets (name, animal, age) VALUES (?, ?, ?)",
-    ("Whiskers", "cat", 5)
-)
-cursor.execute(
-    "INSERT INTO pets (name, animal, age) VALUES (?, ?, ?)",
-    ("Goldie", "fish", 1)
-)
+cursor.execute("INSERT INTO pets (name, animal, age) VALUES (?, ?, ?)", ("Buddy", "dog", 3))
+cursor.execute("INSERT INTO pets (name, animal, age) VALUES (?, ?, ?)", ("Whiskers", "cat", 5))
+cursor.execute("INSERT INTO pets (name, animal, age) VALUES (?, ?, ?)", ("Goldie", "fish", 1))
 
 connection.commit()
-print("Pets added!")
 ```
 
 Notice the `?` marks. Those are **placeholders**. You put `?` where the values go, and then pass the actual values as a separate tuple. This is extremely important, and we will explain why in the SQL injection section below.
@@ -404,39 +371,13 @@ user_input = input("Enter pet name: ")
 cursor.execute("SELECT * FROM pets WHERE name = '" + user_input + "'")
 ```
 
-If the user types `Buddy`, the SQL becomes:
-
-```sql
-SELECT * FROM pets WHERE name = 'Buddy'
-```
-
-That works fine. But what if someone types this instead?
-
-```
-' OR '1'='1
-```
-
-The SQL becomes:
+If the user types `Buddy`, the SQL becomes `SELECT * FROM pets WHERE name = 'Buddy'` -- that works fine. But what if someone types `' OR '1'='1` instead? The SQL becomes:
 
 ```sql
 SELECT * FROM pets WHERE name = '' OR '1'='1'
 ```
 
-Since `'1'='1'` is always true, this returns **every row in the table**. The user tricked your program into doing something you did not intend.
-
-Even worse, someone could type:
-
-```
-'; DROP TABLE pets; --
-```
-
-Which becomes:
-
-```sql
-SELECT * FROM pets WHERE name = ''; DROP TABLE pets; --'
-```
-
-This **deletes your entire pets table**. All your data, gone, because you put user input directly into SQL.
+Since `'1'='1'` is always true, this returns **every row in the table**. Even worse, someone could type `'; DROP TABLE pets; --` which **deletes your entire table**. All your data, gone, because you put user input directly into SQL.
 
 ### The Restaurant Analogy
 

@@ -292,13 +292,7 @@ my_car: Car = Car("Toyota", my_engine)
 print(my_car.start())  # Toyota: Engine (200hp) started!
 ```
 
-**How to decide:** Ask yourself:
-- "Is a [child] a type of [parent]?" -- Use inheritance. A dog IS an animal.
-- "Does a [thing] have a [part]?" -- Use composition. A car HAS an engine.
-
-A car is NOT an engine. That would be weird! So do not write `class Car(Engine)`. Instead, give the car an engine as an attribute.
-
-**When you are not sure, prefer composition.** It is more flexible and easier to change later.
+**How to decide:** Ask yourself -- "Is a [child] a type of [parent]?" If yes, use inheritance. "Does a [thing] have a [part]?" If yes, use composition. A car is NOT an engine, so do not write `class Car(Engine)`. When you are not sure, **prefer composition** -- it is more flexible.
 
 ![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, comparing two diagrams on a whiteboard: one showing a family tree arrow labeled "is a" and another showing a box containing a smaller box labeled "has a." Features a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
 
@@ -431,43 +425,21 @@ class Cat(Animal):
         return f"{super().describe()} - {location} cat"
 
 
-class Parrot(Animal):
-    def __init__(self, name: str, color: str) -> None:
-        super().__init__(name, "Parrot")
-        self.color: str = color
-        self._words: list[str] = []
-
-    def speak(self) -> str:
-        if self._words:
-            return f"{self.name} says: {self._words[-1]}!"
-        return f"{self.name} says: Squawk!"
-
-    def teach_word(self, word: str) -> str:
-        self._words.append(word)
-        return f"{self.name} learned to say '{word}'!"
-
-    def describe(self) -> str:
-        return f"{super().describe()} - {self.color}, knows {len(self._words)} words"
-
-
 # Create animals and teach them things
 rex: Dog = Dog("Rex", "Golden Retriever")
 mittens: Cat = Cat("Mittens", True)
-polly: Parrot = Parrot("Polly", "green")
 
 rex.learn_trick("sit")
 rex.learn_trick("shake")
-polly.teach_word("hello")
 
 # Polymorphism -- same loop, different behaviors
-pets: list[Animal] = [rex, mittens, polly]
+pets: list[Animal] = [rex, mittens]
 for pet in pets:
     print(pet.speak())
 # Rex says: Woof! Woof!
 # Mittens says: Meow!
-# Polly says: hello!
 
-# Play and eat
+# Play and eat (inherited methods)
 print(rex.play())              # Rex plays! Energy: 70
 print(rex.eat("dog biscuit"))  # Rex eats dog biscuit. Energy: 90
 
@@ -476,12 +448,6 @@ for pet in pets:
     print(pet.describe())
 # Rex the Dog (Energy: 90) - Golden Retriever, 2 tricks
 # Mittens the Cat (Energy: 100) - indoor cat
-# Polly the Parrot (Energy: 100) - green, knows 1 words
-
-# isinstance checks
-print(isinstance(rex, Dog))     # True
-print(isinstance(rex, Animal))  # True -- a Dog IS an Animal
-print(isinstance(mittens, Dog)) # False -- a Cat is NOT a Dog
 ```
 
 This example ties together every concept from this lesson: inheritance, `super()`, method overriding, polymorphism, abstract classes, and encapsulation.
@@ -492,37 +458,11 @@ This example ties together every concept from this lesson: inheritance, `super()
 
 ### Forgetting `super().__init__()`
 
-```python
-# WRONG -- parent's setup never runs
-class Dog(Animal):
-    def __init__(self, name: str, breed: str) -> None:
-        # Forgot to call super().__init__()!
-        self.breed = breed
-
-rex: Dog = Dog("Rex", "Lab")
-# print(rex.name)  # Error! name was never set up
-```
-
-Always call `super().__init__()` when the parent has an `__init__` you need.
+If you forget to call `super().__init__()`, the parent's setup never runs. Variables like `self.name` will not exist, and you will get an `AttributeError`. Always call `super().__init__()` when the parent has an `__init__` you need.
 
 ### Using Inheritance When Composition Is Better
 
-```python
-# WRONG -- a car is NOT an engine
-class Engine:
-    def start(self) -> str:
-        return "Vroom"
-
-class Car(Engine):  # This says "a car IS an engine" -- that is wrong!
-    pass
-
-# RIGHT -- a car HAS an engine
-class Car:
-    def __init__(self, engine: Engine) -> None:
-        self.engine: Engine = engine  # HAS-A relationship
-```
-
-Ask yourself: "Is a [child] really a type of [parent]?" If not, use composition.
+Ask yourself: "Is a [child] really a type of [parent]?" If a car is NOT an engine, do not write `class Car(Engine)`. Use composition: give Car an `engine` attribute instead.
 
 ### Making the Inheritance Chain Too Deep
 

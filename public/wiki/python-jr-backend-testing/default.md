@@ -356,9 +356,7 @@ In this test, `get_weather` is replaced by a fake version that always returns "7
 
 **When to mock:** External websites and APIs, databases (in unit tests), and things that are slow (sending emails, uploading files).
 
-**When NOT to mock:** The actual function you are testing (if you mock it, you are testing the mock, not your code!) and simple math or string operations.
-
-Too much mocking makes tests useless. If you mock everything, your tests only prove that your fakes are set up correctly -- not that your real code works.
+**When NOT to mock:** The actual function you are testing (if you mock it, you are testing the mock, not your code!) and simple math or string operations. Too much mocking makes tests useless. If you mock everything, your tests only prove that your fakes are set up correctly -- not that your real code works.
 
 ---
 
@@ -486,9 +484,7 @@ Run the tests again. They all pass! That is the "green" step.
 
 **Step 3: Refactor -- Clean up**
 
-The code looks fine already. In a bigger project, you might rename variables, split things into smaller functions, or remove duplication. The key is that the tests keep passing after every change.
-
-TDD makes you think about **what** your code should do before you think about **how** to do it. The tests become a clear list of requirements.
+The code looks fine already. In a bigger project, you might rename variables or split things into smaller functions. The key is that the tests keep passing after every change. TDD makes you think about **what** your code should do before you think about **how** to do it.
 
 ---
 
@@ -515,7 +511,7 @@ TOTAL                 80     15    81%
 
 The "Missing" column shows exactly which lines are not covered. Those are the places where bugs could be hiding, undetected.
 
-**Aim for 80% or higher.** Getting to 100% is not always realistic, but anything below 50% means large parts of your code have never been tested at all.
+**Aim for 80% or higher.** Getting to 100% is not always realistic, but below 50% means large parts of your code have never been tested.
 
 ---
 
