@@ -262,26 +262,6 @@ Use class variables for things that are the same across every object. Use instan
 
 Sometimes you want something that *looks* like a variable when you use it, but actually runs some code behind the scenes. The `@property` decorator does exactly that.
 
-```python
-class Circle:
-    def __init__(self, radius: float) -> None:
-        self._radius: float = radius
-
-    @property
-    def radius(self) -> float:
-        return self._radius
-
-    @radius.setter
-    def radius(self, value: float) -> None:
-        if value < 0:
-            raise ValueError("Radius cannot be negative!")
-        self._radius = value
-
-    @property
-    def area(self) -> float:
-        return 3.14159 * self._radius ** 2
-```
-
 Open your editor. Type this. Run it.
 
 ```python
@@ -496,7 +476,7 @@ Create two treasure chests, add items to both, remove one item, and print descri
 
 ## Answers to Practice Questions
 
-**Answer 1:** A class is a blueprint or template -- like a cookie cutter. An object is a real thing made from that blueprint -- like a cookie. The cookie cutter (class) describes the shape, but it is not a cookie itself. You use it to stamp out many cookies (objects). Each cookie has the same shape but can have different decorations (different data).
+**Answer 1:** A class is a blueprint -- like a cookie cutter. An object is a real thing made from it -- like a cookie. The cookie cutter describes the shape but is not a cookie itself. You stamp out many cookies (objects) from one cutter (class). Each cookie has the same shape but can have different decorations (different data).
 
 **Answer 2:** `__init__` is the setup method. It runs **automatically** every time you create a new object. You never call it yourself -- Python calls it for you. When you write `Dog("Buddy", 4)`, Python creates a new empty Dog and then calls `__init__` on it, passing in `"Buddy"` and `4`. Its job is to set up the starting data for the new object.
 
