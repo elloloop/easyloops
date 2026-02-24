@@ -6,7 +6,7 @@ In the last lesson on [[wiki:python-jr-algo-recursion]], you learned that recurs
 
 This lesson is one of the most important ones on your journey to becoming a coding expert. It takes patience. Read every step, trace every example, and type every line of code yourself.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing in front of a large wall covered in colorful sticky notes, each with a number on it, organized from small to large. Byte is placing a new sticky note on the wall with a happy expression. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing in front of a large wall covered in colorful sticky notes, each with a number on it, organized from small to large. Byte is placing a new sticky note on the wall with a happy expression. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -21,6 +21,7 @@ The **Fibonacci sequence** is a famous pattern of numbers where each number is t
 ```
 
 The rule is simple:
+
 - `fib(0) = 0`
 - `fib(1) = 1`
 - `fib(n) = fib(n-1) + fib(n-2)` for everything else
@@ -129,7 +130,7 @@ memo[5] = 5
 
 See the difference? When `fib_memo(5)` needs `fib_memo(3)`, it finds the answer already saved in the memo dictionary. No need to recalculate! Instead of making 15 calls, we make about 9. For bigger numbers, the savings are enormous.
 
-![A flat vector illustration in a children's educational book style showing a tree diagram where some branches are highlighted in green (calculated once) and other branches have a shortcut arrow pointing to a sticky note with the answer already written. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a tree diagram where some branches are highlighted in green (calculated once) and other branches have a shortcut arrow pointing to a sticky note with the answer already written. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -170,13 +171,13 @@ print(fib_table(40))  # 102334155
 
 Let's trace `fib_table(5)`:
 
-| Step | i | table[i-1] | table[i-2] | table[i] | Full table |
-|------|---|-----------|-----------|---------|------------|
-| Start | -- | -- | -- | -- | [0, 1, 0, 0, 0, 0] |
-| 1 | 2 | 1 | 0 | 1 | [0, 1, 1, 0, 0, 0] |
-| 2 | 3 | 1 | 1 | 2 | [0, 1, 1, 2, 0, 0] |
-| 3 | 4 | 2 | 1 | 3 | [0, 1, 1, 2, 3, 0] |
-| 4 | 5 | 3 | 2 | 5 | [0, 1, 1, 2, 3, 5] |
+| Step  | i   | table[i-1] | table[i-2] | table[i] | Full table         |
+| ----- | --- | ---------- | ---------- | -------- | ------------------ |
+| Start | --  | --         | --         | --       | [0, 1, 0, 0, 0, 0] |
+| 1     | 2   | 1          | 0          | 1        | [0, 1, 1, 0, 0, 0] |
+| 2     | 3   | 1          | 1          | 2        | [0, 1, 1, 2, 0, 0] |
+| 3     | 4   | 2          | 1          | 3        | [0, 1, 1, 2, 3, 0] |
+| 4     | 5   | 3          | 2          | 5        | [0, 1, 1, 2, 3, 5] |
 
 No recursion at all! Just a simple loop that fills in a table. Each entry depends on two entries that were already filled in.
 
@@ -216,11 +217,11 @@ def fib_table(n: int) -> int:
     return table[n]
 ```
 
-| Approach | Speed | Uses recursion? | Extra memory |
-|----------|-------|----------------|-------------|
-| Plain recursion | Very slow for large n | Yes | Call stack only |
-| Top-down (memoization) | Fast | Yes | Dictionary for answers |
-| Bottom-up (tabulation) | Fast | No (uses a loop) | List/table for answers |
+| Approach               | Speed                 | Uses recursion?  | Extra memory           |
+| ---------------------- | --------------------- | ---------------- | ---------------------- |
+| Plain recursion        | Very slow for large n | Yes              | Call stack only        |
+| Top-down (memoization) | Fast                  | Yes              | Dictionary for answers |
+| Bottom-up (tabulation) | Fast                  | No (uses a loop) | List/table for answers |
 
 Both memoization and tabulation give the same answer. Memoization feels more natural if you already wrote the recursive version. Tabulation avoids recursion entirely, which can be better for very large problems.
 
@@ -231,6 +232,7 @@ Both memoization and tabulation give the same answer. Memoization feels more nat
 Here is a classic puzzle. You are climbing a staircase with `n` steps. Each time, you can climb either **1 step** or **2 steps**. How many different ways can you reach the top?
 
 **Example:** If there are 4 steps, the ways are:
+
 - 1+1+1+1
 - 1+1+2
 - 1+2+1
@@ -242,6 +244,7 @@ That is **5** ways.
 ### Thinking It Through
 
 If you are standing at step `n`, how did you get there? You either:
+
 - Took 1 step from step `n-1`, OR
 - Took 2 steps from step `n-2`
 
@@ -275,10 +278,10 @@ print(climb_stairs(10))  # 89
 Trace for `climb_stairs(5)`:
 
 | Step i | table[i-1] | table[i-2] | table[i] |
-|--------|-----------|-----------|---------|
-| 3 | 2 | 1 | 3 |
-| 4 | 3 | 2 | 5 |
-| 5 | 5 | 3 | 8 |
+| ------ | ---------- | ---------- | -------- |
+| 3      | 2          | 1          | 3        |
+| 4      | 3          | 2          | 5        |
+| 5      | 5          | 3          | 8        |
 
 There are **8** ways to climb 5 stairs.
 
@@ -289,6 +292,7 @@ There are **8** ways to climb 5 stairs.
 You have a set of coin values and a target amount. What is the **fewest number of coins** you need to make exactly that amount?
 
 **Example:** Coins are [1, 5, 10] and the target is 12.
+
 - You could use 12 pennies (12 coins) -- that works but is a lot of coins.
 - You could use 1 dime + 2 pennies (3 coins) -- much better!
 - Is there a way with fewer? No! The answer is **3**.
@@ -333,21 +337,21 @@ print(coin_change([2], 3))          # -1 (impossible!)
 
 Let's trace `coin_change([1, 5, 10], 12)` for the first few amounts:
 
-| Amount | Try coin 1 | Try coin 5 | Try coin 10 | Best |
-|--------|-----------|-----------|------------|------|
-| 0 | -- | -- | -- | 0 |
-| 1 | 1 + table[0] = 1 | too big | too big | 1 |
-| 2 | 1 + table[1] = 2 | too big | too big | 2 |
-| 3 | 1 + table[2] = 3 | too big | too big | 3 |
-| 4 | 1 + table[3] = 4 | too big | too big | 4 |
-| 5 | 1 + table[4] = 5 | 1 + table[0] = 1 | too big | 1 |
-| 6 | 1 + table[5] = 2 | 1 + table[1] = 2 | too big | 2 |
-| ... | ... | ... | ... | ... |
-| 12 | 1 + table[11] = 3 | 1 + table[7] = 4 | 1 + table[2] = 3 | 3 |
+| Amount | Try coin 1        | Try coin 5       | Try coin 10      | Best |
+| ------ | ----------------- | ---------------- | ---------------- | ---- |
+| 0      | --                | --               | --               | 0    |
+| 1      | 1 + table[0] = 1  | too big          | too big          | 1    |
+| 2      | 1 + table[1] = 2  | too big          | too big          | 2    |
+| 3      | 1 + table[2] = 3  | too big          | too big          | 3    |
+| 4      | 1 + table[3] = 4  | too big          | too big          | 4    |
+| 5      | 1 + table[4] = 5  | 1 + table[0] = 1 | too big          | 1    |
+| 6      | 1 + table[5] = 2  | 1 + table[1] = 2 | too big          | 2    |
+| ...    | ...               | ...              | ...              | ...  |
+| 12     | 1 + table[11] = 3 | 1 + table[7] = 4 | 1 + table[2] = 3 | 3    |
 
 Each row builds on rows above it -- that is the bottom-up approach in action!
 
-![A flat vector illustration in a children's educational book style showing a staircase of colorful coins being stacked, with Byte the robot placing coins one by one while checking a chart on the wall that shows the fewest coins needed for each amount. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a staircase of colorful coins being stacked, with Byte the robot placing coins one by one while checking a chart on the wall that shows the fewest coins needed for each amount. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -372,6 +376,7 @@ The best solution to the big problem can be built from the best solutions to sma
 ### Quick Checklist
 
 Ask yourself:
+
 1. Can I break this into smaller versions of the same problem? (Yes --> could be DP)
 2. Do the smaller problems overlap (same one solved multiple times)? (Yes --> DP will help)
 3. Does the problem ask for a count, minimum, or maximum? (Yes --> probably DP)
@@ -390,14 +395,14 @@ You do not need to master 2D DP right now. Just know that the same ideas apply: 
 
 ## Quick Summary
 
-| Concept | What It Means |
-|---------|---------------|
-| Dynamic Programming | Breaking a problem into subproblems and remembering answers to avoid repeat work |
-| Overlapping subproblems | The same smaller problem gets solved multiple times in plain recursion |
-| Memoization (top-down) | Start with the big problem, recurse down, save each answer in a dictionary |
-| Tabulation (bottom-up) | Start with the smallest problems, fill in a table with a loop, build up to the answer |
-| 1D DP | A table that is a single list (one dimension) |
-| 2D DP | A table that is a grid of rows and columns (two dimensions) |
+| Concept                 | What It Means                                                                         |
+| ----------------------- | ------------------------------------------------------------------------------------- |
+| Dynamic Programming     | Breaking a problem into subproblems and remembering answers to avoid repeat work      |
+| Overlapping subproblems | The same smaller problem gets solved multiple times in plain recursion                |
+| Memoization (top-down)  | Start with the big problem, recurse down, save each answer in a dictionary            |
+| Tabulation (bottom-up)  | Start with the smallest problems, fill in a table with a loop, build up to the answer |
+| 1D DP                   | A table that is a single list (one dimension)                                         |
+| 2D DP                   | A table that is a grid of rows and columns (two dimensions)                           |
 
 ---
 
@@ -423,6 +428,7 @@ def fib_broken(n: int, memo: dict[int, int] = {}) -> int:
 **5.** You have coins [1, 3, 4] and need to make amount 6. Trace through the coin change algorithm. What is the fewest number of coins needed, and which coins are they?
 
 **6.** For each of these problems, would you use dynamic programming? Why or why not?
+
 - a) "Sort a list of numbers from smallest to largest."
 - b) "How many ways can you make change for $1.00 using pennies, nickels, dimes, and quarters?"
 - c) "Find the largest number in a list."
@@ -469,13 +475,13 @@ Without that check, the function still works (gives the right answer), but it is
 **Answer 4:**
 
 | Step | table[i-1] | table[i-2] | table[i] |
-|------|-----------|-----------|---------|
-| 1 | -- | -- | 1 |
-| 2 | -- | -- | 2 |
-| 3 | 2 | 1 | 3 |
-| 4 | 3 | 2 | 5 |
-| 5 | 5 | 3 | 8 |
-| 6 | 8 | 5 | 13 |
+| ---- | ---------- | ---------- | -------- |
+| 1    | --         | --         | 1        |
+| 2    | --         | --         | 2        |
+| 3    | 2          | 1          | 3        |
+| 4    | 3          | 2          | 5        |
+| 5    | 5          | 3          | 8        |
+| 6    | 8          | 5          | 13       |
 
 There are **13** ways to climb 6 steps.
 
@@ -483,15 +489,15 @@ There are **13** ways to climb 6 steps.
 
 Coins are [1, 3, 4], target is 6:
 
-| Amount | Try coin 1 | Try coin 3 | Try coin 4 | Best |
-|--------|-----------|-----------|-----------|------|
-| 0 | -- | -- | -- | 0 |
-| 1 | 1+table[0]=1 | too big | too big | 1 |
-| 2 | 1+table[1]=2 | too big | too big | 2 |
-| 3 | 1+table[2]=3 | 1+table[0]=1 | too big | 1 |
-| 4 | 1+table[3]=2 | 1+table[1]=2 | 1+table[0]=1 | 1 |
-| 5 | 1+table[4]=2 | 1+table[2]=3 | 1+table[1]=2 | 2 |
-| 6 | 1+table[5]=3 | 1+table[3]=2 | 1+table[2]=3 | 2 |
+| Amount | Try coin 1   | Try coin 3   | Try coin 4   | Best |
+| ------ | ------------ | ------------ | ------------ | ---- |
+| 0      | --           | --           | --           | 0    |
+| 1      | 1+table[0]=1 | too big      | too big      | 1    |
+| 2      | 1+table[1]=2 | too big      | too big      | 2    |
+| 3      | 1+table[2]=3 | 1+table[0]=1 | too big      | 1    |
+| 4      | 1+table[3]=2 | 1+table[1]=2 | 1+table[0]=1 | 1    |
+| 5      | 1+table[4]=2 | 1+table[2]=3 | 1+table[1]=2 | 2    |
+| 6      | 1+table[5]=3 | 1+table[3]=2 | 1+table[2]=3 | 2    |
 
 The fewest coins is **2**. The coins are **3 + 3 = 6**. Notice that a greedy approach would pick coin 4 first (the biggest that fits), giving 4+1+1 = 3 coins. DP found the better answer!
 
