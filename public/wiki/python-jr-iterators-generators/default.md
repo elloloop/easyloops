@@ -192,27 +192,7 @@ value3: int = next(gen)
 print(f"Got: {value3}")
 ```
 
-Output:
-
-```
-Creating the generator...
-Generator created, but nothing has run yet!
-
-Asking for first value:
-Starting the generator!
-  About to yield 0
-Got: 0
-
-Asking for second value:
-  Resumed after yielding 0
-  About to yield 1
-Got: 1
-
-Asking for third value:
-  Resumed after yielding 1
-  About to yield 2
-Got: 2
-```
+Run it and watch the output carefully. You will see that each `next()` call runs the function up to the next `yield`, then pauses.
 
 Notice something important: when you call `count_up(3)`, the function does NOT run. It creates a generator object and waits. The function body only runs when you start asking for values with `next()` or a `for` loop.
 
@@ -393,42 +373,6 @@ for number in counting_forever():
 # 4
 # 5
 ```
-
----
-
-## Practical Example: Reading Data One Piece at a Time
-
-Generators are perfect for processing data that comes in chunks. Here is a generator that simulates reading temperatures from a sensor:
-
-```python
-def temperature_readings(readings: list[float]):
-    for reading in readings:
-        if reading < -50 or reading > 150:
-            print(f"  Skipping bad reading: {reading}")
-            continue
-        yield reading
-
-raw_data: list[float] = [72.5, 68.3, 999.0, 71.1, -100.0, 69.8, 73.2]
-
-print("Valid temperature readings:")
-for temp in temperature_readings(raw_data):
-    print(f"  {temp} degrees")
-```
-
-Output:
-
-```
-Valid temperature readings:
-  72.5 degrees
-  68.3 degrees
-  Skipping bad reading: 999.0
-  71.1 degrees
-  Skipping bad reading: -100.0
-  69.8 degrees
-  73.2 degrees
-```
-
-The generator filters out bad readings as it goes, handing you only the valid ones.
 
 ---
 

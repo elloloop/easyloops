@@ -435,17 +435,6 @@ class StreamingPlayer(MusicPlayer):
     def skip(self) -> str:
         return "[Streaming] Loading next song from the internet..."
 
-class VinylPlayer(MusicPlayer):
-    def play(self, song_name: str) -> str:
-        return f"[Vinyl] Needle drops... Now playing: {song_name}"
-
-    def pause(self) -> str:
-        return "[Vinyl] Lifted the needle."
-
-    def skip(self) -> str:
-        return "[Vinyl] Moving needle to next groove..."
-
-
 my_songs: list[str] = ["Happy Song", "Dance Tune", "Sleepy Melody"]
 
 cd: CDPlayer = CDPlayer()

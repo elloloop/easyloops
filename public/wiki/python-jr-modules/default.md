@@ -168,6 +168,8 @@ print("Vowels in 'hello world': " + str(count_vowels("hello world")))
 
 Run `main.py`. All three files work together, each doing its own job.
 
+![A flat vector illustration in a children's educational book style showing Byte the robot at a workbench connecting three colorful puzzle pieces together, each piece representing a different Python file with function names visible as small icons on each piece. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+
 ---
 
 ## What Is a Package?

@@ -124,15 +124,13 @@ class Student:
 
 alice: Student = Student("Alice", 95)
 bob: Student = Student("Bob", 87)
-charlie: Student = Student("Charlie", 95)
 
-print(bob < alice)      # True  (87 < 95)
-print(alice == charlie)  # True  (both have 95)
+print(bob < alice)  # True  (87 < 95)
 
 # Sorting works automatically when you have __lt__!
-students: list[Student] = [alice, bob, charlie]
+students: list[Student] = [alice, bob]
 students.sort()
-print(students)  # [Student('Bob', grade=87), Student('Alice', grade=95), ...]
+print(students)  # [Student('Bob', grade=87), Student('Alice', grade=95)]
 ```
 
 ---
@@ -296,7 +294,7 @@ print("toy car" in box)        # True
 
 You might have seen the `with` keyword before, like `with open("file.txt") as f:`. The `with` statement uses two special methods: `__enter__` and `__exit__`.
 
-`__enter__` runs at the start of the `with` block. `__exit__` runs at the end, even if something goes wrong. This is perfect when you need to clean something up when you are done.
+`__enter__` runs at the start of the `with` block. `__exit__` runs at the end -- even if something goes wrong inside. This is perfect when you need to clean something up when you are done.
 
 ```python
 class GameSession:
@@ -313,18 +311,12 @@ class GameSession:
 
 with GameSession("Byte") as session:
     print("Playing the game...")
-    print("Collecting coins...")
     print("Defeating the boss!")
-
-# Output:
 # Byte started a game session!
 # Playing the game...
-# Collecting coins...
 # Defeating the boss!
 # Byte's game session ended. Progress saved!
 ```
-
-The `__exit__` method always runs -- even if something crashes inside the `with` block. That is what makes it so useful for cleanup.
 
 ---
 
@@ -352,10 +344,7 @@ class Card:
 class Deck:
     def __init__(self) -> None:
         suits: list[str] = ["Hearts", "Diamonds", "Clubs", "Spades"]
-        ranks: list[str] = [
-            "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "Jack", "Queen", "King", "Ace",
-        ]
+        ranks: list[str] = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
         self._cards: list[Card] = []
         for suit in suits:
             for rank in ranks:
@@ -394,19 +383,13 @@ joker: Card = Card("Joker", "None")
 print(f"Joker in deck? {joker in deck}")  # False
 
 # for loops work!
-print("\nFirst 5 cards:")
+print("\nFirst 3 cards:")
 count: int = 0
 for card in deck:
-    if count >= 5:
+    if count >= 3:
         break
     print(f"  {card}")
     count += 1
-# First 5 cards:
-#   2 of Hearts
-#   3 of Hearts
-#   4 of Hearts
-#   5 of Hearts
-#   6 of Hearts
 ```
 
 ![A flat vector illustration in a children's educational book style showing Byte the robot happily fanning out a hand of colorful playing cards, with card suit symbols floating around. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)

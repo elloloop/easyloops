@@ -302,46 +302,6 @@ The `timer` decorator wraps the function, records the time before and after it r
 
 ---
 
-## Practical Decorator: Print When Called
-
-Here is another useful decorator that prints out what arguments a function received. Great for understanding what your code is doing.
-
-```python
-import functools
-from typing import Any, Callable
-
-
-def log_call(func: Callable) -> Callable:
-    """Print the function name and arguments every time it is called."""
-
-    @functools.wraps(func)
-    def wrapper(*args: Any, **kwargs: Any) -> Any:
-        args_str: str = ", ".join(str(a) for a in args)
-        print(f"Calling {func.__name__}({args_str})")
-        result: Any = func(*args, **kwargs)
-        print(f"{func.__name__} returned {result}")
-        return result
-
-    return wrapper
-
-
-@log_call
-def multiply(a: int, b: int) -> int:
-    return a * b
-
-
-answer: int = multiply(6, 7)
-```
-
-Output:
-
-```
-Calling multiply(6, 7)
-multiply returned 42
-```
-
----
-
 ## Built-in Decorators You Already Know
 
 ![A flat vector illustration in a children's educational book style showing Byte the robot in front of a tool wall with three special tools hanging on hooks, each tool glowing with a different color. Byte is reaching for one of them with excitement. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
