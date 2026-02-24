@@ -30,6 +30,32 @@ Where each `aᵢⱼ ∈ F` (the field).
 
 ---
 
+## Deep Bridge: Why Basis Outputs Are Enough
+
+Quick check:
+
+If `T` satisfies additivity and homogeneity, is it automatically determined entirely by what it does to a basis?
+
+**Yes.**
+
+For `V = ℝⁿ` with basis `e₁, ..., eₙ`, every `x` has the form:
+
+```
+x = x₁e₁ + ... + xₙeₙ
+```
+
+Then linearity gives:
+
+```
+T(x)
+= T(x₁e₁ + ... + xₙeₙ)
+= x₁T(e₁) + ... + xₙT(eₙ)
+```
+
+So `T(e₁), ..., T(eₙ)` determine `T` on all vectors. This is exactly why matrix columns are basis outputs.
+
+---
+
 ## From Linear Map to Matrix
 
 Given a linear map `T: V → W` with:
@@ -43,29 +69,32 @@ The matrix of T is constructed by:
 2. Write each output as a linear combination of the basis vectors of W
 3. The coefficients form the columns of the matrix
 
-**Example:**
+**Example (rectangular on purpose):**
 
-`T: ℝ² → ℝ²` defined by `T(x, y) = (2x + y, x - 3y)`
+`T: ℝ² → ℝ³` defined by `T(x, y) = (x - y, 2x + y, 3y)`
 
 Using the standard basis `{(1,0), (0,1)}`:
 
 ```
-T(1, 0) = (2, 1)   → first column is [2, 1]
-T(0, 1) = (1, -3)  → second column is [1, -3]
+T(1, 0) = (1, 2, 0)    → first column is [1, 2, 0]
+T(0, 1) = (-1, 1, 3)   → second column is [-1, 1, 3]
 ```
 
 Matrix:
 
 ```
-A = | 2   1 |
-    | 1  -3 |
+A = |  1  -1 |
+    |  2   1 |
+    |  0   3 |
 ```
+
+This is a `3 × 2` matrix, so it maps `ℝ² → ℝ³`. Square matrices are just the special case `m = n`.
 
 ---
 
 <div class="copy-prompt-container">
 <div class="copy-prompt-label">Test Your Knowledge</div>
-<div class="copy-prompt-text">Prompt: "I'm learning how matrices represent linear maps. Give me 3 linear maps T: ℝ² → ℝ² and ask me to find the matrix representation using the standard basis. Then give me 2 matrices and ask me to write out the corresponding linear map formula. After I answer, check my work step by step."</div>
+<div class="copy-prompt-text">Prompt: "I'm learning how matrices represent linear maps. Give me 3 linear maps (include at least one map T: ℝ² → ℝ³) and ask me to find each matrix representation using the standard basis. Then give me 2 matrices (one rectangular, one square) and ask me to write out the corresponding linear map formula. After I answer, check my work step by step."</div>
 </div>
 
 ---
@@ -80,14 +109,22 @@ T(v) = Ax
 
 This is just applying the linear map. Matrix-vector multiplication is **not** a separate concept — it is literally the application of a linear map to a vector.
 
-**Example:**
+**Example (same 3×2 matrix above):**
 
 ```
-| 2   1 | | 3 |   | 2·3 + 1·(-1) |   | 5 |
-| 1  -3 | |-1 | = | 1·3 + (-3)·(-1)| = | 6 |
+A = |  1  -1 |
+    |  2   1 |
+    |  0   3 |
+
+x = |  3 |
+    | -1 |
+
+Ax = | 1·3 + (-1)·(-1) |   |  4 |
+     | 2·3 + 1·(-1)    | = |  5 |
+     | 0·3 + 3·(-1)    |   | -3 |
 ```
 
-This computes `T(3, -1) = (5, 6)`, which matches `T(x,y) = (2x+y, x-3y)` with `x=3, y=-1`.
+This computes `T(3, -1) = (4, 5, -3)`, which matches `T(x,y) = (x-y, 2x+y, 3y)` with `x=3, y=-1`.
 
 ---
 

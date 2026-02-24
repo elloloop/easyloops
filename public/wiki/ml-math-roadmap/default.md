@@ -94,7 +94,7 @@ Sets → Functions → Fields → Vector Spaces → Linear Maps → Matrices →
 
 ## 8. Linear Maps
 
-**What you learned:** A linear map preserves addition and scalar multiplication. Two properties: additivity and homogeneity. Everything else is derived. T(0) = 0 is a consequence, not an axiom.
+**What you learned:** A linear map preserves addition and scalar multiplication. Two properties: additivity and homogeneity. Everything else is derived. `T(0) = 0` is a consequence, not an axiom. Most importantly, linearity implies that a map is fully determined by its values on a basis.
 
 **Go to:** [[wiki:linear-maps]]
 
@@ -102,7 +102,7 @@ Sets → Functions → Fields → Vector Spaces → Linear Maps → Matrices →
 
 ## 9. Matrices
 
-**What you learned:** A matrix represents a linear map relative to chosen bases. Matrix multiplication = function composition. The same linear map has different matrices in different bases.
+**What you learned:** A matrix represents a linear map relative to chosen bases. Its columns are the outputs `T(e₁), ..., T(eₙ)` in the chosen codomain basis. Matrix multiplication = function composition. The same linear map has different matrices in different bases.
 
 **Go to:** [[wiki:matrices]]
 
@@ -118,7 +118,7 @@ Sets → Functions → Fields → Vector Spaces → Linear Maps → Matrices →
 
 <div class="copy-prompt-container">
 <div class="copy-prompt-label">Checkpoint Quiz: Core ML Math</div>
-<div class="copy-prompt-text">Prompt: "I've completed the core math roadmap through linear maps, matrices, and inner products. Give me a 15-question comprehensive exam. Test: (1) linear map properties, (2) matrix construction from linear maps, (3) matrix multiplication as composition, (4) basis dependence, (5) inner product axioms, (6) norm computation, (7) orthogonality, (8) the full hierarchy from sets to geometry. This should be challenging. Grade me and create a personalized study plan based on my errors."</div>
+<div class="copy-prompt-text">Prompt: "I've completed the core math roadmap through linear maps, matrices, and inner products. Give me a 15-question comprehensive exam. Test: (1) linear map properties, (2) why linear maps are determined by basis values, (3) matrix construction from linear maps, (4) matrix multiplication as composition, (5) basis dependence, (6) inner product axioms, (7) norm computation, (8) orthogonality, (9) the full hierarchy from sets to geometry. This should be challenging. Grade me and create a personalized study plan based on my errors."</div>
 </div>
 
 ---
@@ -134,6 +134,17 @@ Once you have the foundation above, you're ready for:
 - Probability measures (functions!)
 - Random variables (functions from sample space to ℝ)
 - Distributions, expectations, variance
+
+Start the probability track here: [[wiki:probability-foundations]]
+
+Recommended order:
+
+1. [[wiki:probability-foundations]]
+2. [[wiki:random-variables]]
+3. [[wiki:expectation]]
+4. [[wiki:variance]]
+5. [[wiki:covariance-and-independence]]
+6. [[wiki:basic-distributions]]
 
 ### Optimization
 
@@ -158,7 +169,7 @@ Once you have the foundation above, you're ready for:
 
 <div class="copy-prompt-container">
 <div class="copy-prompt-label">Final Comprehensive Review</div>
-<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → scalars vs vectors → concrete vector spaces → operations as functions → linear maps → matrices → inner products/norms/geometry. Give me a 20-question comprehensive final exam that tests the entire chain. Include connections between topics (e.g., how functions relate to linear maps, how fields relate to scalar multiplication). Grade me rigorously and identify any remaining gaps. This is my final assessment before moving to probability theory and optimization."</div>
+<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → scalars vs vectors → concrete vector spaces → operations as functions → linear maps → matrices → inner products/norms/geometry. Give me a 20-question comprehensive final exam that tests the entire chain. Include connections between topics (e.g., how functions relate to linear maps, how fields relate to scalar multiplication). Grade me rigorously and identify any remaining gaps. This is my final assessment before starting the probability track and then optimization."</div>
 </div>
 
 ---

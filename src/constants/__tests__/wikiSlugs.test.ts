@@ -23,6 +23,12 @@ describe('wikiSlugs constants', () => {
         'dynamic-programming',
         'algorithms',
         'data-structures',
+        'probability-foundations',
+        'random-variables',
+        'expectation',
+        'variance',
+        'covariance-and-independence',
+        'basic-distributions',
       ];
 
       expectedConcepts.forEach((concept) => {
