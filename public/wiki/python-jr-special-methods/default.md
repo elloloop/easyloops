@@ -54,26 +54,6 @@ print(repr(my_pet))  # Pet(name='Buddy', species='dog') -- uses __repr__
 
 Here is a good rule: **always add `__repr__`**. If you do not add `__str__`, Python will use `__repr__` as a backup. But if you have neither, you get that ugly `<object at 0x...>` nonsense.
 
-Open your editor. Type this. Run it.
-
-```python
-class TreasureChest:
-    def __init__(self, gold: int, gems: int) -> None:
-        self.gold: int = gold
-        self.gems: int = gems
-
-    def __str__(self) -> str:
-        return f"A chest with {self.gold} gold coins and {self.gems} gems"
-
-    def __repr__(self) -> str:
-        return f"TreasureChest(gold={self.gold}, gems={self.gems})"
-
-chest: TreasureChest = TreasureChest(100, 5)
-print(chest)          # A chest with 100 gold coins and 5 gems
-print(repr(chest))    # TreasureChest(gold=100, gems=5)
-print(f"Found: {chest}")  # Found: A chest with 100 gold coins and 5 gems
-```
-
 ---
 
 ## `__eq__` -- Teaching Your Object to Compare with ==
@@ -278,32 +258,6 @@ wallet2: Wallet = Wallet(15.50)
 combined: Wallet = wallet1 + wallet2
 
 print(combined)  # Wallet($35.50)
-```
-
-Here is a more fun example:
-
-```python
-class PaintColor:
-    def __init__(self, red: int, green: int, blue: int) -> None:
-        self.red: int = min(red, 255)
-        self.green: int = min(green, 255)
-        self.blue: int = min(blue, 255)
-
-    def __add__(self, other: "PaintColor") -> "PaintColor":
-        return PaintColor(
-            min(self.red + other.red, 255),
-            min(self.green + other.green, 255),
-            min(self.blue + other.blue, 255),
-        )
-
-    def __repr__(self) -> str:
-        return f"PaintColor(red={self.red}, green={self.green}, blue={self.blue})"
-
-red_paint: PaintColor = PaintColor(200, 0, 0)
-blue_paint: PaintColor = PaintColor(0, 0, 200)
-purple_paint: PaintColor = red_paint + blue_paint
-
-print(purple_paint)  # PaintColor(red=200, green=0, blue=200)
 ```
 
 ---

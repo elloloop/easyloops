@@ -371,40 +371,13 @@ except FileNotFoundError:
     print("The file does not exist yet.")
 ```
 
-### Loading Settings with a Default
-
-A very common pattern is to try to load settings from a file, and use default values if the file is missing:
-
-```python
-import json
-
-def load_settings(filename):
-    defaults = {
-        "color": "blue",
-        "volume": 50,
-        "difficulty": "normal"
-    }
-
-    try:
-        with open(filename, "r") as file:
-            settings = json.load(file)
-            return settings
-    except FileNotFoundError:
-        print("No settings file found. Using defaults.")
-        return defaults
-
-settings = load_settings("settings.json")
-print("Color: " + settings["color"])
-print("Volume: " + str(settings["volume"]))
-```
-
-The first time someone runs this program, there is no settings file, so it uses the defaults. Later (once you add code to *save* settings), it loads from the file.
-
 ---
 
 ## Common Patterns
 
-### Pattern 1: Reading Settings from a File
+### Pattern 1: Loading and Saving Game Data
+
+A very common pattern is to try to load data from a file, and use default values if the file does not exist yet:
 
 ```python
 import json

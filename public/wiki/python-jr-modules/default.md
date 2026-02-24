@@ -119,9 +119,6 @@ Here is a more practical example. Let us say you keep writing the same helper fu
 def add(a, b):
     return a + b
 
-def multiply(a, b):
-    return a * b
-
 def is_even(number):
     return number % 2 == 0
 
@@ -145,14 +142,6 @@ def shout(text):
 def whisper(text):
     return text.lower() + "..."
 
-def repeat(text, times):
-    result = ""
-    count = 0
-    while count < times:
-        result = result + text + " "
-        count = count + 1
-    return result.strip()
-
 def count_vowels(text):
     vowels = "aeiouAEIOU"
     count = 0
@@ -170,18 +159,14 @@ def count_vowels(text):
 from math_helpers import average, is_even
 from text_helpers import shout, count_vowels
 
-# Use the math helpers
 scores = [85, 92, 78, 95, 88]
 avg = average(scores)
 print("Average score: " + str(avg))
-print("Is the average even? " + str(is_even(int(avg))))
-
-# Use the text helpers
 print(shout("python is great"))
 print("Vowels in 'hello world': " + str(count_vowels("hello world")))
 ```
 
-Run `main.py`. All three files work together, each doing its own job. This is the power of modules -- you organize your code into separate, focused files and combine them when you need to.
+Run `main.py`. All three files work together, each doing its own job.
 
 ---
 
@@ -395,35 +380,7 @@ pip install requests
 deactivate
 ```
 
-When a virtual environment is active, any packages you install with pip go into *that environment only*. Your other projects are not affected.
-
-### The Typical Workflow for a New Project
-
-```
-# 1. Create a project folder
-mkdir my_project
-
-# 2. Go into it
-cd my_project
-
-# 3. Create a virtual environment
-python -m venv venv
-
-# 4. Activate it
-source venv/bin/activate
-
-# 5. Install any packages you need
-pip install requests
-
-# 6. Save your package list
-pip freeze > requirements.txt
-
-# 7. Write your code!
-# 8. When done, deactivate
-deactivate
-```
-
-This is how real Python developers work on every project. It keeps things clean and prevents package conflicts.
+When a virtual environment is active, any packages you install with pip go into *that environment only*. Your other projects are not affected. This is how real Python developers work on every project. It keeps things clean and prevents package conflicts.
 
 ---
 
