@@ -198,18 +198,7 @@ print(small.describe())  # Rectangle: 3.0 x 2.0, area = 6.0
 print(big.describe())    # Rectangle: 10.0 x 8.0, area = 80.0
 ```
 
-You can even put objects in a list:
-
-```python
-boxes: list[Rectangle] = [
-    Rectangle(2.0, 3.0),
-    Rectangle(5.0, 5.0),
-    Rectangle(1.0, 10.0),
-]
-
-for box in boxes:
-    print(box.describe())
-```
+You can even put objects in a list and loop through them -- just like any other type.
 
 ---
 
@@ -233,19 +222,7 @@ b: Point = Point(3.0, 4.0)
 print(distance_between(a, b))  # 5.0
 ```
 
-You can use your class as the type for variables, function parameters, return values, and even inside lists:
-
-```python
-def find_closest(points: list[Point], target: Point) -> Point:
-    closest: Point = points[0]
-    best_dist: float = distance_between(points[0], target)
-    for p in points[1:]:
-        dist: float = distance_between(p, target)
-        if dist < best_dist:
-            best_dist = dist
-            closest = p
-    return closest
-```
+You can use your class as the type for variables, function parameters, return values, and even inside lists like `list[Point]`.
 
 ---
 
@@ -277,29 +254,7 @@ print(rex.species)    # Canis familiaris
 
 Use class variables for things that are the same across every object. Use instance variables for things that change from object to object.
 
-**Watch out for a common mistake!** If you put a list as a class variable, ALL objects share the same list:
-
-```python
-# WRONG -- this will cause weird bugs
-class Team:
-    members: list[str] = []  # Shared by every Team!
-
-    def add(self, name: str) -> None:
-        self.members.append(name)
-
-a: Team = Team()
-b: Team = Team()
-a.add("Alice")
-print(b.members)  # ['Alice'] -- Surprise! b has Alice too!
-
-# RIGHT -- each team gets its own list
-class Team:
-    def __init__(self) -> None:
-        self.members: list[str] = []  # Each Team gets its own list
-
-    def add(self, name: str) -> None:
-        self.members.append(name)
-```
+**Watch out:** If you put a list as a class variable, ALL objects share the same list. Always put lists and other mutable data in `__init__` as instance variables so each object gets its own copy.
 
 ---
 
@@ -428,40 +383,24 @@ print(polly.show_tricks())      # Polly hasn't learned any tricks yet.
 print(f"Total pets created: {Pet.total_pets}")  # Total pets created: 3
 ```
 
-This example uses everything you learned:
-
-- **`__init__`** sets up the name, species, and an empty tricks list.
-- **`self`** lets each pet talk about its own data.
-- **Instance variables** (`name`, `species`, `tricks`) are different for each pet.
-- **A class variable** (`total_pets`) is shared and counts all pets.
-- **Methods** (`learn_trick`, `show_tricks`, `describe`) let the pet do things.
-- **`@property`** (`num_tricks`) gives you a read-only computed value.
+This example uses everything: `__init__` for setup, `self` for each pet's data, instance variables (`name`, `tricks`), a class variable (`total_pets`), methods (`learn_trick`, `show_tricks`), and a `@property` (`num_tricks`).
 
 ---
 
 ## Where Beginners Get Tripped Up
 
-### Forgetting `self`
+### Forgetting `self` or `self.`
 
 ```python
-# WRONG -- missing self
+# WRONG -- missing self parameter
 class Dog:
-    def __init__(name: str) -> None:  # Where is self?
-        name = name  # This does nothing useful!
+    def __init__(name: str) -> None:
+        name = name  # Does nothing useful!
 
-# RIGHT
-class Dog:
-    def __init__(self, name: str) -> None:
-        self.name = name
-```
-
-### Forgetting `self.` on instance variables
-
-```python
-# WRONG -- this creates a local variable, not an instance variable
+# ALSO WRONG -- has self, but forgot self. on the variable
 class Dog:
     def __init__(self, name: str) -> None:
-        name = name  # This just assigns the parameter to itself!
+        name = name  # Assigns the parameter to itself!
 
 # RIGHT
 class Dog:

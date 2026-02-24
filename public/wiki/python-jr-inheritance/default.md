@@ -501,11 +501,7 @@ for thing in things:
 
 **Answer 3:** It prints `Bike is moving.` then `Titanic is sailing on the water.` then `Boeing is flying through the sky.` Vehicle uses the default `move()`. Boat and Airplane each override it with their own version. This is polymorphism -- same `thing.move()` call, different results.
 
-**Answer 4:**
-- `Bicycle` and `Motorcycle` -- **Inheritance (IS-A).** Both are types of vehicles. They share a lot of code.
-- `Computer` and `Keyboard` -- **Composition (HAS-A).** A computer HAS a keyboard. A computer is NOT a keyboard.
-- `Square` and `Shape` -- **Inheritance (IS-A).** A square IS a shape.
-- `Library` and `Book` -- **Composition (HAS-A).** A library HAS books. A library is NOT a book.
+**Answer 4:** Bicycle/Motorcycle -- **Inheritance (IS-A)**, both are vehicles. Computer/Keyboard -- **Composition (HAS-A)**, a computer HAS a keyboard. Square/Shape -- **Inheritance (IS-A)**, a square IS a shape. Library/Book -- **Composition (HAS-A)**, a library HAS books.
 
 **Answer 5:**
 
