@@ -21,8 +21,6 @@ Think of a database as a **filing cabinet that never forgets**. You can:
 
 The filing cabinet keeps everything organized, and nothing disappears when you leave the room. Even if the lights go out and you come back the next day, all your files are still exactly where you left them.
 
-Without a database, your API is like writing on sticky notes and taping them to the wall. A database is like having a proper filing cabinet with labeled folders.
-
 ![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a large colorful filing cabinet with neatly labeled drawers, placing a folder into one of the drawers while a small whiteboard in the background has erased scribbles. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
 
 ---
