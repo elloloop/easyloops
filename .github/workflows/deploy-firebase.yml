@@ -15,12 +15,13 @@ on:
       - 'package.json'
       - 'package-lock.json'
       - 'next.config.js'
+      - 'next.config.ts'
       - 'tailwind.config.js'
       - '.env*'
       - 'e2e/**'
       - 'jest.config.js'
       - 'tsconfig.json'
-      - '.eslintrc.js'
+      - 'eslint.config.mjs'
       - '!functions/**'
 
 jobs:

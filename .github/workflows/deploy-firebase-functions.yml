@@ -69,15 +69,14 @@ jobs:
         run: npm run build
         working-directory: ./functions
 
-      - name: Deploy Cloud Functions
-        uses: FirebaseExtended/action-hosting-deploy@v0
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
-          projectId: elloloop-easyloops
-          entryPoint: .
+          credentials_json: '${{ secrets.FIREBASE_SERVICE_ACCOUNT }}'
+
+      - name: Deploy Cloud Functions
+        run: npx firebase-tools deploy --only functions --project elloloop-easyloops --non-interactive
         env:
-          # Environment variables for Cloud Functions
           JUDGE0_BASE_URL: ${{ secrets.JUDGE0_BASE_URL }}
           JUDGE0_API_KEY: ${{ secrets.JUDGE0_API_KEY }}
           FIREBASE_PROJECT_ID: elloloop-easyloops

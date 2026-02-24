@@ -16,31 +16,13 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  check-pipeline:
-    name: Check Pipeline Status
-    runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_run' }}
-    outputs:
-      should_proceed: ${{ steps.check.outputs.should_proceed }}
-    steps:
-      - name: Check if pipeline succeeded
-        id: check
-        run: |
-          if [ "${{ github.event.workflow_run.conclusion }}" = "success" ]; then
-            echo "should_proceed=true" >> $GITHUB_OUTPUT
-          else
-            echo "should_proceed=false" >> $GITHUB_OUTPUT
-          fi
-
   build-macos:
     name: Build macOS
     runs-on: macos-latest
-    if: ${{ github.event_name == 'workflow_call' || github.event_name != 'workflow_run' || needs.check-pipeline.outputs.should_proceed == 'true' || github.event.inputs.skip_pipeline_check == 'true' }}
-    needs: check-pipeline
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.ref || github.ref }}
+          ref: ${{ inputs.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -71,12 +53,10 @@ jobs:
   build-windows:
     name: Build Windows
     runs-on: windows-latest
-    if: ${{ github.event_name == 'workflow_call' || github.event_name != 'workflow_run' || needs.check-pipeline.outputs.should_proceed == 'true' || github.event.inputs.skip_pipeline_check == 'true' }}
-    needs: check-pipeline
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.ref || github.ref }}
+          ref: ${{ inputs.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -107,12 +87,10 @@ jobs:
   build-linux:
     name: Build Linux
     runs-on: ubuntu-22.04
-    if: ${{ github.event_name == 'workflow_call' || github.event_name != 'workflow_run' || needs.check-pipeline.outputs.should_proceed == 'true' || github.event.inputs.skip_pipeline_check == 'true' }}
-    needs: check-pipeline
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.ref || github.ref }}
+          ref: ${{ inputs.ref }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -162,7 +140,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.inputs.ref || github.ref }}
+          ref: ${{ inputs.ref }}
           fetch-depth: 0
 
       - name: Setup Node.js
@@ -173,15 +151,8 @@ jobs:
       - name: Determine version
         id: version
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "version=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
-            echo "prerelease=${{ github.event.inputs.prerelease }}" >> $GITHUB_OUTPUT
-          else
-            # Extract version from tag (remove 'v' prefix)
-            VERSION=${GITHUB_REF#refs/tags/v}
-            echo "version=$VERSION" >> $GITHUB_OUTPUT
-            echo "prerelease=false" >> $GITHUB_OUTPUT
-          fi
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
 
       - name: Generate changelog
         id: changelog
@@ -252,26 +223,5 @@ jobs:
             artifacts/linux-build/*.deb
             artifacts/linux-build/*.rpm
           draft: false
-          prerelease: ${{ steps.version.outputs.prerelease }}
+          prerelease: false
           generate_release_notes: false
-
-      - name: Update version in package.json
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          # Update package.json version
-          npm version ${{ steps.version.outputs.version }} --no-git-tag-version
-
-          # Update Cargo.toml version
-          sed -i "s/^version = \".*\"/version = \"${{ steps.version.outputs.version }}\"/" src-tauri/Cargo.toml
-
-          # Update tauri.conf.json version
-          sed -i "s/\"version\": \".*\"/\"version\": \"${{ steps.version.outputs.version }}\"/" src-tauri/tauri.conf.json
-
-      - name: Commit version updates
-        if: github.event_name == 'workflow_dispatch'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          git add package.json src-tauri/Cargo.toml src-tauri/tauri.conf.json
-          git commit -m "chore: bump version to ${{ steps.version.outputs.version }}"
-          git push
