@@ -6,7 +6,7 @@ Sorting means putting things in order. Smallest to largest. Alphabetical. Newest
 
 But here is the interesting question: *how* do you sort? There are many different strategies, and some are much faster than others. Studying sorting teaches you to think about how fast algorithms are -- a skill that will help you with every programming problem you ever face.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a shelf of colorful books in random order, with one hand reaching to move a red book into its correct position among the others. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a shelf of colorful books in random order, with one hand reaching to move a red book into its correct position among the others. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 **Mapped to:** [[wiki:python-algo-sorting]]
 
@@ -170,7 +170,7 @@ print(insertion_sort([5, 3, 8, 1, 2]))  # [1, 2, 3, 5, 8]
 
 Insertion sort has a nice property: if the list is *already almost sorted*, it runs very fast. It only moves items that are out of place.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a table sorting a hand of colorful playing cards, carefully sliding a green card with the number 4 between a blue card with 3 and a yellow card with 5. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a table sorting a hand of colorful playing cards, carefully sliding a green card with the number 4 between a blue card with 3 and a yellow card with 5. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -342,7 +342,7 @@ Items       O(n^2)           O(n log n)
 1,000,000   1,000,000,000    ~19,931,568
 ```
 
-![A flat vector illustration in a children's educational book style showing Byte the robot pointing at two bar charts on a wall, one with bars growing very tall very fast labeled with a turtle icon, and one with bars growing slowly labeled with a rocket icon, comparing the speed of sorting methods. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot pointing at two bar charts on a wall, one with bars growing very tall very fast labeled with a turtle icon, and one with bars growing slowly labeled with a rocket icon, comparing the speed of sorting methods. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 

@@ -8,7 +8,7 @@ If your data is not sorted, you have no choice but to check every single item. T
 
 This is why sorting matters so much. Sorted data unlocks incredibly fast searching.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot in a large colorful library, using a magnifying glass to search through a long row of neatly organized books on a shelf, with some books glowing to indicate they are being checked. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot in a large colorful library, using a magnifying glass to search through a long row of neatly organized books on a shelf, with some books glowing to indicate they are being checked. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 **Mapped to:** [[wiki:python-algo-searching]]
 
@@ -109,7 +109,7 @@ Step 3: left=7, right=8, mid=7
 
 Only 3 steps to search through 9 items! And it gets even more impressive with bigger data.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot playing a guessing game with a row of numbered cards laid out on a table, pointing at the middle card while some cards on the left are faded out to show they have been eliminated. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot playing a guessing game with a row of numbered cards laid out on a table, pointing at the middle card while some cards on the left are faded out to show they have been eliminated. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -311,7 +311,7 @@ def search_bst(node: TreeNode | None, target: int) -> bool:
 
 At each node, you decide: go left or go right. Each step eliminates half the tree, just like binary search eliminates half the list. If the tree is balanced, searching is O(log n).
 
-![A flat vector illustration in a children's educational book style showing Byte the robot following a path down a colorful tree diagram, with each branch point showing a left arrow and a right arrow, and eliminated branches grayed out to show the search narrowing down. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot following a path down a colorful tree diagram, with each branch point showing a left arrow and a right arrow, and eliminated branches grayed out to show the search narrowing down. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
