@@ -6,7 +6,7 @@ What if there were a simpler approach? What if, at each step, you just picked **
 
 Sometimes this simple strategy gives you the perfect answer. Sometimes it does not. The trick is knowing when you can trust it and when you cannot. This lesson will teach you exactly that.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot at a colorful buffet table with many plates of food, eagerly reaching for the biggest plate first. Other plates of different sizes are arranged on the table. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot at a colorful buffet table with many plates of food, eagerly reaching for the biggest plate first. Other plates of different sizes are arranged on the table. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -189,7 +189,7 @@ Trace:
 
 We fit **3 activities**: Chess Club, Science Club, and Coding Club. That is the maximum possible.
 
-![A flat vector illustration in a children's educational book style showing a weekly schedule board with colorful time blocks, some highlighted and some crossed out, arranged to show non-overlapping activities. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a weekly schedule board with colorful time blocks, some highlighted and some crossed out, arranged to show non-overlapping activities. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ### Why Does Greedy Work Here?
 
@@ -343,7 +343,7 @@ Here is a quick example of greedy thinking gone wrong. You have a triangle of nu
 
 Greedy picked 3 because it looked bigger than 2, but that choice blocked us from reaching 10. This is a problem where you need DP, not greedy.
 
-![A flat vector illustration in a children's educational book style showing two paths through a park, one short path leading to a small treasure chest and one longer winding path leading to a huge treasure chest. Byte the robot is at the fork, looking at both options. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing two paths through a park, one short path leading to a small treasure chest and one longer winding path leading to a huge treasure chest. Byte the robot is at the fork, looking at both options. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 

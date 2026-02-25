@@ -4,7 +4,7 @@ You have already learned how to write functions. You know that a function is a s
 
 Recursion can feel strange at first. Take your time. Read every example slowly, trace through every step, and type every piece of code with your own hands. Once it clicks, you will see it everywhere.
 
-![A flat vector illustration in a children's educational book style showing a set of Russian nesting dolls (matryoshka) on a table, each one smaller than the last, with the smallest one glowing. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a set of Russian nesting dolls (matryoshka) on a table, each one smaller than the last, with the smallest one glowing. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -120,7 +120,7 @@ def factorial(n: int) -> int:
 print(factorial(5))  # 120
 ```
 
-![A flat vector illustration in a children's educational book style showing a staircase of numbered blocks from 5 down to 1, with arrows showing how each step connects to the one below it, and the results bubbling back up. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a staircase of numbered blocks from 5 down to 1, with arrows showing how each step connects to the one below it, and the results bubbling back up. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -254,7 +254,7 @@ In code, backtracking uses recursion. At each step, you:
 2. **Explore** that option by recursing.
 3. If it did not work, **undo** your choice and try the next option.
 
-![A flat vector illustration in a children's educational book style showing a garden maze seen from above with multiple paths, some blocked with hedges. Footprints show a path that tried one direction, backed up, and tried another direction successfully. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a garden maze seen from above with multiple paths, some blocked with hedges. Footprints show a path that tried one direction, backed up, and tried another direction successfully. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -390,7 +390,7 @@ This is a sneak peek. You will learn all about this technique in [[wiki:python-j
 
 ---
 
-![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a desk with a notepad, drawing a tree-like diagram with branches and arrows showing how a function calls itself and returns answers. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a desk with a notepad, drawing a tree-like diagram with branches and arrows showing how a function calls itself and returns answers. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-04.png)
 
 ---
 

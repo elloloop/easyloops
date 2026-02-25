@@ -6,7 +6,7 @@ This page teaches you the most important patterns. For each one, you will learn:
 
 You already know data structures, sorting, searching, recursion, dynamic programming, greedy algorithms, and graph algorithms. Now it is time to tie everything together with **pattern recognition**.
 
-![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing in a colorful workshop with a toolbox. Each tool in the toolbox has a friendly label. The robot is reaching for a tool while looking at a puzzle on a workbench. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing in a colorful workshop with a toolbox. Each tool in the toolbox has a friendly label. The robot is reaching for a tool while looking at a puzzle on a workbench. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -194,7 +194,7 @@ def min_length_subarray(arr: list[int], target: int) -> int:
 
 **Time:** O(n). Each element is added and removed at most once.
 
-![A flat vector illustration in a children's educational book style showing a colorful toy train with Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, riding in it. The train passes along a track with numbered blocks, and a transparent window frame highlights three consecutive blocks at a time. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing a colorful toy train with Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, riding in it. The train passes along a track with numbered blocks, and a transparent window frame highlights three consecutive blocks at a time. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -383,7 +383,7 @@ result = [5, 5, 5, -1, -1]
 
 **Time:** O(n). Each element is pushed and popped at most once.
 
-![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, organizing colorful numbered blocks on a stack, removing blocks that are too small when a bigger block arrives. A playful workshop setting with soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, organizing colorful numbered blocks on a stack, removing blocks that are too small when a bigger block arrives. A playful workshop setting with soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -475,7 +475,7 @@ When you read a problem, look for these clues to figure out which pattern to use
 3. **Think about what changes.** Does a window slide? Do two things converge? Is there a monotonic property?
 4. **Start simple.** Can you solve it with brute force first? Then ask: "What pattern makes this faster?"
 
-![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing in front of a colorful chart on a wall that matches puzzle shapes to different tools. The robot is pointing at one of the matches with an excited expression. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, standing in front of a colorful chart on a wall that matches puzzle shapes to different tools. The robot is pointing at one of the matches with an excited expression. Soft pastel backgrounds, clean lines, warm and inviting, no text in image.](image-04.png)
 
 ---
 
