@@ -5,7 +5,7 @@ permissions:
 
 on:
   workflow_run:
-    workflows: ['Pipeline']
+    workflows: ['Frontend Pipeline']
     branches: [main]
     types: [completed]
   workflow_dispatch:
