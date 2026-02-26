@@ -6,7 +6,7 @@ That is like a school with no locks on the doors, no student IDs, and no rules a
 
 This page is all about fixing that. You will learn how to check who someone is, decide what they are allowed to do, and keep their information safe.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing at the entrance of a colorful school building, holding up an ID badge while a friendly security gate checks the badge. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing at the entrance of a colorful school building, holding up an ID badge while a friendly security gate checks the badge. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -135,7 +135,7 @@ print(check_password("wrong_password", stored))  # False
 
 Notice that you never "undo" the hash. You never decrypt anything. You just hash the new attempt and compare the two hashes. The original password is gone forever -- and that is exactly what you want.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot at a workbench with three stations: one showing a grape turning into a raisin with an arrow, one showing a padlock with scrambled text inside, and one showing a salt shaker sprinkling onto a password before it enters a machine. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot at a workbench with three stations: one showing a grape turning into a raisin with an arrow, one showing a padlock with scrambled text inside, and one showing a salt shaker sprinkling onto a password before it enters a machine. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -419,7 +419,7 @@ If a token lasts forever, then a stolen token gives an attacker permanent access
 
 Without rate limiting, an attacker can try thousands of passwords per second until one works. Rate limiting means saying "you can only try 10 times per minute." After that, they have to wait. This makes guessing passwords incredibly slow and impractical.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot at a chalkboard with five big red X marks, each next to a simple icon representing a common security mistake: a sticky note with a visible password, an open envelope being read by a sneaky figure, a helpful error message, an hourglass with infinity, and a flood of arrows hitting a door. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot at a chalkboard with five big red X marks, each next to a simple icon representing a common security mistake: a sticky note with a visible password, an open envelope being read by a sneaky figure, a helpful error message, an hourglass with infinity, and a flood of arrows hitting a door. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 

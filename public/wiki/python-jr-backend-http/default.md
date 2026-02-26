@@ -34,7 +34,7 @@ You (the client/browser)           The Kitchen (the server)
         |                                    |
 ```
 
-![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a colorful restaurant table, handing an order slip to a friendly waiter robot who is walking toward a kitchen window. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot sitting at a colorful restaurant table, handing an order slip to a friendly waiter robot who is walking toward a kitchen window. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -143,7 +143,7 @@ Think of it this way:
 
 Most of the time you do not see the port number because the browser uses a default (80 for HTTP, 443 for HTTPS). But every server has one, just like every building has a door.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing at a street corner looking at a colorful signpost with arrows pointing to different destinations, each labeled with parts of a URL like a street address system. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing at a street corner looking at a colorful signpost with arrows pointing to different destinations, each labeled with parts of a URL like a street address system. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -261,7 +261,7 @@ print(pet_again["name"])
 
 `json.dumps()` turns a Python dictionary **into** a JSON string (the "s" stands for "string"). `json.loads()` turns a JSON string **back into** a Python dictionary.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot holding two cards side by side, one labeled with curly braces showing a Python dictionary and the other showing matching JSON, with arrows between them. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot holding two cards side by side, one labeled with curly braces showing a Python dictionary and the other showing matching JSON, with arrows between them. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -456,7 +456,7 @@ This program demonstrates everything you learned in this lesson:
 - Reading JSON from the response
 - Working with the data as regular Python dictionaries and lists
 
-![A flat vector illustration in a children's educational book style showing Byte the robot at a computer screen with colorful data packets flying back and forth between the screen and a friendly cloud server in the sky. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot at a computer screen with colorful data packets flying back and forth between the screen and a friendly cloud server in the sky. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-04.png)
 
 ---
 

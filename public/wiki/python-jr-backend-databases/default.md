@@ -21,7 +21,7 @@ Think of a database as a **filing cabinet that never forgets**. You can:
 
 The filing cabinet keeps everything organized, and nothing disappears when you leave the room. Even if the lights go out and you come back the next day, all your files are still exactly where you left them.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a large colorful filing cabinet with neatly labeled drawers, placing a folder into one of the drawers while a small whiteboard in the background has erased scribbles. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a large colorful filing cabinet with neatly labeled drawers, placing a folder into one of the drawers while a small whiteboard in the background has erased scribbles. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -143,7 +143,7 @@ This removes Goldie (pet number 3) from the table.
 
 **Warning:** Just like `UPDATE`, if you forget the `WHERE`, you delete EVERYTHING. Always include a `WHERE` clause when you use `DELETE`.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot at a colorful desk with a large open book showing SQL commands on one page and a table of data on the other page, with arrows connecting the commands to the table. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot at a colorful desk with a large open book showing SQL commands on one page and a table of data on the other page, with arrows connecting the commands to the table. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -315,7 +315,7 @@ with sqlite3.connect("petstore.db") as connection:
 # Connection is automatically closed here
 ```
 
-![A flat vector illustration in a children's educational book style showing Byte the robot happily connecting a colorful cord between a laptop and a small glowing file icon labeled as a database, with data flowing through the cord. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot happily connecting a colorful cord between a laptop and a small glowing file icon labeled as a database, with data flowing through the cord. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
@@ -471,7 +471,7 @@ The PUT and DELETE routes follow the same pattern: open a connection, run a para
 
 Now you can stop and restart the server, and all your pets will still be there. The data lives in the `petstore.db` file on your computer, safe and sound.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot celebrating next to a glowing laptop screen showing a pet store application, with a small database file icon connected to it by a colorful line, and pet data cards floating around. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot celebrating next to a glowing laptop screen showing a pet store application, with a small database file icon connected to it by a colorful line, and pet data cards floating around. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-04.png)
 
 ---
 

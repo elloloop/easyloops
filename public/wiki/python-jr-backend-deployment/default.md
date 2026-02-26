@@ -8,7 +8,7 @@ That is like baking an amazing cake at home and then eating it alone in your kit
 
 **Deployment** is the process of putting your code on a computer that is always on, always connected to the internet, and ready to serve anyone who visits. This page covers how to do that.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a colorful bakery shop with a big OPEN sign, handing a slice of cake through the window to happy customers outside. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing next to a colorful bakery shop with a big OPEN sign, handing a slice of cake through the window to happy customers outside. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -148,7 +148,7 @@ docker run -p 8000:8000 \
 
 The `-p 8000:8000` part connects port 8000 on your computer to port 8000 inside the container. Without it, the container is running but nobody can reach it -- like a bakery with no front door.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot placing a miniature colorful app with gears and code symbols into a big blue shipping container, with a cargo ship in the background ready to carry it. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot placing a miniature colorful app with gears and code symbols into a big blue shipping container, with a cargo ship in the background ready to carry it. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -395,7 +395,7 @@ Protected by: hashed passwords, JWT tokens, HTTPS, environment variables.
 
 Tested by: unit tests, integration tests, end-to-end tests.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing proudly next to a tall colorful tower made of labeled building blocks stacked on top of each other: Database at the bottom, then Python Code, then Authentication, then API, then Docker, and a cloud at the top with happy users around it. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing proudly next to a tall colorful tower made of labeled building blocks stacked on top of each other: Database at the bottom, then Python Code, then Authentication, then API, then Docker, and a cloud at the top with happy users around it. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
