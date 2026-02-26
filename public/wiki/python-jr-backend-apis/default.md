@@ -25,7 +25,7 @@ You never walk into the kitchen yourself. You do not need to know how the food i
 
 An API works the same way. It is a clearly defined set of requests that a program can make, and a clearly defined set of responses it will get back.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot dressed as a waiter, carrying a tray with data packets between a small table with a phone on it and a colorful kitchen counter labeled with gears and databases. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot dressed as a waiter, carrying a tray with data packets between a small table with a phone on it and a colorful kitchen counter labeled with gears and databases. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-01.png)
 
 ---
 
@@ -142,7 +142,7 @@ Now your server responds to three different URLs:
 
 Each `@app.get(...)` line is called a **decorator**. You learned about decorators in [[wiki:python-jr-decorators-closures]]. Here, the decorator tells FastAPI which URL and method should trigger which function.
 
-![A flat vector illustration in a children's educational book style showing Byte the robot standing in a colorful hallway with three doors, each door labeled with a different path like a directory sign, with arrows pointing to the matching doors. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot standing in a colorful hallway with three doors, each door labeled with a different path like a directory sign, with arrows pointing to the matching doors. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-02.png)
 
 ---
 
@@ -402,7 +402,7 @@ Visit http://127.0.0.1:8000/pets/1
 Send a DELETE request to http://127.0.0.1:8000/pets/1
 ```
 
-![A flat vector illustration in a children's educational book style showing Byte the robot proudly standing next to a colorful pet store shelf with labeled sections for dogs, cats, and fish, with a glowing computer screen showing an API response behind the counter. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-placeholder.png)
+![A flat vector illustration in a children's educational book style showing Byte the robot proudly standing next to a colorful pet store shelf with labeled sections for dogs, cats, and fish, with a glowing computer screen showing an API response behind the counter. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
 ---
 
