@@ -1,8 +1,23 @@
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import { wikiSlugs } from '@/constants/wikiSlugs';
 import ClientHeader from '@/shared/components/ClientHeader';
 import WikiPageClient from './WikiPageClient';
 import { loadAllWikiLanguages } from '@/shared/lib/wikiLoader';
+
+function slugToTitle(slug: string): string {
+  return slug
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
+export async function generateMetadata({ params }: WikiPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  return {
+    title: `${slugToTitle(slug)} | easyloops`,
+  };
+}
 
 interface WikiPageProps {
   params: Promise<{
