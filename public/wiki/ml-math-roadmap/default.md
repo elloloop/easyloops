@@ -134,7 +134,8 @@ Once you have the foundation above, you're ready for:
 - Probability measures (functions!)
 - Conditional probability and Bayes' theorem
 - Random variables (functions from sample space to ℝ)
-- Distributions, expectations, variance
+- Expectations, conditional expectations, variance
+- Distributions
 
 Start the probability track here: [[wiki:probability-foundations]]
 
@@ -144,9 +145,10 @@ Recommended order:
 2. [[wiki:conditional-probability]]
 3. [[wiki:random-variables]]
 4. [[wiki:expectation]]
-5. [[wiki:variance]]
-6. [[wiki:covariance-and-independence]]
-7. [[wiki:basic-distributions]]
+5. [[wiki:conditional-expectation]]
+6. [[wiki:variance]]
+7. [[wiki:covariance-and-independence]]
+8. [[wiki:basic-distributions]]
 
 ### Optimization
 

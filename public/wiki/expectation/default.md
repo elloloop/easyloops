@@ -163,4 +163,4 @@ They are generally different.
 
 ---
 
-**Previous:** [[wiki:random-variables]] | **Next:** [[wiki:variance]]
+**Previous:** [[wiki:random-variables]] | **Next:** [[wiki:conditional-expectation]]

@@ -155,4 +155,4 @@ Variance is always nonnegative.
 
 ---
 
-**Previous:** [[wiki:expectation]] | **Next:** [[wiki:covariance-and-independence]]
+**Previous:** [[wiki:conditional-expectation]] | **Next:** [[wiki:covariance-and-independence]]
