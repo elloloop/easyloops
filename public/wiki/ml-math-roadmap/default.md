@@ -150,30 +150,38 @@ Recommended order:
 7. [[wiki:covariance-and-independence]]
 8. [[wiki:basic-distributions]]
 
-### Optimization
+### Multivariable Calculus and Optimization
 
-- Gradients (linear maps from parameter space to ℝ!)
-- Gradient descent
-- Convexity
-- Constrained optimization (Lagrange multipliers)
+- Partial derivatives, gradients, directional derivatives
+- Chain rule (single and multivariable)
+- Jacobian matrices (derivative of vector-valued functions)
+- Loss functions (functions from parameter space to ℝ!)
+- Gradient descent (move in direction of -∇L)
+- Convexity and convergence guarantees
 
-### Tensors
+Start the applied ML track here: [[wiki:multivariable-calculus]]
 
-- Multilinear maps (generalization of linear maps)
-- Tensor products
-- Tensor decomposition
+Recommended order:
 
-### Attention Mechanisms
+1. [[wiki:multivariable-calculus]]
+2. [[wiki:optimization-gradient-descent]]
+3. [[wiki:linear-regression]]
+4. [[wiki:logistic-regression]]
+5. [[wiki:neural-networks]]
+6. [[wiki:batching-and-memory]]
 
-- Query, Key, Value matrices (linear maps!)
-- Softmax (function from ℝⁿ to probability simplex)
-- Dot-product attention (inner products!)
+### What Comes After
+
+- Tensors (multilinear maps, tensor products, tensor decomposition)
+- Attention mechanisms (Query/Key/Value matrices, softmax, dot-product attention)
+- Transformer architecture
+- Language models and generation
 
 ---
 
 <div class="copy-prompt-container">
 <div class="copy-prompt-label">Final Comprehensive Review</div>
-<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → scalars vs vectors → concrete vector spaces → operations as functions → linear maps → matrices → inner products/norms/geometry. Give me a 20-question comprehensive final exam that tests the entire chain. Include connections between topics (e.g., how functions relate to linear maps, how fields relate to scalar multiplication). Grade me rigorously and identify any remaining gaps. This is my final assessment before starting the probability track and then optimization."</div>
+<div class="copy-prompt-text">Prompt: "I've completed the full ML math roadmap: sets → functions → fields → vector spaces → linear maps → matrices → inner products → probability → calculus → optimization → linear regression → logistic regression → neural networks → batching/memory. Give me a 25-question comprehensive final exam that tests the entire chain from foundations to training neural networks. Include connections between topics (e.g., how conditional expectation relates to regression, how the chain rule enables backpropagation, how probability connects to loss functions). Grade me rigorously and identify any remaining gaps."</div>
 </div>
 
 ---

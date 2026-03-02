@@ -173,4 +173,4 @@ Model quality depends on whether the chosen distribution is plausible for the da
 
 ---
 
-**Previous:** [[wiki:covariance-and-independence]] | **Next:** [[wiki:ml-math-roadmap]]
+**Previous:** [[wiki:covariance-and-independence]] | **Next:** [[wiki:multivariable-calculus]]
