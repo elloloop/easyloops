@@ -9,6 +9,7 @@ export const wikiSlugs = [
   'chars',
   'classes',
   'concrete-vector-spaces',
+  'conditional-probability',
   'conditionals',
   'constraints',
   'conventions',
