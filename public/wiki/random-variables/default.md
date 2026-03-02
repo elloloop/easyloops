@@ -140,4 +140,4 @@ A single experiment can have many different random variables on it.
 
 ---
 
-**Previous:** [[wiki:probability-foundations]] | **Next:** [[wiki:expectation]]
+**Previous:** [[wiki:conditional-probability]] | **Next:** [[wiki:expectation]]

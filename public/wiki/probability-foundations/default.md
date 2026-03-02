@@ -141,7 +141,7 @@ In ML, randomness appears in:
 
 Probability gives the language for all of this.
 
-Next step: convert outcomes into numeric quantities with random variables.
+Next step: learn how probabilities change when you gain new information, with conditional probability.
 
 ---
 
@@ -168,4 +168,4 @@ If outcome probabilities do not sum to 1, it is not a valid model.
 
 ---
 
-**Previous:** [[wiki:ml-math-roadmap]] | **Next:** [[wiki:random-variables]]
+**Previous:** [[wiki:ml-math-roadmap]] | **Next:** [[wiki:conditional-probability]]
