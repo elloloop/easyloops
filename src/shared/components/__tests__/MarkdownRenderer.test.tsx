@@ -1,23 +1,46 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import MarkdownRenderer from '../MarkdownRenderer';
 
-// Mock the marked library to actually parse markdown
-jest.mock('marked', () => ({
-  marked: jest.fn((content: string) => {
-    // Simple markdown to HTML conversion for testing
-    return content
-      .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
-      .replace(/^# (.+)$/gm, '<h1>$1</h1>')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*([^*]+)\*/g, '<em>$1</em>')
-      .replace(/\n/g, '<br>');
-  }),
-}));
+// Simple markdown to HTML conversion for testing
+function simpleParse(content: string): string {
+  return content
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+    .replace(/^# (.+)$/gm, '<h1>$1</h1>')
+    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*([^*]+)\*/g, '<em>$1</em>')
+    .replace(/\n/g, '<br>');
+}
+
+// Create spy at module scope using a self-referencing pattern
+const parseImpl = jest.fn(simpleParse);
+
+// Mock the marked library to use our Marked class mock
+jest.mock('marked', () => {
+  return {
+    Marked: jest.fn().mockImplementation(() => ({
+      use: jest.fn(),
+      parse: (...args: unknown[]) => parseImpl(...(args as [string])),
+    })),
+  };
+});
+
+// Mock PythonPlayground since we don't need to test it here
+jest.mock('../PythonPlayground', () => {
+  return function MockPythonPlayground({
+    initialCode,
+  }: {
+    initialCode: string;
+  }) {
+    return <div data-testid="python-playground">{initialCode}</div>;
+  };
+});
+
+import MarkdownRenderer from '../MarkdownRenderer';
 
 describe('MarkdownRenderer', () => {
   beforeEach(() => {
     jest.clearAllMocks();
+    parseImpl.mockImplementation(simpleParse);
   });
 
   describe('Wiki Links', () => {
@@ -253,20 +276,18 @@ describe('MarkdownRenderer', () => {
   });
 
   describe('Integration with marked library', () => {
-    it('should call marked with processed content', () => {
-      const marked = jest.requireMock('marked').marked;
+    it('should call parse with processed content', () => {
       const content = 'Check [[wiki:recursion]] for details.';
 
       render(<MarkdownRenderer content={content} />);
 
-      expect(marked).toHaveBeenCalledWith(
+      expect(parseImpl).toHaveBeenCalledWith(
         'Check [recursion](/wiki/recursion) for details.'
       );
     });
 
     it('should handle marked returning HTML', () => {
-      const marked = jest.requireMock('marked').marked;
-      marked.mockReturnValue(
+      parseImpl.mockReturnValue(
         '<p>Check <a href="/wiki/recursion">recursion</a> for details.</p>'
       );
 

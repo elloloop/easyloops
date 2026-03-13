@@ -30,61 +30,18 @@ Why Python? Because it looks a lot like plain English. When you write `print("He
 
 ---
 
-## Installing Python
+## How to Use the Code Editor on This Page
 
-Before you can write Python programs, you need to install Python on your computer. Think of it like installing an app -- you need to download it before you can use it.
+Good news: **you do not need to install anything!** Every code example on this page has a built-in editor. Here is how to use it:
 
-### Step 1: Download Python
+1. Find a code example below (it will have a green **"▶ Try it!"** button)
+2. Click the **"▶ Try it!"** button -- the code will open in an editor you can type in
+3. Click **"▶ Run"** to make the computer run your code
+4. See the output appear right below the editor
+5. Change the code and click **"▶ Run"** again to try your changes
+6. Click **"Reset"** to go back to the original code, or **"Close"** to close the editor
 
-Open your web browser and go to:
-
-**[python.org/downloads](https://www.python.org/downloads/)**
-
-Click the big button that says "Download Python 3.x" (the number after the 3 does not matter much, as long as it starts with 3).
-
-### Step 2: Run the Installer
-
-Find the file you downloaded and double-click it to start the installer.
-
-**Very Important for Windows Users:** When the installer opens, you will see a checkbox at the bottom that says **"Add Python to PATH"**. Make sure you check this box! If you skip this step, your computer will not be able to find Python when you try to use it. It is like installing a new app but not putting it on your home screen.
-
-Click "Install Now" and wait for it to finish.
-
-### Step 3: Check That It Worked
-
-Now you need to open the **terminal**. The terminal is a program where you type commands for your computer (instead of clicking buttons). Here is how to find it:
-
-- **On Windows:** Press the Windows key, type "Command Prompt," and open it
-- **On Mac:** Press Command + Space, type "Terminal," and open it
-- **On Linux:** Look for "Terminal" in your applications
-
-In the terminal, type this and press Enter:
-
-```
-python --version
-```
-
-You should see something like:
-
-```
-Python 3.12.1
-```
-
-If you see a number that starts with 3, you are all set!
-
-> **Tip:** On some Mac or Linux computers, you might need to type `python3` instead of `python`. If `python` gives you an error, try `python3 --version` instead.
-
-### Step 4: Get a Text Editor
-
-You need a place to write your programs. You cannot use Microsoft Word or Google Docs because those add invisible formatting that breaks code. You need a **plain text editor**.
-
-We recommend **VS Code** (Visual Studio Code). It is free and works on every computer:
-
-1. Go to [code.visualstudio.com](https://code.visualstudio.com/)
-2. Download and install it
-3. Open it up -- this is where you will write your programs!
-
-Other options that work fine: Notepad++ (Windows), Sublime Text, or even the plain Notepad that comes with Windows. Just not Word or Google Docs.
+That is it! No downloading, no installing, no terminal. Just click, type, and run.
 
 ---
 
@@ -92,26 +49,10 @@ Other options that work fine: Notepad++ (Windows), Sublime Text, or even the pla
 
 Now for the exciting part. You are going to make the computer show a message on the screen.
 
-Open your text editor (VS Code or whichever you chose). Create a new file and save it as `hello.py`. The `.py` at the end tells your computer "this is a Python program."
-
-Now type this -- remember, type it yourself, do not copy and paste:
+Click the **"▶ Try it!"** button below and then click **"▶ Run"**:
 
 ```python
 print("Hello, world!")
-```
-
-Save the file (Ctrl+S on Windows, Command+S on Mac).
-
-Now open your terminal, go to the folder where you saved the file, and type:
-
-```
-python hello.py
-```
-
-You should see:
-
-```
-Hello, world!
 ```
 
 You just wrote and ran your first program! The computer read your instruction and did exactly what you asked -- it showed "Hello, world!" on the screen.
@@ -132,14 +73,13 @@ So the whole thing means: "Run the action called `print`, and give it the text `
 
 ---
 
-## Running a Python File
+## How Python Runs Your Code
 
-Here is what happens step by step when you type `python hello.py` in the terminal:
+Here is what happens step by step when Python runs your code:
 
-1. You tell your computer: "Start Python and give it the file called hello.py"
-2. Python opens the file and reads the instructions from **top to bottom**, one line at a time
-3. It sees `print("Hello, world!")` and runs it -- showing the text on your screen
-4. There are no more instructions, so the program ends
+1. Python reads the instructions from **top to bottom**, one line at a time
+2. It sees `print("Hello, world!")` and runs it -- showing the text on your screen
+3. There are no more instructions, so the program ends
 
 **Order matters!** Python always reads from the first line to the last line, just like you read a book from top to bottom. If you put instructions in the wrong order, things will happen in the wrong order.
 
@@ -147,7 +87,9 @@ Here is what happens step by step when you type `python hello.py` in the termina
 
 ## Common Mistakes (And How to Fix Them)
 
-Everyone makes mistakes when they are starting. That is completely normal! Here are the most common ones and what they look like:
+Everyone makes mistakes when they are starting. That is completely normal! Here are the most common ones and what they look like.
+
+**Try running each of these broken examples** -- click "▶ Try it!" and then "▶ Run" to see what happens. Then fix them!
 
 ### Mistake 1: Forgetting the Quotes
 
@@ -155,15 +97,11 @@ Everyone makes mistakes when they are starting. That is completely normal! Here 
 print(Hello, world!)
 ```
 
-**What Python says:**
-
-```
-SyntaxError: invalid syntax
-```
+**What Python says:** `SyntaxError: invalid syntax`
 
 **What went wrong:** Without quotes, Python thinks `Hello` is a command or a name for something, not text. Python does not know any command called `Hello`, so it gets confused. Always put your text inside quotes.
 
-**Fix:** `print("Hello, world!")`
+**Fix:** Change it to `print("Hello, world!")`
 
 ### Mistake 2: Spelling print Wrong
 
@@ -171,15 +109,11 @@ SyntaxError: invalid syntax
 Print("Hello, world!")
 ```
 
-**What Python says:**
-
-```
-NameError: name 'Print' is not defined
-```
+**What Python says:** `NameError: name 'Print' is not defined`
 
 **What went wrong:** Python cares about capital letters and lowercase letters. `print` (all lowercase) and `Print` (with a capital P) are completely different words to Python. The function is called `print` -- all lowercase.
 
-**Fix:** `print("Hello, world!")`
+**Fix:** Change it to `print("Hello, world!")`
 
 ### Mistake 3: Mismatched Quotes
 
@@ -187,15 +121,11 @@ NameError: name 'Print' is not defined
 print("Hello, world!')
 ```
 
-**What Python says:**
-
-```
-SyntaxError: EOL while scanning string literal
-```
+**What Python says:** `SyntaxError: EOL while scanning string literal`
 
 **What went wrong:** You started with a double quote `"` but ended with a single quote `'`. They need to match! Either use two double quotes or two single quotes.
 
-**Fix:** `print("Hello, world!")` or `print('Hello, world!')`
+**Fix:** Change it to `print("Hello, world!")` or `print('Hello, world!')`
 
 ### Mistake 4: Forgetting the Parentheses
 
@@ -203,19 +133,11 @@ SyntaxError: EOL while scanning string literal
 print "Hello, world!"
 ```
 
-**What Python says:**
-
-```
-SyntaxError: Missing parentheses in call to 'print'
-```
+**What Python says:** `SyntaxError: Missing parentheses in call to 'print'`
 
 **What went wrong:** In Python, you must put parentheses around the thing you want to print. This is how Python knows you are calling the `print` function.
 
-**Fix:** `print("Hello, world!")`
-
-### Mistake 5: Forgetting to Save
-
-You change your code in the editor but forget to press Ctrl+S (or Command+S) before running it. When you run the file, it still shows the old output. Always save before you run!
+**Fix:** Change it to `print("Hello, world!")`
 
 ### How to Read Error Messages
 
@@ -226,64 +148,6 @@ Error messages look scary at first, but they are actually **clues**. They are Py
 - **The message** often explains what Python expected versus what it found
 
 Think of error messages as helpful hints, not as the computer being mean. Every programmer sees error messages every single day -- even experts!
-
-**Try it now:** Open your editor and type each of the broken examples above on purpose. Run them. Read the error messages. Then fix them. Getting comfortable with errors now will make everything easier later.
-
----
-
-## The REPL: Having a Conversation with Python
-
-So far, you have been writing your code in a file and then running the file. There is another way to use Python: you can talk to it one line at a time, like having a conversation.
-
-This is called the **REPL**. That stands for:
-
-- **R**ead -- Python reads what you type
-- **E**valuate -- Python figures out the answer
-- **P**rint -- Python shows you the answer
-- **L**oop -- Python goes back and waits for your next line
-
-To start the REPL, open your terminal and just type:
-
-```
-python
-```
-
-You will see something like this:
-
-```
-Python 3.12.1 (main, Dec 7 2023, 20:45:44)
->>>
-```
-
-The `>>>` is Python's way of saying "I am ready. What do you want me to do?" This is called the **prompt**.
-
-Try typing these one at a time:
-
-```python
->>> print("Hello from the REPL!")
-Hello from the REPL!
->>> 2 + 3
-5
->>> "hello"
-'hello'
-```
-
-Notice something cool: in the REPL, you can type a math problem like `2 + 3` and Python shows you the answer right away, without needing `print()`. This makes the REPL great for quick experiments.
-
-To leave the REPL and go back to your normal terminal, type:
-
-```python
->>> exit()
-```
-
-Or press Ctrl+D on Mac/Linux, or Ctrl+Z then Enter on Windows.
-
-### When to Use the REPL vs. a File
-
-- **Use the REPL** when you want to try something quick -- like testing one line, checking what something does, or using Python as a calculator
-- **Use a file** when you are writing a real program with multiple lines that you want to save and run again later
-
-Think of the REPL like a scratch pad and a file like a notebook. The scratch pad is for quick experiments. The notebook is for things you want to keep.
 
 ---
 
@@ -341,7 +205,7 @@ print("Hello, world!")
 
 Programs usually have more than one line. Python runs them in order, from top to bottom -- just like reading a book.
 
-Create a new file called `about_me.py` and type this:
+Try running this program, and then change it to be about you!
 
 ```python
 # about_me.py -- My first multi-line program
@@ -353,25 +217,9 @@ print("Favorite food: pizza")
 print("=================")
 ```
 
-Run it:
-
-```
-python about_me.py
-```
-
-You should see:
-
-```
-=== About Me ===
-Name: Sam
-Favorite color: blue
-Favorite food: pizza
-=================
-```
-
 Each `print()` shows its text on a new line. The computer runs the first line, then the second, then the third, all the way down. Order matters!
 
-**Try it:** Change the information to be about you. Add more lines. Run it again.
+**Try it:** Change the information to be about you. Add more lines. Click Run again.
 
 ### Printing Numbers
 
@@ -383,14 +231,6 @@ print(3.14)
 print(100 + 200)
 ```
 
-Output:
-
-```
-42
-3.14
-300
-```
-
 When you put `100 + 200` inside `print()`, Python does the math first and then shows you the answer. The computer is also a calculator!
 
 ### Printing Several Things at Once
@@ -400,13 +240,6 @@ You can give `print()` multiple items separated by commas:
 ```python
 print("My favorite number is", 7)
 print("The answer to 10 + 20 is", 10 + 20)
-```
-
-Output:
-
-```
-My favorite number is 7
-The answer to 10 + 20 is 30
 ```
 
 Python automatically puts a space between items when you separate them with commas. This is a handy way to mix text and numbers.
@@ -423,35 +256,25 @@ print()
 print("Line three")
 ```
 
-Output:
-
-```
-Line one
-
-Line three
-```
-
 An empty `print()` just makes a blank line. This is useful for adding space between sections of output to make it easier to read.
 
 ---
 
 ## Exercises
 
-These exercises are meant to be typed and run. Do not just read them. **Open your editor, type each one, and run it.**
+These exercises are meant to be typed and run. **Click "▶ Try it!" on each one, change the code, and click "▶ Run".**
 
 ### Exercise 1: Make the Computer Say Your Name
 
-Create a file called `my_name.py`:
+Click "▶ Try it!" and replace the text with your actual name. Then click "▶ Run". You just made the computer say your name!
 
 ```python
 print("Your name here")
 ```
 
-Replace `"Your name here"` with your actual name. Run it. You just made the computer say your name!
-
 ### Exercise 2: Be a Calculator
 
-Create a file called `calculator.py`:
+Before you run this, write down what you think each line will show. Then click "▶ Try it!" and "▶ Run" to check:
 
 ```python
 print(7)
@@ -460,30 +283,38 @@ print(7 * 3)
 print(7 - 3)
 ```
 
-Before you run it, write down what you think each line will show. Then run it and check.
-
 ### Exercise 3: All About You
 
-Write a program called `all_about_me.py` that prints at least 5 lines about you: your name, your city, your favorite food, your favorite animal, and your favorite number. Make it look nice with some `===` lines at the top and bottom.
+Click "▶ Try it!" and change this program to be all about you. Add more lines. Make it look nice!
+
+```python
+print("=== All About Me ===")
+print("Name: (your name)")
+print("City: (your city)")
+print("Favorite food: (your food)")
+print("Favorite animal: (your animal)")
+print("Favorite number:", 0)
+print("=====================")
+```
 
 ### Exercise 4: Break Things on Purpose
 
-This is an important exercise! Create a file and try each of these broken lines one at a time. Read the error message carefully for each one:
+This is an important exercise! Click "▶ Try it!" and run each broken line one at a time. Read the error message carefully for each one. Then fix it!
 
 ```python
-# Try each one separately:
+# Try each one separately (remove the # at the start to test it):
 
 # 1. Missing quotes
-print(hello)
+# print(hello)
 
 # 2. Misspelled function name
-prnt("hello")
+# prnt("hello")
 
 # 3. Missing closing parenthesis
-print("hello"
+# print("hello"
 
 # 4. Mismatched quotes
-print("hello')
+# print("hello')
 ```
 
 For each one:
@@ -492,30 +323,29 @@ For each one:
 - Can you figure out what Python is complaining about?
 - How would you fix it?
 
-### Exercise 5: Try the REPL
+### Exercise 5: Try Some Math
 
-Open the Python REPL (type `python` in the terminal) and try these:
+Python can do all kinds of math. Try changing the numbers and see what happens!
 
 ```python
->>> print("REPL test")
->>> 100 - 37
->>> "hello" + " " + "world"
->>> print("one", "two", "three")
+print("Addition:", 100 + 200)
+print("Subtraction:", 100 - 37)
+print("Multiplication:", 6 * 7)
+print("Text joining:", "hello" + " " + "world")
+print("One", "two", "three")
 ```
 
 What does `"hello" + " " + "world"` do? You just discovered that `+` can stick pieces of text together!
 
 ### Exercise 6: Comment Out
 
-Create a file called `comments.py`:
+Run this code. Then remove the `#` from the second line and run it again. See the difference? The `#` turned that line into a comment, so Python skipped it.
 
 ```python
 print("This will show up")
 # print("This will NOT show up")
 print("This will also show up")
 ```
-
-Run it. Now remove the `#` from the second line and run it again. See the difference? The `#` turned that line into a comment, so Python skipped it.
 
 ![A flat vector illustration in a children's educational book style showing Byte the robot looking at a list of completed exercises with checkmarks, giving a thumbs up with one hand while the other holds a small flag. Features Byte, a small friendly blue robot with round glowing yellow eyes and a smiling face, in a colorful workshop with soft pastel backgrounds. Clean lines, warm and inviting, no text in image.](image-03.png)
 
@@ -525,17 +355,11 @@ Run it. Now remove the `#` from the second line and run it again. See the differ
 
 Here are the traps that beginners fall into most often:
 
-**1. Not actually typing the code.** Reading code is not the same as writing code. Your fingers need the practice. Even if you are looking at the example on the screen, type every character yourself.
+**1. Not actually typing the code.** Reading code is not the same as writing code. Your fingers need the practice. Even if you are looking at the example on the screen, type every character yourself in the editor.
 
 **2. Getting scared of error messages.** Error messages are not the computer being mean -- they are clues! Read them carefully. The last line tells you what went wrong, and the lines above tell you where.
 
-**3. Forgetting to save before running.** If you change your file but do not save it, running `python hello.py` will run the old version. Always press Ctrl+S (or Command+S) before running.
-
-**4. Being in the wrong folder.** If the terminal says "file not found," you are probably not in the same folder as your `.py` file. Make sure you navigate to the right folder first.
-
-**5. Mixing up the REPL and files.** In the REPL, you type one line at a time. In a file, you write many lines and run them all together. Do not type `>>>` in your file -- that is just the REPL prompt.
-
-**6. Using a word processor.** Do not write Python in Microsoft Word or Google Docs. Those add invisible formatting that will break everything. Always use a plain text editor like VS Code.
+**3. Mixing up text and code.** Remember: quotes make text. Without quotes, Python thinks you are giving it a command or a name.
 
 ---
 
@@ -544,8 +368,7 @@ Here are the traps that beginners fall into most often:
 - A **program** is a set of instructions for the computer, like a recipe for a cook
 - **Python** is a language the computer can follow
 - `print()` shows text or numbers on the screen
-- You run Python files by typing `python filename.py` in the terminal
-- The **REPL** lets you talk to Python one line at a time -- great for experiments
+- You can run Python code right here on this page -- just click **"▶ Try it!"**
 - **Comments** (`#`) are notes that Python ignores -- they are for humans only
 - **Error messages** are clues, not insults -- always read them
 - Python reads your program from top to bottom, one line at a time
@@ -580,9 +403,7 @@ print(10 + 5)
 print("10 + 5")
 ```
 
-**5.** What does the REPL stand for, and when would you use it instead of a file?
-
-**6.** What will this code show on the screen?
+**5.** What will this code show on the screen?
 
 ```python
 print("First")
@@ -590,9 +411,9 @@ print("First")
 print("Third")
 ```
 
-**7.** You write a program, save it, and run it. Then you change the program but forget to save. What happens when you run it again?
+**6.** You change your code and click Run. But you see the old output. What might have happened?
 
-**8.** What is the difference between `print("7")` and `print(7)`?
+**7.** What is the difference between `print("7")` and `print(7)`?
 
 ---
 
@@ -613,9 +434,7 @@ Each `print()` puts its text on a new line, and Python runs them from top to bot
 
 **4.** The first line shows `15` because Python does the math (10 + 5 = 15) and displays the answer. The second line shows `10 + 5` because the quotes make it text -- Python just shows the characters exactly as they are, without doing any math.
 
-**5.** REPL stands for Read, Evaluate, Print, Loop. You would use it for quick experiments, like testing one line of code, checking how something works, or using Python as a calculator. You would use a file for real programs with many lines that you want to save and run again.
-
-**6.** It shows:
+**5.** It shows:
 
 ```
 First
@@ -624,9 +443,9 @@ Third
 
 The second line is a comment (it starts with `#`), so Python skips it completely. Only "First" and "Third" are displayed.
 
-**7.** The computer runs the old, saved version of your program, not the new version with your changes. You will see the old output. Always save (Ctrl+S) before running!
+**6.** You might have forgotten to click "▶ Run" after making your changes. Always click Run again after editing your code!
 
-**8.** Both show `7` on the screen, and they look the same. But `"7"` (with quotes) is text -- just the character "7." And `7` (without quotes) is a number you can do math with. This difference will matter a lot in the next lesson about values and types!
+**7.** Both show `7` on the screen, and they look the same. But `"7"` (with quotes) is text -- just the character "7." And `7` (without quotes) is a number you can do math with. This difference will matter a lot in the next lesson about values and types!
 
 ---
 
