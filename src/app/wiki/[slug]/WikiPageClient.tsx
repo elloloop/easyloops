@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import MarkdownRenderer from '@/shared/components/MarkdownRenderer';
 import ClientHeader from '@/shared/components/ClientHeader';
 import type { SupportedLanguage } from '@/shared/lib/wikiLoader';
+import { generateShortCode } from '@/shared/lib/shortCodes';
 
 interface WikiPageClientProps {
   slug: string;
@@ -17,6 +18,10 @@ const WikiPageClient: React.FC<WikiPageClientProps> = ({
   const [selectedLanguage, setSelectedLanguage] =
     useState<SupportedLanguage>('python');
   const contentRef = useRef<HTMLDivElement>(null);
+
+  const shortCode = generateShortCode(slug);
+  const pageUrl = `https://easyloops.app/wiki/${slug}`;
+  const qrApiUrl = `https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=${encodeURIComponent(pageUrl)}`;
 
   const handleLanguageChange = (language: string) => {
     setSelectedLanguage(language as SupportedLanguage);
@@ -77,6 +82,26 @@ const WikiPageClient: React.FC<WikiPageClientProps> = ({
       />
       <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-8 max-w-4xl">
         <div className="bg-white dark:bg-gray-900 rounded-lg shadow-lg p-4 sm:p-6 md:p-8 transition-colors duration-300 border border-gray-200 dark:border-gray-700">
+          {/* Print-only QR code and short code header */}
+          <div className="print-qr-container">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="print-qr-code"
+              src={qrApiUrl}
+              alt={`QR code for ${slug}`}
+              width={100}
+              height={100}
+            />
+            <div>
+              <div className="print-short-code">{shortCode}</div>
+              <div className="print-qr-label">
+                Scan the QR code or type{' '}
+                <strong>easyloops.app/go/{shortCode}</strong> in your browser to
+                open this page and try the code!
+              </div>
+            </div>
+          </div>
+
           <div className="mb-4 sm:mb-6">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-2">
               {slug
